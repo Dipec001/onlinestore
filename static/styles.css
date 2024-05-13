@@ -1,0 +1,221 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+
+}
+.logo{
+    position: relative;
+}
+.logo h2{
+    display: flex;
+    position: absolute;
+    top: 45%;
+    left: 70%;
+    color: #03a84e;
+    font-family: "Jaro", sans-serif;
+}
+.logo h2 span{
+    color: #0B63B2;
+}
+.logo i{
+    font-size: 3em;
+    color: #0A6847;
+    padding-right: 20px;
+}
+header div{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+header{
+    background-color: white;
+    padding-top: 20px;
+}
+.head input{
+    width: 450px;
+    height: 50px;
+    padding-left: 30px;
+    font-size: 1.2em;
+    border: 1px solid #0B63B2;
+}
+.search {
+    cursor: pointer;
+    height: 50px;
+    color: white;
+    background-color: #0B63B2;
+    padding: 0 30px;
+    border: none;
+}
+.head input:focus{
+    outline: none;
+    border: 2px solid #0B63B2;
+}
+.register{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 10px;  
+    position: relative;
+}
+.profile-icon{
+    margin-right: 10px;
+    margin-bottom: 10px;
+    font-size: 20px;
+}
+.account{
+    background-color: #F6F5F2;
+    padding: 8px 8px 4px 15px;
+    border-radius: 5px;
+    margin-right: 10px;
+    font-family: "Rubik", sans-serif;
+    cursor: pointer;
+}
+.floating-cart{
+    position: fixed;
+    object-position: center;
+    right: 4%;
+    bottom: 6%;
+    z-index: 999;
+    color: white;
+    background-color: #0B63B2;
+    font-size: 35px;
+    border-radius: 50%;
+
+}
+.second{
+    margin-bottom: 20px;
+}
+.active{
+    color: #0B63B2;    
+}
+.nav-options{
+    display:flex;
+    justify-content: center;
+    background-color: aliceblue;
+}
+.nav-options a{
+    text-decoration: none;
+    padding: 16px 24px;
+    color: black;
+}
+/* CSS styles for the moving text */
+.moving-text-container {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 50px;
+}
+
+.moving-text {
+    position: absolute;
+    top: 0;
+    white-space: nowrap; /* Ensures text stays on one line */
+    animation: moveLeftRight 15s linear infinite;
+    color: #0B63B2;
+    font-weight: bold;
+}
+
+/* Keyframes animation definition */
+@keyframes moveLeftRight {
+    0% { left: calc(100% + 10px); } /* Start position outside viewport */
+    100% { left: -70%; } /* End position outside viewport */
+}
+
+/* Style the second sentence */
+.moving-text:nth-child(2) {
+    animation-delay: -8s; /* Delay the start of animation for second sentence */
+  }
+
+/* CSS styles for the options box login options button style */
+.options-box {
+    display: none;
+    position: absolute;
+    top: calc(100% + 5px);
+    left: 10px;
+    width: 100px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px 10px 0 10px;
+}
+
+.options-box button {
+    width: 100%;
+    margin-bottom: 10px;
+    color: white;
+    background-color: #03a84e;
+    border: none;
+    border-radius: 5px;
+    padding: 3px 5px;
+    
+}
+
+/* Styling the login page */
+.login-container {
+    display: flex;
+    justify-content: space-around;
+    max-width: 90%;
+    margin: 0 auto;
+}
+
+.login-block,
+.register-block {
+    flex: 1;
+
+}
+
+.vertical-line {
+    width: 0.05em;
+    margin: 0 50px;
+    background-color: #0B63B2;
+}
+.login{
+    text-align: center;
+}
+.forgot-password{
+    float: right;
+}
+
+.login-content,
+.register-content {
+    text-align: start;
+}
+.login-container h3{
+    color: #0B63B2;
+}
+.login-container button{
+    background-color: #0B63B2;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    width: inherit;
+}
+.login-content form input{
+    width: 100%;
+    height: 40px;
+}
+.login-content button,
+.register-content button{
+    font-size: 16px;
+    width: 100%;
+    height: 40px;
+    margin: 30px 0;
+}
+
+/* styling for hide and show passoword */
+.password-container {
+    position: relative;
+}
+
+.toggle-password {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
