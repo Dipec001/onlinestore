@@ -2,6 +2,54 @@
 {% load static %}
 
 {% block content %}
+<div class="register-container">
+    <div class="register-heading">
+        <h3>Create Account</h3>
+        <p>Create your eMedicstore customer account in just a few clicks! You can register either using your e-mail address or through your Gmail account.</p>
+    </div>
+    <div class="form-container">
+        <form action="">
+            <div class="form-group">
+                <label for="name">First Name</label><br>
+                <input type="text" id="first_name" placeholder="Divine">
+            </div>
+            <div class="form-group">
+                <label for="name">Last Name</label><br>
+                <input type="text" id="last_name" placeholder="John">
+            </div>
+            <div class="form-group">
+                <label for="username">Email </label><br>
+                <input type="text" id="email" name="email" placeholder="Divine@example.com">
+            </div>
+            <div class="form-group">
+                <label for="password">Password </label><br>
+                <!-- <input type="password" id="password" name="password"><br> -->
+                <div class="password-container">
+                    <input type="password" id="password" name="password" placeholder="password"> 
+                    <span class="toggle-password" onclick="togglePasswordVisibility()">
+                        <i style="display: none; color: #0B63B2;" class="fas fa-eye"></i> <!-- Show icon -->
+                        <i style="display: block; color: #0B63B2;" class="fas fa-eye-slash"></i> <!-- Hide icon -->
+                    </span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="number">Phone Number</label><br>
+                <input type="tel" id="phone" placeholder="09087875373">
+            </div>
+            <div class="form-group">
+                <label for="dateOfBirth">Date Of Birth</label><br>
+                <input type="date" id="dob">
+            </div>
+            <div class="form-group">
+                <button type="submit">Create Account</button>
+            </div>
+        </form>
+    </div>
+    <div>
+        <p>Already have an account?<a href="/login"> Login Here.</a></p>
 
+    </div>
+
+</div>
 
 {% endblock %}

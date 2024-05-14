@@ -1,0 +1,41 @@
+{% extends 'header.html' %}
+{% load static %}
+
+{% block content %}
+<div class="contact-page">
+    <div class="contact-title">
+        <h1>CONTACT US</h1>
+        <p>Got some more questions or queries? Feel free to contact us!</p>
+    </div>
+    <div class="contact-body">
+        <div>
+            <h2>Do you have any question(s) or queries?</h2>
+            <p>Simply get in touch with us here and we shall get back to you as soon as possible to get your problems solved, you can also reach us here for business and other questions</p>
+        </div>
+        <div class="contact-card">
+            <div>
+                <input type="radio" name="contact" id="contact">
+                <label for="contact">Contact Us</label>
+                <input type="radio" name="specialMedicationRequest" id="special-request">
+                <label for="special-request">Special Medication Request</label>
+            </div>
+            <div class="contact-form">
+                <form action="{% url 'contact' %}" method="POST">
+                    {% csrf_token %}
+                    <input type="text" name="name" placeholder="Name" required>
+                    <input type="text" name="phone_number" placeholder="Phone Number" required>
+                    <input type="email" name="email" placeholder="Email address" required>
+                    <textarea name="message" placeholder="Message" required></textarea>
+                    <button type="submit">Email Message</button>
+                </form>
+            </div>
+
+        </div>
+        <div style="display: none;">
+
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

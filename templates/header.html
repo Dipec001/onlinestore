@@ -46,14 +46,14 @@
             </div>
         </div>
         <div class="nav-options">
-            <a href="#" class="active">Home</a>
+            <a href="{% url 'index' %}" class="active">Home</a>
             <a href="#">About us</a>
             <a href="#">Products</a>
             <a href="#">Blog</a>
             <a href="#">Shop</a>
             <a href="#">Services</a>
             <a href="#">Gallery</a>
-            <a href="#">Contact us</a>
+            <a href="{% url 'contact' %}">Contact us</a>
         </div>
         <div class="moving-text-container">
             <div class="moving-text">📢Hello, I'm moving or rather a moving text and here is for announcements, do with this information what ever you wish!!! 🎇</div>
@@ -63,6 +63,10 @@
     <!-- Content block for child templates -->
     {% block content %}
     {% endblock %}
+
+    <!-- Include the footer -->
+    {% include 'footer.html' %}
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="{% static 'styles.js' %}"></script>
 </body>
