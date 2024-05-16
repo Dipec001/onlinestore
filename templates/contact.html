@@ -8,18 +8,18 @@
         <p>Got some more questions or queries? Feel free to contact us!</p>
     </div>
     <div class="contact-body">
-        <div>
+        <div class="questions" id="contact-questions">
             <h2>Do you have any question(s) or queries?</h2>
             <p>Simply get in touch with us here and we shall get back to you as soon as possible to get your problems solved, you can also reach us here for business and other questions</p>
         </div>
         <div class="contact-card">
-            <div>
-                <input type="radio" name="contact" id="contact">
+            <div class="contact-options">
+                <input type="radio" name="contact-option" id="contact" checked>
                 <label for="contact">Contact Us</label>
-                <input type="radio" name="specialMedicationRequest" id="special-request">
+                <input type="radio" name="contact-option" id="special-request">
                 <label for="special-request">Special Medication Request</label>
             </div>
-            <div class="contact-form">
+            <div class="contact-form" id="contact-form">
                 <form action="{% url 'contact' %}" method="POST">
                     {% csrf_token %}
                     <input type="text" name="name" placeholder="Name" required>
@@ -29,13 +29,8 @@
                     <button type="submit">Email Message</button>
                 </form>
             </div>
-
-        </div>
-        <div style="display: none;">
-
         </div>
     </div>
-
 </div>
 
 {% endblock %}
