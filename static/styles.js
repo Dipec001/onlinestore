@@ -110,17 +110,34 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 
+/* JS styling for side bar */
+document.addEventListener('DOMContentLoaded', function() {
+    const hamburgerIcon = document.getElementById('hamburger-icon');
+    const sideBar = document.querySelector('.side-bar');
+    const hamburgerCloseIcon = document.getElementById('hamburger-close');
 
-const menuToggle = document.getElementById('menu-toggle');
-const hamburgerIcon = document.getElementById('hamburger-icon');
-const closeIcon = document.getElementById('hamburger-close');
-
-menuToggle.addEventListener('click', () => {
-    if (hamburgerIcon.style.display === 'none') {
-        hamburgerIcon.style.display = 'block';
-        closeIcon.style.display = 'none';
-    } else {
-        hamburgerIcon.style.display = 'none';
-        closeIcon.style.display = 'block';
+    function toggleSideBar() {
+        const computedStyle = window.getComputedStyle(sideBar);
+        if (computedStyle.display === 'none') {
+            sideBar.style.display = 'flex';
+        } else {
+            sideBar.style.display = 'none';
+        }
     }
+
+    hamburgerIcon.addEventListener('click', function(event) {
+        event.stopPropagation();  // Prevent the click event from propagating to the document
+        toggleSideBar();
+    });
+
+    hamburgerCloseIcon.addEventListener('click', function() {
+        sideBar.style.display = 'none';
+    });
+
+    // Close the dropdown when clicking outside of it
+    document.body.addEventListener('click', function(event) {
+        if (!event.target.closest('.side-bar') && sideBar.style.display === 'flex') {
+            sideBar.style.display = 'none';
+        }
+    });
 });

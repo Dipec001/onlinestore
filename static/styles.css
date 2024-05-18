@@ -30,6 +30,8 @@ header div{
 header{
     background-color: white;
     padding-top: 20px;
+    position: relative;
+    z-index: 1000; /* Ensures the header stays on top of other content */
 }
 .head input{
     width: 450px;
@@ -84,7 +86,14 @@ header{
 
 }
 .second{
-    margin-bottom: 20px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: white;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 .active{
     color: #0B63B2;    
@@ -93,15 +102,48 @@ header{
     display:flex;
     justify-content: center;
     background-color: aliceblue;
+    margin-top: 75px;
 }
 .nav-options a{
     text-decoration: none;
     padding: 16px 24px;
     color: black;
 }
-.hamburger{
+#hamburger-icon{
     font-size: 30px;
+    cursor: pointer;
 }
+.side-bar {
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 240px; /* Define the width of the sidebar */
+    height: 100vh;
+    background-color: white;
+    padding: 20px; /* General padding for the sidebar */
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1); /* Optional: Adds a subtle shadow */
+    z-index: 1000; /* Ensures the sidebar stays above other content */
+}
+
+
+#hamburger-close {
+    align-self: flex-end;
+    font-size: 24px; /* Adjust size as needed */
+    cursor: pointer;
+}
+
+.menu-item {
+    display: flex;
+    margin: 15px 0; /* Space between menu items */
+}
+
+.menu-item a {
+    text-decoration: none;
+    color: #333; /* Adjust color as needed */
+    padding-left: 20px; /* Padding from the left */
+}
+
 
 /* CSS styles for the moving text */
 .moving-text-container {
@@ -585,35 +627,39 @@ header{
 
 /* Services styles */
 .services-line{
-    margin: auto;
-    display: flex;
-    /* flex-direction: row-reverse; */
-    /* padding: 10px; */ 
-    margin: 200px auto;   
+    display: flex; 
     align-items: center;
+    justify-content: space-between;
+    padding: 20px 50px; /* Adjust the padding as needed */
+    margin: 100px 0; /* Adds space between service lines */
+}
+.services-line.reverse {
+    flex-direction: row-reverse;
 }
 
 .services-line div{
     flex: 1;
     padding: auto 30px;
 }
-.reverse{
-    display: flex;
-    flex-direction: row-reverse;
-    margin: 100px auto; 
-}
+
 
 .service-img{
     height: 400px;
 }
 .service-text{
-    padding: auto 50px;
-    max-width: 80%;
+    flex: 1;
+    padding-right: 20px;
+    text-align: justify;
+
 }
 .serveh1{
     font: 3em sans-serif;
     color: #0B63B2;
-    font-weight: bold;
+    margin-bottom: 15px;
+}
+.service-text p {
+    margin: 0;
+    line-height: 1.6;
 }
 
 .service-features {

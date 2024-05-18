@@ -46,9 +46,39 @@
             </div>
             <div id="menu-toggle">
                 <i class="fas fa-bars" id="hamburger-icon"></i>
-                <i class="fas fa-times" style="display: none;" id="hamburger-close"></i>
             </div>
-        </div>
+            <div class="side-bar" id="sidebar" style="display: none;">
+                <i class="fas fa-times" id="hamburger-close"></i>
+                <div class="menu-item">
+                    <a href="{% url 'index' %}">Home</a>
+                </div>
+                <div class="menu-item">
+                    <a href="{% url 'products' %}">Products</a>
+                </div>
+                <div class="menu-item">
+                    <a href="{% url 'services' %}">Services</a>
+                </div>
+                <div class="menu-item">
+                    <a href="">About</a>
+                </div>
+                <div class="menu-item">
+                    <a href="{% url 'contact' %}">Contact Us</a>
+                </div>
+                <div class="menu-item">
+                    <a href="">Gallery</a>
+                </div>
+                <div class="menu-item">
+                    <a href="">Blog</a>
+                </div>
+                <div class="menu-item">
+                    <a href="">FAQs</a>
+                </div>
+                <div class="menu-item">
+                    <a href="{% url 'login' %}">Login</a>
+                    <a href="{% url 'register' %}">Sign Up</a>
+                </div>
+            </div>
+        </div>            
         <div class="nav-options">
             <a href="{% url 'index' %}" class="active">Home</a>
             <a href="{% url 'products' %}">Products</a>
