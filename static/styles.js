@@ -109,3 +109,18 @@ document.addEventListener('DOMContentLoaded', function() {
       }
   });
 });
+
+
+const menuToggle = document.getElementById('menu-toggle');
+const hamburgerIcon = document.getElementById('hamburger-icon');
+const closeIcon = document.getElementById('hamburger-close');
+
+menuToggle.addEventListener('click', () => {
+    if (hamburgerIcon.style.display === 'none') {
+        hamburgerIcon.style.display = 'block';
+        closeIcon.style.display = 'none';
+    } else {
+        hamburgerIcon.style.display = 'none';
+        closeIcon.style.display = 'block';
+    }
+});

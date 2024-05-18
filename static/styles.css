@@ -99,6 +99,10 @@ header{
     padding: 16px 24px;
     color: black;
 }
+.hamburger{
+    font-size: 30px;
+}
+
 /* CSS styles for the moving text */
 .moving-text-container {
     position: relative;
@@ -290,21 +294,22 @@ header{
 }
 
 .footer-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start; /* Align content to the top */
+    display: grid;
+    grid-template-columns: auto auto;
+    column-gap: 50px;
     margin-top: 50px;
 }
 
-.news-letter {
-    flex: 1; /* Take remaining vertical space */
-    max-width: 50%; /* Limit width to 50% */
-}
+
 
 .right-footer {
-    flex: 1; /* Take remaining vertical space */
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    column-gap: 20px;
+
+}
+.right-footer div ul li{
+    margin-bottom: 10px;
 }
 
 .info div {
@@ -316,20 +321,21 @@ header{
 .subcribe-news {
     margin-top: 10px;
 }
-
-.app-links {
-    margin-top: 20px;
+.link123 li a{
+    color: white;
+    text-decoration: none;
 }
-
 /* Style icons as needed */
-.info span {
-    margin-right: 5px;
-}
 .info-12{
     display: grid;
     grid-template-columns: auto auto auto;
-    column-gap: 20px;
     margin-top: 50px;
+}
+.info-12 div{
+    display: flex;
+}
+.info-12 div p{
+    margin-left: 5px;
 }
 
 .store {
@@ -353,7 +359,7 @@ header{
 }
 .subcribe-news button{
     position: absolute;
-    left: 31%;
+    left: 32%;
     cursor: pointer;
     border: none;
     background-color: #03a84e;
@@ -367,8 +373,9 @@ header{
     text-align: center;
     margin-top: 50px;
 }
-li{
-    list-style: none;
+.social-icons li a i {
+    margin-right: 8px; /* Adjust the value as needed */
+    color: white;
 }
 
 /* contact page styles */
@@ -384,6 +391,11 @@ li{
 .contact-title h1{
     font-size: 5rem;
     color: #0B63B2;
+}
+.contact-title p{
+    max-width: 500px;
+    margin: auto;
+    
 }
 .contact-body{
     margin: 150px auto;
@@ -482,15 +494,17 @@ li{
     position: relative;
 }
 .filter-card p{
-    background-color: #ccc;
-    margin: auto;
+    background-color: gainsboro;
+    margin: auto 50px;
     padding: 10px 30px;
     border-radius: 5px;
     cursor: pointer;
 }
 .filter-card p:hover{
-    background-color: #5bc0de;
-    color: white;
+    background-color: #ccc;
+}
+.category-title .fas{
+    margin-left: 5px;
 }
 
 /* Style for the all products section */
@@ -527,6 +541,11 @@ li{
     color: white;
     border-radius: 5px;
 }
+.med-name{
+    font-size: 1.5em;
+    font-weight: 600;
+    color: #0B63B2;
+}
 .all-products h2{
     background-color: #0B63B2;
     padding: 10px 10px 20px 20px;
@@ -536,21 +555,122 @@ li{
 .left-pro a{
     text-decoration: none;
     color: black;
-    letter-spacing: 0.2em;
+    letter-spacing: 0.1em;
 }
 .cat-dropdown{
     padding: 20px;
     position: absolute;
     background-color: white;
     width: 350px;
-    left: 22%;
+    left: 20%;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     top: 38%;
     height: auto;
+    max-height: 600px;
+    border: 1px solid gainsboro;
+    border-radius: 5px;
+    overflow-y: scroll;
 }
 .cat-dropdown a{
     text-decoration: none;
+    color: black;
 }
 .cat-dropdown ul li{
     margin-bottom: 10px;
+}
+
+#menu-toggle i{
+    font-size: 1.5em;
+}
+
+/* Services styles */
+.services-line{
+    margin: auto;
+    display: flex;
+    /* flex-direction: row-reverse; */
+    /* padding: 10px; */ 
+    margin: 200px auto;   
+    align-items: center;
+}
+
+.services-line div{
+    flex: 1;
+    padding: auto 30px;
+}
+.reverse{
+    display: flex;
+    flex-direction: row-reverse;
+    margin: 100px auto; 
+}
+
+.service-img{
+    height: 400px;
+}
+.service-text{
+    padding: auto 50px;
+    max-width: 80%;
+}
+.serveh1{
+    font: 3em sans-serif;
+    color: #0B63B2;
+    font-weight: bold;
+}
+
+.service-features {
+    text-align: center;
+    margin: 0 auto;
+    /* background-color: #F9F9F9; */
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+.service-features-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.service-features-list {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+    justify-content: center;
+    margin: 0 50px;
+}
+
+.service-features-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    width: 100%;
+    height: 200px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.service-features-item img {
+    max-width: 100%;
+    height: auto;
+    width: 60px;
+}
+
+.service-features-item p {
+    margin-top: 10px;
+    font-size: 16px;
+}
+
+@media (max-width: 1200px) {
+    .service-features-list {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .service-features-list {
+        grid-template-columns: 1fr;
+    }
 }

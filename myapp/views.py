@@ -15,3 +15,6 @@ def contact(request):
 
 def products(request):
     return render(request, "products.html")
+
+def services(request):
+    return render(request, "services.html")

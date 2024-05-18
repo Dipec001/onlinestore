@@ -44,6 +44,10 @@
                     <i class="fa-solid fa-chevron-down"></i>
                 </div>
             </div>
+            <div id="menu-toggle">
+                <i class="fas fa-bars" id="hamburger-icon"></i>
+                <i class="fas fa-times" style="display: none;" id="hamburger-close"></i>
+            </div>
         </div>
         <div class="nav-options">
             <a href="{% url 'index' %}" class="active">Home</a>
@@ -51,7 +55,7 @@
             <a href="#">About us</a>
             <a href="#">Blog</a>
             <a href="#">Our Partners</a>
-            <a href="#">Services</a>
+            <a href="{% url 'services' %}">Services</a>
             <a href="#">Gallery</a>
             <a href="{% url 'contact' %}">Contact us</a>
         </div>
