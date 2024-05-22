@@ -3,8 +3,11 @@
     padding: 0;
     box-sizing: border-box;
 }
-.logo{
+/* .logo{
     position: relative;
+} */
+.logo img{
+    width: 80px;
 }
 .logo h2{
     position: absolute;
@@ -12,13 +15,13 @@
     left: 70%;
     color: #03a84e;
     font-family: "Jaro", sans-serif;
-    font-size: 25px;
+    font-size: 22px;
 }
 .logo h2 span{
     color: #0B63B2;
 }
 .logo i{
-    font-size: 3em;
+    font-size: 2.5em;
     color: #0A6847;
     padding-right: 20px;
 }
@@ -28,13 +31,15 @@ header div{
     align-items: center;
 }
 header{
+    max-width: 100%;
+    width: 100%;
     background-color: white;
     padding-top: 20px;
     position: relative;
     z-index: 1000; /* Ensures the header stays on top of other content */
 }
-.head input{
-    width: 450px;
+.search-input{
+    width: 350px;
     height: 50px;
     padding-left: 30px;
     font-size: 1.2em;
@@ -48,7 +53,7 @@ header{
     padding: 0 30px;
     border: none;
 }
-.head input:focus{
+.search-input:focus{
     outline: none;
     border: 2px solid #0B63B2;
 }
@@ -67,11 +72,12 @@ header{
 }
 .account{
     background-color: aliceblue;
-    padding: 8px 8px 4px 15px;
     border-radius: 5px;
     margin-right: 10px;
-    font-family: "Rubik", sans-serif;
     cursor: pointer;
+    display: grid;
+    grid-template-columns: auto auto;
+    padding: 10px 15px;
 }
 .floating-cart{
     position: fixed;
@@ -80,12 +86,15 @@ header{
     bottom: 6%;
     z-index: 999;
     color: white;
-    background-color: #0B63B2;
-    font-size: 35px;
+    background-color: black;
+    font-size: 30px;
     border-radius: 50%;
-
+    padding: 20px;
 }
+
 .second{
+
+
     position: fixed;
     top: 0;
     left: 0;
@@ -102,7 +111,7 @@ header{
     display:flex;
     justify-content: center;
     background-color: aliceblue;
-    margin-top: 75px;
+    margin-top: 80px;
 }
 .nav-options a{
     text-decoration: none;
@@ -144,6 +153,54 @@ header{
     padding-left: 20px; /* Padding from the left */
 }
 
+.home-categories{
+    padding: 0 10px;
+}
+.cate-p{
+    font-size: 20px;
+    background-color: #03a84e;
+    color: white;
+    padding: 20px 20px;
+    margin-top: 100px;
+    border-radius: 5px;  
+    display: flex; 
+    align-items: center;  
+    font-weight: 600;  
+}
+.home-cate{
+    display: flex;
+    flex-direction: row;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    scroll-snap-type: x mandatory;
+    -ms-scroll-snap-type: mandatory;
+
+}
+.home-cate div{
+    margin: 0 15px;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding-bottom: 20px;
+}
+.home-cate div p{
+    font-weight: 600;
+}
+.home-cate div img{
+    width: 300px;
+    border-radius: 10px;
+}
+.home-cate div button{
+    border: none;
+    color: white;
+    background-color: #0B63B2;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-weight: 600;
+}
+
 
 /* CSS styles for the moving text */
 .moving-text-container {
@@ -165,12 +222,12 @@ header{
 /* Keyframes animation definition */
 @keyframes moveLeftRight {
     0% { left: calc(100% + 10px); } /* Start position outside viewport */
-    100% { left: -70%; } /* End position outside viewport */
+    100% { left: -100%; } /* End position outside viewport */
 }
 
 /* Style the second sentence */
 .moving-text:nth-child(2) {
-    animation-delay: -8s; /* Delay the start of animation for second sentence */
+    animation-delay: -15s; /* Delay the start of animation for second sentence */
   }
 
 /* CSS styles for the options box login options button style */
@@ -324,6 +381,7 @@ header{
     color: #fff;
     padding-top: 20px;
     margin-top: 100px;
+    max-width: 100%;
 }
 
 .footer-container {
@@ -719,4 +777,127 @@ header{
     .service-features-list {
         grid-template-columns: 1fr;
     }
+}
+
+
+/* Item page */
+.item-first-div{
+    justify-content: start;
+    background-color: #0B63B2;
+    padding: 15px 5px 10px 20px;
+    align-items: center;
+}
+.item-first-div p{
+    display: inline-block;
+    color: white;
+    font-size: 1.5em;
+}
+.item-item-div{
+    display: grid;
+    grid-template-columns: auto auto;
+    column-gap: 50px;
+    margin: 50px auto;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+.item-item-img-div{
+    max-width: 100%;
+}
+.item-item-img-div img{
+    max-width: 100%;
+}
+.item-sec-div h1, .item-sec-div h3{
+    color: #0B63B2;
+}
+
+.add-minus{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
+
+.add-minus i{
+    font-size: 1.2em;
+    border: 2px solid #03a84e;
+    border-radius: 5px;
+    padding: 5px 2px;
+    color: #03a84e;
+    margin-right: 10px;
+    cursor: pointer;
+}
+.add-minus i:hover{
+    color: white;
+    background-color: #03a84e;
+}
+.add-minus a{
+    background-color: #03a84e;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 600;
+}
+.cart-no{
+    padding-right: 10px;
+    padding-top: 10px;
+    font-weight: 600;
+}
+/* All media queries */
+@media screen  and (max-width: 1200px){
+    .moving-text{
+        width: 500px;
+        white-space: wrap;
+    }
+    .footer-content {
+        grid-template-columns: auto;
+        row-gap: 50px;
+    }
+}
+
+@media screen  and (max-width: 1000px){
+    #search{
+        display: none;
+    }
+    .search-input{
+        width: 100%;
+    }
+    .account{
+        display: none;
+    }
+    .nav-options{
+        padding: 10px 20px;
+    }
+}
+
+@media screen  and (max-width: 660px){
+    .moving-text{
+        width: 500px;
+        white-space: wrap;
+    }
+    .moving-text:last-child{
+        display: none;
+    }
+    .info-12{
+        grid-template-columns: auto;
+        row-gap: 20px;
+    }
+    .subcribe-news{
+        display: grid;
+        grid-template-columns: auto;
+        row-gap: 20px;
+    }
+    .subcribe-news input{
+        width: 100%;
+    }
+    .right-footer{
+        font-size: smaller;
+    }
+    .item-item-div{
+        grid-template-columns: 100%;
+        row-gap: 50px;
+    }
+}
+
+@media screen  and (max-width: 660px){
+    
 }

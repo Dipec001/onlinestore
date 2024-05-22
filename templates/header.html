@@ -22,21 +22,20 @@
     <header>
         <div class="second">
             <div class="head logo">
-                <i class="fa-solid fa-house-medical"></i>
-                <h2>E<span>medic</span>store</h2>
+                <img src="{% static 'images/realll.png' %}" alt="">
             </div> 
-            <div class="head">
-                <input type="text" placeholder="Let us help you find what you are looking for">
+            <div class="head" id="search">
+                <input class="search-input" type="text" placeholder="Search products...">
                 <button class="search" onclick="search()">Search</button>
+                <!-- <i class="fa-solid fa-magnifying-glass"></i> -->
             </div>
             <div class="head register">
                 <div class="account" onclick="toggleOptionsBox()">
                     <i class="fa-solid fa-user-injured profile-icon"></i>
-                    <h4 style="font-size: small;">SignUp | Login</h4>
+                    <h5>SignUp | Login</h5>
                     <div class="options-box">
                         <a href="{% url 'login' %}"><button>Login</button></a>
                         <a href="{% url 'register' %}"><button>Register</button></a>
-
                     </div>
                 </div>
                 <div class="country">
@@ -79,7 +78,7 @@
                 </div>
             </div>
         </div>            
-        <div class="nav-options">
+        <div class="nav-options" id="nav">
             <a href="{% url 'index' %}" class="active">Home</a>
             <a href="{% url 'products' %}">Products</a>
             <a href="#">About us</a>

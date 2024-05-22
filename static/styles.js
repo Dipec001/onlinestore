@@ -1,5 +1,18 @@
 'use strict';
 
+// Testing purpose
+console.log('JavaScript file loaded successfully');
+
+function testFunction() {
+    console.log('Window resized');
+}
+
+window.addEventListener('resize', function() {
+    testFunction();
+});
+// testing purpose
+
+
 const optionsBox = document.querySelector('.options-box');
 
 function toggleOptionsBox() {
@@ -83,7 +96,7 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 
-
+/* JS style for category dropdown */
 document.addEventListener('DOMContentLoaded', function() {
   const categories = document.getElementById('categories');
   const dropdownCat = document.querySelector('.cat-dropdown');
@@ -141,3 +154,31 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
+
+
+/* Ajust or modify window content based on resize */
+// Define a function to update content based on window size
+
+// Store the original content of the nav
+const originalNavContent = nav.innerHTML;
+
+function updateContent() {
+    const nav = document.getElementById('nav');
+    const search = document.getElementById('search');
+    const windowWidth = window.innerWidth;
+    
+
+    if (windowWidth <1000) {
+        nav.innerHTML = search.innerHTML; // Change nav content to search content
+        
+    } else {
+        nav.innerHTML = originalNavContent; // Reset nav content
+    }
+}
+
+// Call the function initially to set the correct state based on initial window size
+updateContent();
+
+// Add event listener to call the
+// Update content on window resize
+window.addEventListener('resize', updateContent);

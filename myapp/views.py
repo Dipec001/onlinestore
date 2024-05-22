@@ -18,3 +18,9 @@ def products(request):
 
 def services(request):
     return render(request, "services.html")
+
+def item_view(request):
+    return render(request, 'item.html')
+
+def cart_view(request):
+    return render(request, 'cart.html')
