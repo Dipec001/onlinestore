@@ -12,6 +12,11 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 import os
+from dotenv import load_dotenv
+import dj_database_url
+
+# Load environment variables from .env file
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -21,9 +26,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-*2(fubb1dtrdi%fobc3ilb6x31(oa0(#qa=oxd6yqb#wf1-b7m"
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
+# DEBUG = os.getenv('DEBUG', 'False') == 'True'
 DEBUG = True
 
 ALLOWED_HOSTS = []
@@ -76,12 +82,30 @@ WSGI_APPLICATION = "onlinestore.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-DATABASES = {
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.sqlite3",
+#         "NAME": BASE_DIR / "db.sqlite3",
+#     }
+# }
+
+if DEBUG:
+    DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "ENGINE": os.getenv("DB_ENGINE"),
+        "NAME": os.getenv("DB_NAME"),
+        "USER": os.getenv("DB_USER"),
+        "PASSWORD": os.getenv("DB_PASSWORD"),
+        "HOST": os.getenv("DB_HOST"),
+        "PORT": os.getenv("DB_PORT"),
+        "CONN_MAX_AGE": 300,  # Maximum connection age in seconds (e.g., 5 minutes)
+        'CONN_MAX_NUM': 20,   # Maximum number of connections in the pool
     }
 }
+# else:
+#     DATABASES = {
+#         'default': dj_database_url.parse(os.getenv('DATABASE_URL'))
+#     }
 
 
 # Password validation
@@ -133,3 +157,8 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
 AUTH_USER_MODEL = "myapp.User"
+
+AUTHENTICATION_BACKENDS = [
+    'myapp.backends.EmailBackend',
+    'django.contrib.auth.backends.ModelBackend',
+]

@@ -30,14 +30,24 @@
                 <!-- <i class="fa-solid fa-magnifying-glass"></i> -->
             </div>
             <div class="head register">
-                <div class="account" onclick="toggleOptionsBox()">
-                    <i class="fa-solid fa-user-injured profile-icon"></i>
-                    <h5>SignUp | Login</h5>
-                    <div class="options-box">
-                        <a href="{% url 'login' %}"><button>Login</button></a>
-                        <a href="{% url 'register' %}"><button>Register</button></a>
+                {% if user.is_authenticated %}
+                    <div class="account" onclick="toggleOptionsBox()">
+                        <i class="fa-regular fa-user profile-icon"></i>
+                        <h5>My Account</h5>
+                        <div class="options-box">
+                            <a href="{% url 'logout' %}"><button>Logout</button></a>
+                        </div>
                     </div>
-                </div>
+                {% else %}
+                    <div class="account" onclick="toggleOptionsBox()">
+                        <i class="fa-regular fa-user profile-icon"></i>
+                        <h5>SignUp | Login</h5>
+                        <div class="options-box">
+                            <a href="{% url 'login' %}"><button>Login</button></a>
+                            <a href="{% url 'register' %}"><button>Register</button></a>
+                        </div>
+                    </div>
+                {% endif %}
                 <div class="country">
                     <i style="font-size: 30px; margin-right: 10px;" class="fa-solid fa-earth-americas"></i>
                     <i class="fa-solid fa-chevron-down"></i>
@@ -58,7 +68,7 @@
                     <a href="{% url 'services' %}">Services</a>
                 </div>
                 <div class="menu-item">
-                    <a href="">About</a>
+                    <a href="{% url 'about' %}">About</a>
                 </div>
                 <div class="menu-item">
                     <a href="{% url 'contact' %}">Contact Us</a>
@@ -72,16 +82,22 @@
                 <div class="menu-item">
                     <a href="">FAQs</a>
                 </div>
+                {% if user.is_authenticated %}
+                <div class="menu-item">
+                    <a href="{% url 'logout' %}">Logout</a>
+                </div>
+                {% else %}
                 <div class="menu-item">
                     <a href="{% url 'login' %}">Login</a>
                     <a href="{% url 'register' %}">Sign Up</a>
-                </div>
+                </div>               
+                {% endif %}
             </div>
         </div>            
         <div class="nav-options" id="nav">
             <a href="{% url 'index' %}" class="active">Home</a>
             <a href="{% url 'products' %}">Products</a>
-            <a href="#">About us</a>
+            <a href="{% url 'about' %}">About us</a>
             <a href="#">Blog</a>
             <a href="#">Our Partners</a>
             <a href="{% url 'services' %}">Services</a>

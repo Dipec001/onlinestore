@@ -3,7 +3,49 @@
 
 {% block content %}
 <div class="cart-page">
-    
+    <p>Cart (2 Items)</p>
+    <div>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Product Image</th>
+                    <th>Product</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Total</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><img src="{% static 'images/drug.jpg' %}" alt="Product Image" width="50" height="50"></td>
+                    <td>Medication</td>
+                    <td>$45.009</td>
+                    <td>1 pieces</td>
+                    <td>$90.018</td>
+                </tr>
+                <tr>
+                    <td><img src="{% static 'images/hush.jpg' %}" alt="Product Image" width="50" height="50"></td>
+                    <td>Medication</td>
+                    <td>$347.00</td>
+                    <td>1 pieces</td>
+                    <td>$900.18</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="item-totals">
+        <div>
+            <p>Subtotal: $900.18</p>
+            <p>VAT: $0.00</p>
+            <p>Total: $900.56</p>
+            <p>Note: Delivery Fee would be made available when you place an order</p>
+        </div>
+        <div>
+            <a class="item-shop" href="">Continue Shopping</a>
+            <a class="item-shop checkout" href="">Checkout</a>
+        </div>
+    </div>
 </div>
 
 {% endblock %}

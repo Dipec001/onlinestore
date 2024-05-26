@@ -9,10 +9,26 @@
                 <h3>Login</h3>
                 <p>Let's bring the pharmacy to you</p>
             </div>
+            <!-- Display messages -->
+            {% if messages %}
+                <div class="messages">
+                    {% for message in messages %}
+                        <div class="message {{ message.tags }}">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
             <div class="form">
-                <form action="">
-                    <label for="username">Email </label><br>
+                <form action="{% url 'login' %}" method="post" novalidate>
+                    {% csrf_token %}
+                    <label for="email">Email </label><br>
                     <input type="text" id="email" name="email" style="margin-bottom: 20px;"><br>
+                    {% if form.email.errors %}
+                        <div class="error-message">
+                            {{ form.email.errors|join:", " }}
+                        </div>
+                    {% endif %}
                     <label for="password">Password </label><br>
                     <!-- <input type="password" id="password" name="password"><br> -->
                     <div class="password-container">
@@ -22,10 +38,15 @@
                             <i style="display: block; color: #0B63B2;" class="fas fa-eye-slash"></i> <!-- Hide icon -->
                         </span>
                     </div>
+                    {% if form.password.errors %}
+                        <div class="error-message">
+                            {{ form.password.errors|join:", " }}
+                        </div>
+                    {% endif %}
                     <button type="submit">Log in</button>
                 </form>
             </div>
-            <a class="forgot-password" href="#">Forgot Password?</a>
+            <a class="forgot-password" href="{% url 'forgot-password' %}">Forgot Password?</a>
         </div>
     </div>
     <div class="vertical-line"></div>
@@ -35,7 +56,9 @@
                 <h3>Create account</h3>
                 <p>Create your eMedicstore customer account in just a few clicks! You can register either using your e-mail address or through your Facebook & Gmail account.</p>
             </div>
-            <button>Create account</button>
+            <a href="{% url 'register' %}">
+                <button>Create account</button>
+            </a>            
         </div>
     </div>
 </div>

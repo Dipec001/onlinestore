@@ -7,23 +7,48 @@
         <h3>Create Account</h3>
         <p>Create your eMedicstore customer account in just a few clicks! You can register either using your e-mail address or through your Gmail account.</p>
     </div>
+    <!-- Display messages -->
+    {% if messages %}
+        <div class="messages">
+            {% for message in messages %}
+                <div class="message {{ message.tags }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
     <div class="form-container">
-        <form action="">
+        <form action="{% url 'register' %}" method="post" novalidate>
+            {% csrf_token %}
             <div class="form-group">
                 <label for="name">First Name</label><br>
-                <input type="text" id="first_name" placeholder="Divine">
+                <input type="text" id="first_name" name="first_name" value="{{ form.first_name.value|default:'' }}" placeholder="Divine">
+                {% if form.first_name.errors %}
+                    <div class="error-message">
+                        {{ form.first_name.errors|join:", " }}
+                    </div>
+                {% endif %}
             </div>
             <div class="form-group">
                 <label for="name">Last Name</label><br>
-                <input type="text" id="last_name" placeholder="John">
+                <input type="text" id="last_name" name="last_name" value="{{ form.last_name.value|default:'' }}" placeholder="John">
+                {% if form.last_name.errors %}
+                    <div class="error-message">
+                        {{ form.last_name.errors|join:", " }}
+                    </div>
+                {% endif %}
             </div>
             <div class="form-group">
                 <label for="username">Email </label><br>
-                <input type="text" id="email" name="email" placeholder="Divine@example.com">
+                <input type="email" id="email" name="email" value="{{ form.email.value|default:'' }}" placeholder="Divine@example.com">
+                {% if form.email.errors %}
+                    <div class="error-message">
+                        {{ form.email.errors|join:", " }}
+                    </div>
+                {% endif %}
             </div>
             <div class="form-group">
                 <label for="password">Password </label><br>
-                <!-- <input type="password" id="password" name="password"><br> -->
                 <div class="password-container">
                     <input type="password" id="password" name="password" placeholder="password"> 
                     <span class="toggle-password" onclick="togglePasswordVisibility()">
@@ -31,14 +56,29 @@
                         <i style="display: block; color: #0B63B2;" class="fas fa-eye-slash"></i> <!-- Hide icon -->
                     </span>
                 </div>
+                {% if form.password.errors %}
+                    <div class="error-message">
+                        {{ form.password.errors|join:", " }}
+                    </div>
+                {% endif %}
             </div>
             <div class="form-group">
                 <label for="number">Phone Number</label><br>
-                <input type="tel" id="phone" placeholder="09087875373">
+                <input type="tel" id="phone_number" name="phone_number" value="{{ form.phone_number.value|default:'' }}" placeholder="09087875373">
+                {% if form.phone_number.errors %}
+                    <div class="error-message">
+                        {{ form.phone_number.errors|join:", " }}
+                    </div>
+                {% endif %}
             </div>
             <div class="form-group">
                 <label for="dateOfBirth">Date Of Birth</label><br>
-                <input type="date" id="dob">
+                <input type="date" id="date_of_birth" name="date_of_birth" value="{{ form.date_of_birth.value|default:'' }}">
+                {% if form.date_of_birth.errors %}
+                    <div class="error-message">
+                        {{ form.date_of_birth.errors|join:", " }}
+                    </div>
+                {% endif %}
             </div>
             <div class="form-group">
                 <button type="submit">Create Account</button>
