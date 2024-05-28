@@ -24,9 +24,11 @@
             <div class="products-container">
                 {% for drug in page_obj %}
                 <div class="drug">
-                    <img src="{{ drug.image.url }}" alt="{{ drug.name }}">
-                    <p class="med-name">{{ drug.name }}</p>
-                    <p>${{ drug.price }}</p>
+                    <a href="{% url 'item-view' drug.id %}" class="drug-link">
+                        <img src="{{ drug.image.url }}" alt="{{ drug.name }}">
+                        <p class="med-name">{{ drug.name }}</p>
+                        <p>${{ drug.price }}</p>
+                    </a>
                     <button>Add to Cart</button>
                 </div>
                 {% endfor %}

@@ -26,12 +26,9 @@ function toggleOptionsBox() {
 }
 
 document.body.addEventListener('click', function(event) {
-  console.log('Clicked on:', event.target);
-  console.log('Options box display:', optionsBox.style.display);
 
   // Check if the clicked element is inside the .account div
   if (!event.target.closest('.account') && optionsBox.style.display === 'block') {
-    console.log('Hiding options box');
     optionsBox.style.display = 'none'; // Hide the options box if clicked outside
   }
 });
@@ -185,16 +182,12 @@ window.addEventListener('resize', updateContent);
 
 /* styling for the message alerts */
 document.addEventListener("DOMContentLoaded", function() {
-    console.log("DOM fully loaded and parsed");
     setTimeout(function() {
         const messages = document.querySelectorAll(".pop-up-message");
-        console.log("Messages found:", messages.length);
         messages.forEach(function(message) {
-            console.log("Hiding message:", message);
             message.classList.add("hidden");
             setTimeout(() => {
                 message.style.display = 'none';
-                console.log("Message hidden:", message);
             }, 500); // This matches the transition duration
         });
     }, 5000); // 5 seconds
@@ -226,3 +219,12 @@ document.addEventListener('DOMContentLoaded', function () {
         document.getElementById('hidden-token').value = token;
     }
 });
+
+
+/* style for searching */
+function performSearch() {
+    var query = document.getElementById('search-query').value;
+    if (query) {
+        window.location.href = "{% url 'products' %}?q=" + encodeURIComponent(query);
+    }
+}

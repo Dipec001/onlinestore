@@ -5,20 +5,20 @@
 <div class="item-page">
     <div class="item-first-div">
         <p>Home > All-products ></p>
-        <p>medication</p>
+        <p>{{ drug.category.name }}</p>
     </div>
     <div class="item-item-div">
         <div class="item-item-img-div">
-            <img src="{% static 'images/drug.jpg' %}" alt="Drug">
+            <img src="{{ drug.image.url }}" alt="{{ drug.name }}">
         </div>
         <div class="item-sec-div">
-            <h1>Medication</h1>
+            <h1>{{ drug.name }}</h1>
             <hr>
-            <p>$45.009</p>
+            <p>${{ drug.price }}</p>
             <h3>Description:</h3>
-            <p>MedFertil Tablets Are Dairy And Nut Free Supplements That Is Formulated To Maintain Normal DNA Synthesis, Supports Immune System Defence And Is Important For Cellular Replication. It Supports Sperm Cell Health, By Improving Sperm Count And Motility. It Protects The Sperm Cells From Free Radicals Damages. Take One Tablet DAILY.</p>
+            <p>{{ drug.description }}</p>
             <h3>Manufacturer:</h3>
-            <p>Medilaburer</p>
+            <p>{{ drug.manufacturer }}</p>
             <div class="add-minus">
                 <i class="fa-solid fa-minus"></i>
                 <p class="cart-no">1pcs</p>
@@ -29,5 +29,4 @@
         </div>
     </div>
 </div>
-
 {% endblock %}

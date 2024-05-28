@@ -102,8 +102,17 @@ def contact(request):
     return render(request, "contact.html")
 
 def products(request):
+    
+    query = request.GET.get('q')
+    category = request.GET.get('category')
+
     categories = Category.objects.all()
     drugs = Drug.objects.all()
+
+    if query:
+        drugs = drugs.filter(Q(name__icontains=query) | Q(description__icontains=query))
+    if category:
+        drugs = drugs.filter(category=category)
 
     paginator = Paginator(drugs, 9)  # Show 9 drugs per page
     page_number = request.GET.get('page')
@@ -122,8 +131,9 @@ def services(request):
     return render(request, "services.html")
 
 
-def item_view(request):
-    return render(request, 'item.html')
+def item_view(request, id):
+    drug = get_object_or_404(Drug, id=id)
+    return render(request, 'item.html', {'drug': drug})
 
 
 def cart_view(request):

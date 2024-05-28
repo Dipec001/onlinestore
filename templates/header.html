@@ -24,11 +24,15 @@
             <div class="head logo">
                 <img src="{% static 'images/realll.png' %}" alt="">
             </div> 
-            <div class="head" id="search">
+            <form class="head" id="search" method="get" action="{% url 'products' %}">                    
+                <input class="search-input" type="text" name="q" placeholder="Search for products..." value="{{ request.GET.q }}">
+                <!-- <input class="search-input" type="text" placeholder="Search products..."> -->
+                <button class="search" onclick="search()">Search</button>
+            </form>
+            <!-- <div class="head" id="search">
                 <input class="search-input" type="text" placeholder="Search products...">
                 <button class="search" onclick="search()">Search</button>
-                <!-- <i class="fa-solid fa-magnifying-glass"></i> -->
-            </div>
+            </div> -->
             <div class="head register">
                 {% if user.is_authenticated %}
                     <div class="account" onclick="toggleOptionsBox()">

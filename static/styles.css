@@ -38,11 +38,11 @@ header{
     position: relative;
     z-index: 1000; /* Ensures the header stays on top of other content */
 }
+
 .search-input{
     width: 350px;
     height: 50px;
     padding-left: 30px;
-    font-size: 1.2em;
     border: 1px solid #0B63B2;
 }
 .search {
@@ -52,6 +52,7 @@ header{
     background-color: #0B63B2;
     padding: 0 30px;
     border: none;
+    margin-left: -5px;
 }
 .search-input:focus{
     outline: none;
@@ -628,6 +629,12 @@ header{
     overflow: hidden; /* Ensure the content doesn't overflow */
 }
 
+.drug-link {
+    display: block;
+    color: inherit; /* Ensure the link inherits the text color */
+    text-decoration: none; /* Remove the default underline of the link */
+}
+
 .drug img {
     width: 100%;
     height: auto;
@@ -781,44 +788,57 @@ header{
     }
 }
 
-
 /* Item page */
-.item-first-div{
+.item-first-div {
     justify-content: start;
     background-color: #0B63B2;
     padding: 15px 5px 10px 20px;
     align-items: center;
 }
-.item-first-div p{
+
+.item-first-div p {
     display: inline-block;
     color: white;
     font-size: 1.5em;
 }
-.item-item-div{
-    display: grid;
-    grid-template-columns: auto auto;
-    column-gap: 50px;
+
+.item-item-div {
+    display: flex;
+    justify-content: space-between;
     margin: 50px auto;
     padding-left: 30px;
     padding-right: 30px;
 }
-.item-item-img-div{
-    max-width: 100%;
+
+.item-item-img-div, .item-sec-div {
+    flex: 1;
+    max-width: 48%;
+    box-sizing: border-box; /* Ensure padding and border are included in the width */
 }
-.item-item-img-div img{
-    max-width: 100%;
+
+.item-item-img-div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
-.item-sec-div h1, .item-sec-div h3{
+
+.item-item-img-div img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain; /* Maintain aspect ratio, contain within parent */
+}
+
+.item-sec-div h1, .item-sec-div h3 {
     color: #0B63B2;
 }
 
-.add-minus{
+.add-minus {
     display: flex;
     align-items: center;
     flex-direction: row;
 }
 
-.add-minus i{
+.add-minus i {
     font-size: 1.2em;
     border: 2px solid #03a84e;
     border-radius: 5px;
@@ -827,11 +847,13 @@ header{
     margin-right: 10px;
     cursor: pointer;
 }
-.add-minus i:hover{
+
+.add-minus i:hover {
     color: white;
     background-color: #03a84e;
 }
-.add-minus a{
+
+.add-minus a {
     background-color: #03a84e;
     color: white;
     padding: 5px 10px;
@@ -839,18 +861,22 @@ header{
     text-decoration: none;
     font-weight: 600;
 }
-.cart-no{
+
+.cart-no {
     padding-right: 10px;
     padding-top: 10px;
     font-weight: 600;
 }
-.cart-page{
+
+.cart-page {
     padding: 30px;
 }
-.item-totals{
+
+.item-totals {
     text-align: right;
 }
-.item-shop{
+
+.item-shop {
     text-decoration: none;
     background-color: #0B63B2;
     color: white;
@@ -858,11 +884,13 @@ header{
     border-radius: 5px;
     width: 500px;
 }
-.checkout{
+
+.checkout {
     background-color: #03a84e;
     padding: 10px 80px;
     border-radius: 5px;
 }
+
 
 /* styling for about page */
 
