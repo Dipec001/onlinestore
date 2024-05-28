@@ -1,7 +1,8 @@
 from django import forms
 from django.contrib.auth.forms import AuthenticationForm
-from .models import User
+from .models import User, Drug
 from django.core.exceptions import ValidationError
+from .choices import CATEGORIES
 
 class UserRegisterForm(forms.ModelForm):
     email = forms.EmailField(required=True, widget=forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Divine@example.com'}))
@@ -40,3 +41,11 @@ class UserRegisterForm(forms.ModelForm):
 class UserLoginForm(forms.Form):
     email = forms.EmailField(required=True, widget=forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Divine@example.com'}))
     password = forms.CharField(required=True, widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'password'}))
+
+
+class DrugForm(forms.ModelForm):
+    category = forms.ChoiceField(choices=CATEGORIES, required=True)
+    class Meta:
+        model = Drug
+        fields = ['name', 'description', 'price', 'manufacturer', 'category', 'image']
+

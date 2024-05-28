@@ -614,25 +614,27 @@ header{
 
 .products-container{
     display: grid;
-    grid-template-columns: auto auto auto;
+    grid-template-columns: repeat(3, 1fr); /* Fixed number of columns to 3 */
     gap: 30px;
     padding: 10px;
 }
 .drug {
     text-align: center;
     padding-bottom: 20px;
-    /* Ensure each drug item takes equal space */
-    flex: 1;
     display: flex;
     flex-direction: column;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 5px;
+    overflow: hidden; /* Ensure the content doesn't overflow */
 }
 
 .drug img {
-    max-width: 100%;
+    width: 100%;
     height: auto;
+    object-fit: cover; /* Ensures the image covers the parent while maintaining aspect ratio */
+    display: block; /* Ensures there are no extra spaces around the image */
 }
+
 .drug button{
     margin: auto;
     padding: 5px 10px;
@@ -1047,6 +1049,42 @@ header{
     color: #721c24;
     border: 1px solid #f5c6cb;
 }
+
+/* messages(error and success) for the other pages */
+.pop-up-messages {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.pop-up-message {
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    display: inline-block;
+    background-color: #d4edda; /* Default to success color */
+    color: #155724;
+    border: 1px solid #c3e6cb;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    transition: opacity 0.5s ease-in-out;
+    opacity: 1;
+}
+
+.pop-up-message.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+.hidden {
+    opacity: 0;
+}
+
 
 
 /* All media queries */

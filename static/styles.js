@@ -179,6 +179,50 @@ function updateContent() {
 // Call the function initially to set the correct state based on initial window size
 updateContent();
 
-// Add event listener to call the
-// Update content on window resize
+// Add event listener to call the update content on window resize
 window.addEventListener('resize', updateContent);
+
+
+/* styling for the message alerts */
+document.addEventListener("DOMContentLoaded", function() {
+    console.log("DOM fully loaded and parsed");
+    setTimeout(function() {
+        const messages = document.querySelectorAll(".pop-up-message");
+        console.log("Messages found:", messages.length);
+        messages.forEach(function(message) {
+            console.log("Hiding message:", message);
+            message.classList.add("hidden");
+            setTimeout(() => {
+                message.style.display = 'none';
+                console.log("Message hidden:", message);
+            }, 500); // This matches the transition duration
+        });
+    }, 5000); // 5 seconds
+});
+
+
+/* styling for otp boxex filling */
+document.addEventListener('DOMContentLoaded', function () {
+    const otpInputs = document.querySelectorAll('.chakra-pin-input');
+    otpInputs.forEach((input, idx) => {
+        input.addEventListener('input', () => {
+            if (input.value.length > 0) {
+                if (idx < otpInputs.length - 1) {
+                    otpInputs[idx + 1].focus();
+                }
+            }
+            updateHiddenToken();
+        });
+
+        input.addEventListener('keydown', (e) => {
+            if (e.key === 'Backspace' && input.value.length === 0 && idx > 0) {
+                otpInputs[idx - 1].focus();
+            }
+        });
+    });
+
+    function updateHiddenToken() {
+        const token = Array.from(otpInputs).map(input => input.value).join('');
+        document.getElementById('hidden-token').value = token;
+    }
+});

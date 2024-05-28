@@ -73,9 +73,11 @@
                 <div class="menu-item">
                     <a href="{% url 'contact' %}">Contact Us</a>
                 </div>
+                {% if user.is_staff or user.is_superuser %}
                 <div class="menu-item">
-                    <a href="">Gallery</a>
+                    <a href="{% url 'admin' %}">Admin</a>
                 </div>
+                {% endif %}
                 <div class="menu-item">
                     <a href="">Blog</a>
                 </div>
@@ -101,7 +103,9 @@
             <a href="#">Blog</a>
             <a href="#">Our Partners</a>
             <a href="{% url 'services' %}">Services</a>
-            <a href="#">Gallery</a>
+            {% if user.is_staff or user.is_superuser %}
+            <a href="{% url 'admin' %}">Admin</a>
+            {% endif %}
             <a href="{% url 'contact' %}">Contact us</a>
         </div>
         <div class="moving-text-container">

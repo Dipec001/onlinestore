@@ -3,6 +3,16 @@
 
 {% block content %}
 <div class="content">
+    {% if messages %}
+      <div class="pop-up-messages">
+          {% for message in messages %}
+              <div class="pop-up-message {{ message.tags }}">
+                  {{ message }}
+              </div>
+          {% endfor %}
+      </div>
+    {% endif %}
+
     <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
           <div class="carousel-item active">

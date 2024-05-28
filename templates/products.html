@@ -12,32 +12,9 @@
             <p class="category-title" id="categories">Categories <i class="fas fa-caret-down"></i></p>
             <div class="cat-dropdown" style="display: none;" >
                 <ul>
-                    <li><a href="">CATEGORY NUMBERS HERE</a></li>
-                    <li><a href="">CATEGORY NUMBERS HERE</a></li>
-                    <li><a href="">CATEGORY NUMBERS HERE</a></li>
-                    <li><a href="">CATEGORY NUMBERS HERE</a></li>
-                    <li><a href="">CATEGORY NUMBERS HERE</a></li>
-                    <li><a href="">CATEGORY NUMBERS HERE</a></li>
-                    <li><a href="">CATEGORY NUMBERS HERE</a></li>
-                    <li><a href="">CATEGORY NUMBERS HERE</a></li>
-                    <li><a href="">CATEGORY NUMBERS HERE</a></li>
-                    <li><a href="">CATEGORY NUMBERS HERE</a></li>
-                    <li><a href="">CATEGORY NUMBERS HERE</a></li>
-                    <li><a href="">CATEGORY NUMBERS HERE</a></li>
-                    <li><a href="">CATEGORY NUMBERS HERE</a></li>
-                    <li><a href="">CATEGORY NUMBERS HERE</a></li>
-                    <li><a href="">CATEGORY NUMBERS HERE</a></li>
-                    <li><a href="">CATEGORY NUMBERS HERE</a></li>
-                    <li><a href="">CATEGORY NUMBERS HERE</a></li>
-                    <li><a href="">CATEGORY NUMBERS HERE</a></li>
-                    <li><a href="">CATEGORY NUMBERS HERE</a></li>
-                    <li><a href="">CATEGORY NUMBERS HERE</a></li>
-                    <li><a href="">CATEGORY NUMBERS HERE</a></li>
-                    <li><a href="">CATEGORY NUMBERS HERE</a></li>
-                    <li><a href="">CATEGORY NUMBERS HERE</a></li>
-                    <li><a href="">CATEGORY NUMBERS HERE</a></li>
-                    <li><a href="">CATEGORY NUMBERS HERE</a></li>
-                    <li><a href="">CATEGORY NUMBERS HERE</a></li>
+                    {% for category in categories %}
+                    <li><a href="" value="{{ category.id }}">{{ category.name }}</a></li>
+                    {% endfor %}
                 </ul>
             </div>
             <p class="category-title">Filter <i class="fas fa-caret-down"></i></p>
@@ -45,62 +22,31 @@
         <div class="all-products">
             <h2>Products A-Z</h2>
             <div class="products-container">
+                {% for drug in page_obj %}
                 <div class="drug">
-                    <img src="{% static 'images/drug.jpg'%}" alt="">
-                    <p class="med-name">Medication</p>
-                    <p>$50.00</p>
+                    <img src="{{ drug.image.url }}" alt="{{ drug.name }}">
+                    <p class="med-name">{{ drug.name }}</p>
+                    <p>${{ drug.price }}</p>
                     <button>Add to Cart</button>
                 </div>
-                <div class="drug">
-                    <img src="{% static 'images/drug.jpg'%}" alt="">
-                    <p class="med-name">Medication</p>
-                    <p>$50.00</p>
-                    <button>Add to Cart</button>
-                </div>
-                <div class="drug">
-                    <img src="{% static 'images/drug.jpg'%}" alt="">
-                    <p class="med-name">Medication</p>
-                    <p>$50.00</p>
-                    <button>Add to Cart</button>
-                </div>  
-                <div class="drug">
-                    <img src="{% static 'images/drug.jpg'%}" alt="">
-                    <p class="med-name">Medication</p>
-                    <p>$50.00</p>
-                    <button>Add to Cart</button>
-                </div>
-                <div class="drug">
-                    <img src="{% static 'images/drug.jpg'%}" alt="">
-                    <p class="med-name">Medication</p>
-                    <p>$50.00</p>
-                    <button>Add to Cart</button>
-                </div>
-                <div class="drug">
-                    <img src="{% static 'images/drug.jpg'%}" alt="">
-                    <p class="med-name">Medication</p>
-                    <p>$50.00</p>
-                    <button>Add to Cart</button>
-                </div>
-                <div class="drug">
-                    <img src="{% static 'images/drug.jpg'%}" alt="">
-                    <p class="med-name">Medication</p>
-                    <p>$50.00</p>
-                    <button>Add to Cart</button>
-                </div>
-                <div class="drug">
-                    <img src="{% static 'images/drug.jpg'%}" alt="">
-                    <p class="med-name">Medication</p>
-                    <p>$50.00</p>
-                    <button>Add to Cart</button>
-                </div>
-                <div class="drug">
-                    <img src="{% static 'images/drug.jpg'%}" alt="">
-                    <p class="med-name">Medication</p>
-                    <p>$50.00</p>
-                    <button>Add to Cart</button>
-                </div>
+                {% endfor %}
             </div>
         </div>
+    </div>
+    <div class="pagination">
+        <span class="step-links">
+            {% if page_obj.has_previous %}
+                <a href="?{% if request.GET.q %}q={{ request.GET.q }}&{% endif %}{% if request.GET.category %}category={{ request.GET.category }}&{% endif %}page={{ page_obj.previous_page_number }}">Previous</a>
+            {% endif %}
+    
+            <span class="current">
+                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+            </span>
+    
+            {% if page_obj.has_next %}
+                <a href="?{% if request.GET.q %}q={{ request.GET.q }}&{% endif %}{% if request.GET.category %}category={{ request.GET.category }}&{% endif %}page={{ page_obj.next_page_number }}">Next</a>
+            {% endif %}
+        </span>
     </div>
 
 </div>

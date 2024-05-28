@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
+from django.utils import timezone
+from .choices import CATEGORIES
 
 class CustomUserManager(BaseUserManager):
     def create_user(self, email, date_of_birth, phone_number, first_name=None, last_name=None, password=None, **extra_fields):
@@ -52,3 +54,58 @@ class User(AbstractBaseUser, PermissionsMixin):
     USERNAME_FIELD = "email"
 
 
+class OneTimePassword(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    code = models.CharField(max_length=6, unique=True)
+    created_at = models.DateTimeField(default=timezone.now)
+
+    def __str__(self):
+        return f"{self.user.email} - {self.code}"
+
+    def is_valid(self):
+        # Define the expiration duration (e.g., 10 minutes)
+        expiration_duration = timezone.timedelta(minutes=10)
+        # Calculate the expiration timestamp
+        expiration_timestamp = self.created_at + expiration_duration
+        # Check if the current time is before the expiration timestamp
+        return timezone.now() < expiration_timestamp
+    
+class Category(models.Model):
+    code = models.CharField(max_length=50, unique=True)
+    name = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.name
+
+class Drug(models.Model):
+    name = models.CharField(max_length=200)
+    description = models.TextField()
+    price = models.DecimalField(max_digits=10, decimal_places=2)
+    manufacturer = models.TextField(blank=True, null=True)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='drugs')
+    image = models.ImageField(upload_to='images/')
+
+    def __str__(self):
+        return self.name
+    
+
+# class Cart(models.Model):
+#     user = models.OneToOneField(User, on_delete=models.CASCADE)
+#     drugs = models.ManyToManyField(Drug, through='CartItem')
+
+# class CartItem(models.Model):
+#     cart = models.ForeignKey(Cart, on_delete=models.CASCADE)
+#     drug = models.ForeignKey(Drug, on_delete=models.CASCADE)
+#     quantity = models.PositiveIntegerField(default=1)
+
+# class Order(models.Model):
+#     user = models.ForeignKey(User, on_delete=models.CASCADE)
+#     drugs = models.ManyToManyField(Drug, through='OrderItem')
+#     total_price = models.DecimalField(max_digits=10, decimal_places=2)
+#     created_at = models.DateTimeField(auto_now_add=True)
+#     updated_at = models.DateTimeField(auto_now=True)
+
+# class OrderItem(models.Model):
+#     order = models.ForeignKey(Order, on_delete=models.CASCADE)
+#     drug = models.ForeignKey(Drug, on_delete=models.CASCADE)
+#     quantity = models.PositiveIntegerField()

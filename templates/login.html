@@ -23,14 +23,13 @@
                 <form action="{% url 'login' %}" method="post" novalidate>
                     {% csrf_token %}
                     <label for="email">Email </label><br>
-                    <input type="text" id="email" name="email" style="margin-bottom: 20px;"><br>
+                    <input type="text" name="email" style="margin-bottom: 20px;"><br>
                     {% if form.email.errors %}
                         <div class="error-message">
                             {{ form.email.errors|join:", " }}
                         </div>
                     {% endif %}
                     <label for="password">Password </label><br>
-                    <!-- <input type="password" id="password" name="password"><br> -->
                     <div class="password-container">
                         <input type="password" id="password" name="password"> 
                         <span class="toggle-password" onclick="togglePasswordVisibility()">
