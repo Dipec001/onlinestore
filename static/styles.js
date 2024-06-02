@@ -221,10 +221,10 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
-/* style for searching */
-function performSearch() {
-    var query = document.getElementById('search-query').value;
-    if (query) {
-        window.location.href = "{% url 'products' %}?q=" + encodeURIComponent(query);
-    }
-}
+// /* style for searching */
+// function performSearch() {
+//     var query = document.getElementById('search-query').value;
+//     if (query) {
+//         window.location.href = "{% url 'products' %}?q=" + encodeURIComponent(query);
+//     }
+// }

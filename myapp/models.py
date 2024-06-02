@@ -89,14 +89,15 @@ class Drug(models.Model):
         return self.name
     
 
-# class Cart(models.Model):
-#     user = models.OneToOneField(User, on_delete=models.CASCADE)
-#     drugs = models.ManyToManyField(Drug, through='CartItem')
+class Cart(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
-# class CartItem(models.Model):
-#     cart = models.ForeignKey(Cart, on_delete=models.CASCADE)
-#     drug = models.ForeignKey(Drug, on_delete=models.CASCADE)
-#     quantity = models.PositiveIntegerField(default=1)
+class CartItem(models.Model):
+    cart = models.ForeignKey(Cart, on_delete=models.CASCADE)
+    drug = models.ForeignKey(Drug, on_delete=models.CASCADE)
+    quantity = models.PositiveIntegerField(default=1)
 
 # class Order(models.Model):
 #     user = models.ForeignKey(User, on_delete=models.CASCADE)

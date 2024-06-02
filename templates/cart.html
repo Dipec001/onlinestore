@@ -3,49 +3,53 @@
 
 {% block content %}
 <div class="cart-page">
-    <p>Cart (2 Items)</p>
-    <div>
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>Product Image</th>
-                    <th>Product</th>
-                    <th>Price</th>
-                    <th>Quantity</th>
-                    <th>Total</th>
-
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><img src="{% static 'images/drug.jpg' %}" alt="Product Image" width="50" height="50"></td>
-                    <td>Medication</td>
-                    <td>$45.009</td>
-                    <td>1 pieces</td>
-                    <td>$90.018</td>
-                </tr>
-                <tr>
-                    <td><img src="{% static 'images/hush.jpg' %}" alt="Product Image" width="50" height="50"></td>
-                    <td>Medication</td>
-                    <td>$347.00</td>
-                    <td>1 pieces</td>
-                    <td>$900.18</td>
-                </tr>
-            </tbody>
-        </table>
+    <p class="cart-num">Cart ({{ cart_items_with_subtotal|length }} Items)</p>
+    {% if cart_items_with_subtotal %}
+    {% for entry in cart_items_with_subtotal %}
+    <div class="cart-main-things">
+        
+        <div>
+            <img src="{{ entry.item.drug.image.url }}" alt="{{ entry.item.drug.name }}" width="100" height="100">
+        </div>
+        <div>
+            <p>{{ entry.item.drug.name }}</p>
+            <a href="{% url 'remove_from_cart' entry.item.drug.id %}"><i class="fa-solid fa-trash"></i>Remove</a>
+        </div>
+        <div>
+            <p>Quantity</p>
+            <div class="add-minus-button">
+                <a href="{% url 'subtract_from_cart' entry.item.drug.id %}" class="subtract" {% if entry.item.quantity == 1 %}disabled{% endif %}><i class="fa-solid fa-minus"></i></a>
+                <p class="cart-no">{{ entry.item.quantity }}pcs</p>
+                <a href="{% url 'add-to-cart' entry.item.drug.id %}" class="add"><i class="fa-solid fa-plus"></i></a>
+            </div>
+        </div>
+        <div>
+            <p>Unit Price</p>
+            <p class="cart-price">${{ entry.item.drug.price|floatformat:2 }}</p>
+        </div>
+        <div>
+            <p>Total Price</p>
+            <p class="cart-total">${{ entry.subtotal }}</p>
+        </div>
+        
     </div>
+    {% endfor %}
     <div class="item-totals">
         <div>
-            <p>Subtotal: $900.18</p>
+            <p>Subtotal: ${{ total }}</p>
             <p>VAT: $0.00</p>
-            <p>Total: $900.56</p>
+            <p>Total: ${{ total }}</p>
             <p>Note: Delivery Fee would be made available when you place an order</p>
         </div>
         <div>
-            <a class="item-shop" href="">Continue Shopping</a>
-            <a class="item-shop checkout" href="">Checkout</a>
+            <a class="item-shop" href="{% url 'products' %}">Continue Shopping</a>
+            <a class="item-shop checkout" href="{% url 'checkout' %}">Checkout</a>
         </div>
     </div>
+    {% else %}
+    <div class="empty-cart">
+        <img src="{% static 'images/empty-cart.webp' %}" alt="Empty Cart">
+    </div>
+    {% endif %}
 </div>
-
 {% endblock %}

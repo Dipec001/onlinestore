@@ -2,7 +2,7 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.models import Group
-from .models import User, Category, Drug
+from .models import User, Category, Drug, Cart, CartItem
 
 # Register your models
 
@@ -39,3 +39,16 @@ class DrugAdmin(admin.ModelAdmin):
     list_display = ('name', 'price', 'manufacturer', 'category')
     search_fields = ('name', 'manufacturer')
     list_filter = ('category',)
+
+
+@admin.register(Cart)
+class CartAdmin(admin.ModelAdmin):
+    list_display = ('user', 'created_at', 'updated_at')
+    search_fields = ('user__email', 'user__username')
+    list_filter = ('created_at', 'updated_at')
+
+@admin.register(CartItem)
+class CartItemAdmin(admin.ModelAdmin):
+    list_display = ('cart', 'drug', 'quantity')
+    search_fields = ('cart__user__email', 'cart__user__username', 'drug__name')
+    list_filter = ('cart', 'drug')

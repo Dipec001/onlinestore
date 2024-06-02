@@ -14,10 +14,13 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Jaro:opsz@6..72&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Jaro:opsz@6..72&family=Micro+5+Charted&display=swap" rel="stylesheet">
+    <!-- Other head elements -->
+    <meta name="csrf-token" content="{{ csrf_token }}">
 </head>
 <body>
     <div  class="first floating-cart">
-        <i class="fa-solid fa-cart-plus"></i>
+        <a href="{% url 'cart-view' %}"><i class="fa-solid fa-cart-plus"></i></a>
+        <p class="cart-item-number">{{ cart_item_count }}</p>
     </div>
     <header>
         <div class="second">
@@ -25,8 +28,7 @@
                 <img src="{% static 'images/realll.png' %}" alt="">
             </div> 
             <form class="head" id="search" method="get" action="{% url 'products' %}">                    
-                <input class="search-input" type="text" name="q" placeholder="Search for products..." value="{{ request.GET.q }}">
-                <!-- <input class="search-input" type="text" placeholder="Search products..."> -->
+                <input class="search-input" type="text" name="q" placeholder="Search via a drug name, drug use case..." value="{{ request.GET.q }}">
                 <button class="search" onclick="search()">Search</button>
             </form>
             <!-- <div class="head" id="search">
@@ -79,7 +81,7 @@
                 </div>
                 {% if user.is_staff or user.is_superuser %}
                 <div class="menu-item">
-                    <a href="{% url 'admin' %}">Admin</a>
+                    <a href="/admin">Admin</a>
                 </div>
                 {% endif %}
                 <div class="menu-item">
@@ -108,7 +110,7 @@
             <a href="#">Our Partners</a>
             <a href="{% url 'services' %}">Services</a>
             {% if user.is_staff or user.is_superuser %}
-            <a href="{% url 'admin' %}">Admin</a>
+            <a href="/admin">Admin</a>
             {% endif %}
             <a href="{% url 'contact' %}">Contact us</a>
         </div>

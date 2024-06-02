@@ -2,13 +2,13 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from .forms import UserRegisterForm, UserLoginForm, DrugForm
-from .models import User, OneTimePassword, Drug, Category
+from .models import User, OneTimePassword, Drug, Category, Cart, CartItem
 from .utils import send_otp_for_password_reset
 from django.contrib.auth.decorators import user_passes_test
 from .permissions import admin_check
 from django.core.paginator import Paginator
 from django.db.models import Q
-
+from django.views.decorators.http import require_POST
 
 # Create your views here.
 def index(request):
@@ -102,7 +102,7 @@ def contact(request):
     return render(request, "contact.html")
 
 def products(request):
-    
+
     query = request.GET.get('q')
     category = request.GET.get('category')
 
@@ -137,12 +137,76 @@ def item_view(request, id):
 
 
 def cart_view(request):
-    return render(request, 'cart.html')
+    cart = get_cart(request)
+    cart_items = CartItem.objects.filter(cart=cart)
+    
+    # Calculate subtotal for each cart item and the total for the cart
+    cart_items_with_subtotal = []
+    total = 0
+    for item in cart_items:
+        subtotal = item.drug.price * item.quantity
+        total += subtotal
+        cart_items_with_subtotal.append({
+            'item': item,
+            'subtotal': subtotal
+        })
+
+    return render(request, 'cart.html', {
+        'cart_items_with_subtotal': cart_items_with_subtotal,
+        'total': total,
+    })
+
+
+def get_cart(request):
+    if request.user.is_authenticated:
+        cart, created = Cart.objects.get_or_create(user=request.user)
+    else:
+        # Use the session key to identify the cart for an anonymous user
+        if 'cart_id' in request.session:
+            cart_id = request.session['cart_id']
+            cart = Cart.objects.get(id=cart_id)
+        else:
+            # Create a new cart and store its ID in the session
+            cart = Cart.objects.create(user=None)
+            request.session['cart_id'] = cart.id
+    return cart
+
+def add_to_cart(request, drug_id):
+    cart = get_cart(request)
+    drug = get_object_or_404(Drug, id=drug_id)
+    cart_item, created = CartItem.objects.get_or_create(cart=cart, drug=drug)
+    if not created:
+        cart_item.quantity += 1
+    cart_item.save()
+    return redirect('cart-view')
+
+def subtract_from_cart(request, drug_id):
+    cart = get_cart(request)
+    drug = get_object_or_404(Drug, id=drug_id)
+    cart_item = get_object_or_404(CartItem, cart=cart, drug=drug)
+    if cart_item.quantity > 1:
+        cart_item.quantity -= 1
+        cart_item.save()
+    return redirect('cart-view')
+
+
+def remove_from_cart(request, drug_id):
+    cart = get_cart(request)
+    drug = get_object_or_404(Drug, id=drug_id)
+    cart_item = CartItem.objects.filter(cart=cart, drug=drug).first()
+    if cart_item:
+        cart_item.delete()
+    return redirect('cart-view')
 
 
 def about(request):
     return render(request, 'about.html')
 
 
-def admin_view(request):
-    return render(request, 'admin.html')
+def checkout_view(request):
+    user = request.user
+    if not user.is_authenticated:
+        messages.error(request, "Please sign in to complete your order")
+        return redirect('login')
+    return render(request, 'checkout.html',)
+

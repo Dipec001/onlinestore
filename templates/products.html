@@ -29,7 +29,10 @@
                         <p class="med-name">{{ drug.name }}</p>
                         <p>${{ drug.price }}</p>
                     </a>
-                    <button>Add to Cart</button>
+                    <form action="{% url 'add-to-cart' drug.id %}" method="post">
+                        {% csrf_token %}
+                        <button type="submit">Add to Cart</button>
+                    </form>
                 </div>
                 {% endfor %}
             </div>
