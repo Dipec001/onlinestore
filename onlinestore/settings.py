@@ -50,6 +50,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -103,11 +104,11 @@ if DEBUG:
         "CONN_MAX_AGE": 300,  # Maximum connection age in seconds (e.g., 5 minutes)
         'CONN_MAX_NUM': 20,   # Maximum number of connections in the pool
     }
-}
-# else:
-#     DATABASES = {
-#         'default': dj_database_url.parse(os.getenv('DATABASE_URL'))
-#     }
+} 
+else:
+    DATABASES = {
+        'default': dj_database_url.parse(os.getenv('DATABASE_URL'))
+    }
 
 
 # Password validation
@@ -144,9 +145,16 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+
 STATIC_URL = "static/"
 
+# Add this setting
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
 # Update this path to a directory that exists in your project
+# These are directories where Django will search for additional static files (development)
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
