@@ -29,7 +29,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv('DEBUG', default='False').lower() == "true"
+DEBUG = os.getenv('DEBUG', 'False') == 'True'
+
 print(DEBUG)
 
 ALLOWED_HOSTS = ['epharma-91ebb7c041f9.herokuapp.com']
@@ -106,8 +107,12 @@ if DEBUG:
     }
 } 
 else:
+    # DATABASES = {
+    #     'default': dj_database_url.parse(os.getenv('DATABASE_URL'))
+    # }
+    # Database configuration
     DATABASES = {
-        'default': dj_database_url.parse(os.getenv('DATABASE_URL'))
+        'default': dj_database_url.config(conn_max_age=600, ssl_require=True)
     }
 
 
