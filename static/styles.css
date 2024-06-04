@@ -923,7 +923,7 @@ header{
 }
 .cart-main-things{
     display: grid;
-    grid-template-columns: 10% 40% 20% 15% 15%;
+    grid-template-columns: 15% 40% 20% 10% 10%;
     column-gap: 10px;
     margin: 10px 0;
     background-color: rgb(246, 246, 246);
@@ -1207,6 +1207,8 @@ header{
     }
     .filter-card p{
         margin-bottom: 30px;
+    }
+    .cart-main-things{
     }
 
 }
