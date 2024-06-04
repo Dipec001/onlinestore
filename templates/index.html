@@ -39,10 +39,12 @@
       <div class="home-cate-container">
         <div class="home-cate">
           {% for category in categories %}
-          <div>
-            <img src="{% static 'images/features/categorypills.avif' %}" alt="">
-            <p>{{ category }}</p>
-          </div>
+          <a href="">
+            <div>
+              <img src="{% static 'images/features/categorypills.avif' %}" alt="">
+              <p>{{ category }}</p>
+            </div>
+          </a>
           {% endfor %}
         </div>
         <div class="pagination-dots">
@@ -59,7 +61,10 @@
             <img src="{{ best.image.url }}" alt="{{ best.name }}">
             <p>{{ best.name }}</p>
             <p>${{ best.price }}</p>
-            <button>Add to Cart</button>
+            <form action="{% url 'add-to-cart' best.id %}" method="post">
+              {% csrf_token %}
+              <button type="submit">Add to Cart</button>
+            </form>
           </div>
           {% endfor %}
         <div class="pagination-dots">

@@ -710,8 +710,14 @@ header{
     text-decoration: none;
     color: black;
 }
+.cat-dropdown ul{
+    list-style-type: none;
+}
 .cat-dropdown ul li{
-    margin-bottom: 10px;
+    margin-bottom: 10px;    
+}
+.cat-dropdown a:hover{
+    color: blue;
 }
 
 #menu-toggle i{
@@ -1264,9 +1270,7 @@ header{
     .products-container{
         grid-template-columns: auto; /* Fixed number of columns to 2 */  
     }
-}
-@media screen  and (max-width: 380px){
-    .products-container{
-        grid-template-columns: auto; /* Fixed number of columns to 2 */  
+    .cat-dropdown{
+        width: 250px;
     }
 }
