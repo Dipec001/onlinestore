@@ -1274,6 +1274,18 @@ header{
         row-gap: 50px;
     }
 }
+
+@media screen  and (max-width: 520px){
+    .shop-options{
+        display: grid;
+        grid-template-columns: auto;
+        row-gap: 30px;
+        justify-content: end;
+    }
+    .shop-options a{
+        width: 100%;
+    }
+}
 @media screen  and (max-width: 380px){
     .products-container{
         grid-template-columns: auto; /* Fixed number of columns to 2 */  
