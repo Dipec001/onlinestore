@@ -128,19 +128,15 @@ def logout_view(request):
 def contact(request):
     return render(request, "contact.html")
 
-def products(request, category_id):
+def products(request, category_id=None):
 
     query = request.GET.get('q')
-    # category = request.GET.get('category')
-    # category = request.GET.get('category')  # Check for category parameter
 
     categories = Category.objects.all()
     drugs = Drug.objects.all()
 
     if query:
         drugs = drugs.filter(Q(name__icontains=query) | Q(description__icontains=query))
-    # if category:
-    #     drugs = drugs.filter(category=category)
         
     if category_id:
         try:
