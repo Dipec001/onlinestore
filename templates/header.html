@@ -27,10 +27,12 @@
             <div class="head logo">
                 <img src="{% static 'images/realll.png' %}" alt="">
             </div> 
-            <form class="head" id="search" method="get" action="{% url 'products' %}">                    
-                <input class="search-input" type="text" name="q" placeholder="Search via a drug name, drug use case..." value="{{ request.GET.q }}">
-                <button class="search" onclick="search()">Search</button>
-            </form>
+            <div class="head" id="search" >
+                <form class="search-form" method="get" action="{% url 'products' %}">
+                    <input class="search-input" type="text" name="q" placeholder="Search via a drug name, drug use case..." value="{{ request.GET.q }}">
+                        <button class="search" onclick="search()">Search</button>
+                </form>                                    
+            </div>
             <!-- <div class="head" id="search">
                 <input class="search-input" type="text" placeholder="Search products...">
                 <button class="search" onclick="search()">Search</button>
@@ -115,7 +117,7 @@
             <a href="{% url 'contact' %}">Contact us</a>
         </div>
         <div class="moving-text-container">
-            <div class="moving-text">📢Hello, I'm moving or rather a moving text and here is for announcements, do with this information what ever you wish!!! 🎇</div>
+            <div class="moving-text">📢Hello, I'm moving or rather a moving text and here is for announcements, do with this indivation what ever you wish!!! 🎇</div>
             <div class="moving-text">📢Hello, I'm moving or rather a moving text and here is for announcements, do with this information what ever you wish!!! 🎇</div>
         </div>
     </header>

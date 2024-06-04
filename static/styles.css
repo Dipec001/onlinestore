@@ -50,7 +50,7 @@ header{
     height: 50px;
     color: white;
     background-color: #0B63B2;
-    padding: 0 30px;
+    padding: 0 auto;
     border: none;
     margin-left: -5px;
 }
@@ -1201,11 +1201,19 @@ header{
     .search-input{
         width: 100%;
     }
+    .search-form{
+        display: grid;
+        width: 90%;
+        grid-template-columns: 80% 20%;
+    }
+    .search-form button{
+        padding: auto;
+    }
     .account{
         display: none;
     }
     .nav-options{
-        padding: 10px 20px;
+        padding: 10px;
     }
 }
 
