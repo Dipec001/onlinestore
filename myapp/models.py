@@ -83,7 +83,7 @@ class Drug(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=2)
     manufacturer = models.TextField(blank=True, null=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='drugs')
-    image = models.ImageField(upload_to='images/')
+    image = models.ImageField(upload_to='drug_images/')
     best_sellers = models.PositiveIntegerField(default=0)
 
     def __str__(self):

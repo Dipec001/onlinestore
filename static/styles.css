@@ -923,13 +923,21 @@ header{
 }
 .cart-main-things{
     display: grid;
-    grid-template-columns: 15% 40% 20% 10% 10%;
+    grid-template-columns: auto auto;
     column-gap: 10px;
     margin: 10px 0;
     background-color: rgb(246, 246, 246);
     border-radius: 10px;
     padding: 35px 10px;
     
+}
+.cart-first{
+    display: grid;
+    grid-template-columns: 30% 70%;
+}
+.cart-2{
+    display: grid;
+    grid-template-columns: auto auto auto;
 }
 .add-minus-button{
     display: flex;
@@ -1209,6 +1217,8 @@ header{
         margin-bottom: 30px;
     }
     .cart-main-things{
+        grid-template-columns: auto;
+        row-gap: 20px;
     }
 
 }
