@@ -612,13 +612,14 @@ header{
     max-height: 200px;
     margin-right: 20px;
     border-radius: 5px;  
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: auto;
+    row-gap: 20px;
+    padding: 20px;
     position: relative;
 }
 .filter-card p{
     background-color: gainsboro;
-    margin: auto 50px;
     padding: 10px 30px;
     border-radius: 5px;
     cursor: pointer;
@@ -697,7 +698,7 @@ header{
     position: absolute;
     background-color: white;
     width: 350px;
-    left: 20%;
+    left: 10%;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     top: 38%;
     height: auto;
@@ -1224,7 +1225,7 @@ header{
 
     }
     .filter-card{
-        padding: 20px 0;
+        /* padding: 20px 0; */
         margin-bottom: 50px;
     }
     .filter-card p{
@@ -1279,7 +1280,7 @@ header{
     .shop-options{
         display: grid;
         grid-template-columns: auto;
-        row-gap: 30px;
+        row-gap: 20px;
         justify-content: end;
     }
     .shop-options a{
@@ -1291,6 +1292,6 @@ header{
         grid-template-columns: auto; /* Fixed number of columns to 2 */  
     }
     .cat-dropdown{
-        width: 250px;
+        width: 200px;
     }
 }

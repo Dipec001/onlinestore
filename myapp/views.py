@@ -128,18 +128,27 @@ def logout_view(request):
 def contact(request):
     return render(request, "contact.html")
 
-def products(request):
+def products(request, category_id):
 
     query = request.GET.get('q')
-    category = request.GET.get('category')
+    # category = request.GET.get('category')
+    # category = request.GET.get('category')  # Check for category parameter
 
     categories = Category.objects.all()
     drugs = Drug.objects.all()
 
     if query:
         drugs = drugs.filter(Q(name__icontains=query) | Q(description__icontains=query))
-    if category:
-        drugs = drugs.filter(category=category)
+    # if category:
+    #     drugs = drugs.filter(category=category)
+        
+    if category_id:
+        try:
+            category = Category.objects.get(pk=category_id)
+            drugs = drugs.filter(category=category)
+        except Category.DoesNotExist:
+            # Handle case where category ID is invalid (optional)
+            pass
 
     paginator = Paginator(drugs, 9)  # Show 9 drugs per page
     page_number = request.GET.get('page')
