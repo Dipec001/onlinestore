@@ -444,7 +444,11 @@ header{
 
 /* Additional styles for specific elements as needed */
 .subcribe-news {
+    width: 75%;
     margin-top: 10px;
+    display: grid;
+    grid-template-columns: 80% 20%;
+    column-gap: 10px;
 }
 .link123 li a{
     color: white;
@@ -472,26 +476,20 @@ header{
 }
 
 .subcribe-news input{
-    width: 30rem;
-    position: relative;
-    padding: 15px 25px;
+    padding: 15px 10px;
     border: 1px solid #0B63B2;
-    border-radius: 20px;
     margin: 20px 0;
 }
 .subcribe-news input:focus{
     outline: none;
 }
 .subcribe-news button{
-    position: absolute;
-    left: 32%;
     cursor: pointer;
     border: none;
     background-color: #03a84e;
     color: white;
-    border-radius: 15px;
-    padding: 10px 20px;
-    transform: translateY(59%);
+    padding: 5px 10px;
+    margin: 20px 0;
 
 }
 .footer-bottom{
@@ -1197,6 +1195,27 @@ header{
     }
 }
 
+@media screen  and (max-width: 880px){
+    .wrap1{
+        display: grid;
+        grid-template-columns: 100%;
+
+    }
+    .filter-card{
+        padding: 20px 0;
+        margin-bottom: 50px;
+    }
+    .filter-card p{
+        margin-bottom: 30px;
+    }
+
+}
+@media screen  and (max-width: 830px){
+    .products-container{
+        grid-template-columns: repeat(2, 1fr); /* Fixed number of columns to 2 */ 
+    }
+}
+
 @media screen  and (max-width: 660px){
     .moving-text{
         width: 500px;
@@ -1217,11 +1236,25 @@ header{
     .subcribe-news input{
         width: 100%;
     }
+    .subcribe-news button{
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
     .right-footer{
         font-size: smaller;
     }
     .item-item-div{
         grid-template-columns: 100%;
         row-gap: 50px;
+    }
+}
+@media screen  and (max-width: 380px){
+    .products-container{
+        grid-template-columns: auto; /* Fixed number of columns to 2 */  
+    }
+}
+@media screen  and (max-width: 380px){
+    .products-container{
+        grid-template-columns: auto; /* Fixed number of columns to 2 */  
     }
 }

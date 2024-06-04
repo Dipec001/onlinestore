@@ -84,6 +84,7 @@ class Drug(models.Model):
     manufacturer = models.TextField(blank=True, null=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='drugs')
     image = models.ImageField(upload_to='images/')
+    best_sellers = models.PositiveIntegerField(default=0)
 
     def __str__(self):
         return self.name

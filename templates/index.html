@@ -38,46 +38,12 @@
       <p class="cate-p">Shop By Category</p>
       <div class="home-cate-container">
         <div class="home-cate">
+          {% for category in categories %}
           <div>
             <img src="{% static 'images/features/categorypills.avif' %}" alt="">
-            <p>Anti-Pharma</p>
+            <p>{{ category }}</p>
           </div>
-          <div>
-            <img src="{% static 'images/features/categorypills.avif' %}" alt="">
-            <p>Anti-Pharma</p>
-          </div>
-          <div>
-            <img src="{% static 'images/features/categorypills.avif' %}" alt="">
-            <p>Anti-Pharma</p>
-          </div>
-          <div>
-            <img src="{% static 'images/features/categorypills.avif' %}" alt="">
-            <p>Anti-Pharma</p>
-          </div>
-          <div>
-            <img src="{% static 'images/features/categorypills.avif' %}" alt="">
-            <p>Anti-Pharma</p>
-          </div>
-          <div>
-            <img src="{% static 'images/features/categorypills.avif' %}" alt="">
-            <p>manyiduns</p>
-          </div>
-          <div>
-            <img src="{% static 'images/features/categorypills.avif' %}" alt="">
-            <p>Anti-Pharma</p>
-          </div>
-          <div>
-            <img src="{% static 'images/features/categorypills.avif' %}" alt="">
-            <p>Anti-Pharma</p>
-          </div>
-          <div>
-            <img src="{% static 'images/features/categorypills.avif' %}" alt="">
-            <p>Anti-Pharma</p>
-          </div>
-          <div>
-            <img src="{% static 'images/features/categorypills.avif' %}" alt="">
-            <p>medi care</p>
-          </div>
+          {% endfor %}
         </div>
         <div class="pagination-dots">
           <!-- Dots will be dynamically generated here -->
@@ -88,67 +54,14 @@
       <p class="cate-p">Best Sellers Showcase</p>
       <div class="home-cate-container">
         <div class="home-cate">
+          {% for best in best_sellers %}
           <div>
-            <img src="{% static 'images/features/categorypills.avif' %}" alt="">
-            <p>MedFertil Tablets for Men</p>
-            <p>$236.00</p>
+            <img src="{{ best.image.url }}" alt="{{ best.name }}">
+            <p>{{ best.name }}</p>
+            <p>${{ best.price }}</p>
             <button>Add to Cart</button>
           </div>
-          <div>
-            <img src="{% static 'images/features/categorypills.avif' %}" alt="">
-            <p>Anti-Malaria</p>
-            <p>$90.00</p>
-            <button>Add to Cart</button>
-          </div>
-          <div>
-            <img src="{% static 'images/features/categorypills.avif' %}" alt="">
-            <p>Leonarte Butltemart</p>
-            <p>$87.90</p>
-            <button>Add to Cart</button>
-          </div>
-          <div>
-            <img src="{% static 'images/features/categorypills.avif' %}" alt="">
-            <p>Anti-Pharma</p>
-            <p>$34.09</p>
-            <button>Add to Cart</button>
-          </div>
-          <div>
-            <img src="{% static 'images/features/categorypills.avif' %}" alt="">
-            <p>MedFertil for women</p>
-            <p>$45.89</p>
-            <button>Add to Cart</button>
-          </div>
-          <div>
-            <img src="{% static 'images/features/categorypills.avif' %}" alt="">
-            <p>manyiduns</p>
-            <p>$238.00</p>
-            <button>Add to Cart</button>
-          </div>
-          <div>
-            <img src="{% static 'images/features/categorypills.avif' %}" alt="">
-            <p>Anti-Pharma</p>
-            <p>$45.87</p>
-            <button>Add to Cart</button>
-          </div>
-          <div>
-            <img src="{% static 'images/features/categorypills.avif' %}" alt="">
-            <p>Anti-Pharma</p>
-            <p>$50.00</p>
-            <button>Add to Cart</button>
-          </div>
-          <div>
-            <img src="{% static 'images/features/categorypills.avif' %}" alt="">
-            <p>Anti-Pharma</p>
-            <p>$50.00</p>
-            <button>Add to Cart</button>
-          </div>
-          <div>
-            <img src="{% static 'images/features/categorypills.avif' %}" alt="">
-            <p>medi care</p>
-            <p>32.89</p>
-            <button>Add to Cart</button>
-          </div>
-        </div>
+          {% endfor %}
         <div class="pagination-dots">
           <!-- Dots will be dynamically generated here -->
         </div>

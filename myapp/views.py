@@ -12,7 +12,10 @@ from django.views.decorators.http import require_POST
 
 # Create your views here.
 def index(request):
-    return render(request, 'index.html')
+    categories = Category.objects.all()
+
+    best_sellers = Drug.objects.filter(best_sellers__gt=0)  # Filter drugs with best_sellers > 0
+    return render(request, 'index.html', {'categories':categories, 'best_sellers': best_sellers})
 
 
 def login_view(request):
@@ -24,6 +27,30 @@ def login_view(request):
             user = authenticate(request, username=email, password=password)  # Use username parameter for email
             if user is not None:
                 login(request, user)
+
+                # Merge session cart items with the authenticated user's cart
+                if 'cart_id' in request.session:
+                    session_cart_id = request.session['cart_id']
+                    try:
+                        session_cart = Cart.objects.get(id=session_cart_id)
+                        user_cart, created = Cart.objects.get_or_create(user=user)
+
+                        # Transfer items from session cart to user cart
+                        for session_cart_item in session_cart.cartitem_set.all():
+                            user_cart_item, created = CartItem.objects.get_or_create(
+                                cart=user_cart, drug=session_cart_item.drug)
+                            if not created:
+                                user_cart_item.quantity += session_cart_item.quantity
+                            else:
+                                user_cart_item.quantity = session_cart_item.quantity
+                            user_cart_item.save()
+
+                        # Clear the session cart
+                        session_cart.delete()
+                        del request.session['cart_id']
+                    except Cart.DoesNotExist:
+                        pass
+                
                 messages.success(request, "Login successful!")
                 return redirect("index")  # Redirect to the home page or another appropriate page
             else:

@@ -36,7 +36,7 @@ class CategoryAdmin(admin.ModelAdmin):
 
 @admin.register(Drug)
 class DrugAdmin(admin.ModelAdmin):
-    list_display = ('name', 'price', 'manufacturer', 'category')
+    list_display = ('name', 'price', 'manufacturer', 'category', 'best_sellers',)
     search_fields = ('name', 'manufacturer')
     list_filter = ('category',)
 
