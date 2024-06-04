@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
-from .forms import UserRegisterForm, UserLoginForm, DrugForm
+from .forms import UserRegisterForm, UserLoginForm
 from .models import User, OneTimePassword, Drug, Category, Cart, CartItem
 from .utils import send_otp_for_password_reset
 from django.contrib.auth.decorators import user_passes_test
@@ -9,6 +9,11 @@ from .permissions import admin_check
 from django.core.paginator import Paginator
 from django.db.models import Q
 from django.views.decorators.http import require_POST
+import os
+import stripe
+from django.contrib.auth.decorators import login_required
+
+stripe.api_key = os.environ.get('STRIPE_SECRET_KEY')
 
 # Create your views here.
 def index(request):
@@ -235,10 +240,51 @@ def about(request):
     return render(request, 'about.html')
 
 
-def checkout_view(request):
+# def checkout_view(request):
+#     user = request.user
+#     if not user.is_authenticated:
+#         messages.error(request, "Please sign in to complete your order")
+#         return redirect('login')
+#     return render(request, 'checkout.html',)
+
+@login_required
+def create_checkout_session(request):
     user = request.user
+
+    # Get the current domain dynamically
+    current_domain = request.META.get('HTTP_HOST')  # Get the domain from the request header
+
     if not user.is_authenticated:
         messages.error(request, "Please sign in to complete your order")
         return redirect('login')
-    return render(request, 'checkout.html',)
+    
+    if request.method == "POST":
+        # Logic to get cart items of the user
+        cart_items = CartItem.objects.filter(cart__user=user)
+        
+        # Prepare line items for Stripe Checkout
+        line_items = []
+        for cart_item in cart_items:
+            line_items.append({
+                'price': cart_item.drug.price_id,  # Assuming each drug has a 'price_id' field
+                'quantity': cart_item.quantity,
+            })
+        
+        # Get billing info from the form
+        name = request.POST.get("name")
+        delivery_address = request.POST.get('address')
+        contact = request.POST.get("tel")
+    
+        try:
+            checkout_session = stripe.checkout.Session.create(
+                line_items=line_items,
+                mode='payment',
+                success_url=current_domain + '/success.html',
+                cancel_url=current_domain + '/cancel.html',
+            )
+        except Exception as e:
+            return render(request, 'checkout.html', {'error': str(e)})  # Handle errors with context
 
+        return redirect(checkout_session.url, code=303)
+
+    return render(request, 'checkout.html')  # Render the checkout form
