@@ -11,6 +11,7 @@ Check out the live application: [ePharma Live](https://epharma-91ebb7c041f9.hero
 - **User Registration and Authentication**
 - **Browse and Search for Products**
 - **Add, Remove, and Update Cart Items**
+- **Upload Prescription from doctor or just any drug you cannot find**
 - **Checkout with Stripe Payment Integration**
 - **Admin Panel for Managing Products and Categories**
 - **Password Reset with One-Time Password (OTP)**
@@ -20,8 +21,8 @@ Check out the live application: [ePharma Live](https://epharma-91ebb7c041f9.hero
 
 1. **Clone the repository:**
     ```bash
-    git clone https://github.com/yourusername/epharma.git
-    cd epharma
+    git clone https://github.com/dipec001/onlinestore.git
+    cd onlinestore
     ```
 
 2. **Create a virtual environment and activate it:**
