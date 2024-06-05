@@ -20,4 +20,6 @@ urlpatterns = [
     path('subtract-from-cart/<int:drug_id>/', views.subtract_from_cart, name='subtract_from_cart'),
     # path('checkout/', views.checkout_view, name='checkout'),
     path('create-checkout-session/', views.create_checkout_session, name='create_checkout_session'),
+    path('success/', views.success_view, name='success'),
+    path('cancel/', views.cancel_view, name='cancel'),
 ]

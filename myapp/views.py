@@ -12,6 +12,7 @@ from django.views.decorators.http import require_POST
 import os
 import stripe
 from django.contrib.auth.decorators import login_required
+from django.conf import settings
 
 stripe.api_key = os.environ.get('STRIPE_SECRET_KEY')
 
@@ -248,17 +249,9 @@ def about(request):
 #     return render(request, 'checkout.html',)
 
 @login_required
-def create_checkout_session(request):
-    user = request.user
-
-    # Get the current domain dynamically
-    current_domain = request.META.get('HTTP_HOST')  # Get the domain from the request header
-
-    if not user.is_authenticated:
-        messages.error(request, "Please sign in to complete your order")
-        return redirect('login')
-    
+def create_checkout_session(request):    
     if request.method == "POST":
+        user = request.user
         # Logic to get cart items of the user
         cart_items = CartItem.objects.filter(cart__user=user)
         
@@ -269,6 +262,7 @@ def create_checkout_session(request):
                 'price': cart_item.drug.price_id,  # Assuming each drug has a 'price_id' field
                 'quantity': cart_item.quantity,
             })
+
         
         # Get billing info from the form
         name = request.POST.get("name")
@@ -279,12 +273,30 @@ def create_checkout_session(request):
             checkout_session = stripe.checkout.Session.create(
                 line_items=line_items,
                 mode='payment',
-                success_url=current_domain + '/success.html',
-                cancel_url=current_domain + '/cancel.html',
+                success_url=f"{settings.DOMAIN}/success",
+                cancel_url=f"{settings.DOMAIN}/cancel",
             )
+            # print(checkout_session.url)
+
+            # Redirect to the Stripe checkout page if the session creation is successful
+            return redirect(checkout_session.url, code=303)
         except Exception as e:
-            return render(request, 'checkout.html', {'error': str(e)})  # Handle errors with context
+            # Handle errors
+            error_message = str(e)
+            messages.error(request, error_message)
+            return render(request, 'checkout.html', {'error': error_message})
+    else:
+        user = request.user
+        if not user.is_authenticated:
+            messages.error(request, "Please sign in to complete your order")
+            return redirect('login')
 
-        return redirect(checkout_session.url, code=303)
+        return render(request, 'checkout.html')  # Render the checkout form
 
-    return render(request, 'checkout.html')  # Render the checkout form
+
+
+def success_view(request):
+    return render(request, 'success.html')
+
+def cancel_view(request):
+    return render(request, 'cancel.html')
