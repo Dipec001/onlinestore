@@ -34,10 +34,6 @@
                     <button class="search" onclick="search()">Search</button>
                 </form>                                    
             </div>
-            <!-- <div class="head" id="search">
-                <input class="search-input" type="text" placeholder="Search products...">
-                <button class="search" onclick="search()">Search</button>
-            </div> -->
             <div class="head register">
                 {% if user.is_authenticated %}
                     <div class="account" onclick="toggleOptionsBox()">
@@ -118,8 +114,8 @@
             <a href="{% url 'contact' %}">Contact us</a>
         </div>
         <div class="moving-text-container">
-            <div class="moving-text">📢Hello, I'm moving or rather a moving text and here is for announcements, do with this indivation what ever you wish!!! 🎇</div>
             <div class="moving-text">📢Hello, I'm moving or rather a moving text and here is for announcements, do with this information what ever you wish!!! 🎇</div>
+            <!-- <div class="moving-text">📢Hello, I'm moving or rather a moving text and here is for announcements, do with this information what ever you wish!!! 🎇</div> -->
         </div>
     </header>
     <!-- Content block for child templates -->
