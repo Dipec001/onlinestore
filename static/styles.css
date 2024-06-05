@@ -1306,6 +1306,9 @@ header{
     .shop-options a{
         width: 100%;
     }
+    .checkout-div{
+        width: 90%;
+    }
 }
 @media screen  and (max-width: 380px){
     .products-container{
