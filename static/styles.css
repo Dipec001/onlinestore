@@ -517,7 +517,8 @@ header{
 .contact-body{
     margin: 150px auto;
     width: 80%;
-    display: flex;
+    display: grid;
+    grid-template-columns: auto auto;
 }
 .contact-body div{
     flex: 1;
@@ -1259,6 +1260,14 @@ header{
         grid-template-columns: auto;
     }
 }
+
+@media screen  and (max-width: 830px){
+    .contact-body{
+        grid-template-columns: auto;
+        row-gap: 50px;
+    }
+}
+
 
 @media screen  and (max-width: 660px){
     .moving-text{
