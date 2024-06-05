@@ -276,7 +276,6 @@ def create_checkout_session(request):
                 success_url=f"{settings.DOMAIN}/success",
                 cancel_url=f"{settings.DOMAIN}/cancel",
             )
-            # print(checkout_session.url)
 
             # Redirect to the Stripe checkout page if the session creation is successful
             return redirect(checkout_session.url, code=303)
