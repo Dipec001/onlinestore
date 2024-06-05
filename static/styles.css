@@ -1180,6 +1180,26 @@ header{
 .hidden {
     opacity: 0;
 }
+.checkout-div{
+    width: 60%;
+    margin: auto;
+}
+.checkout-div h2{
+    font-weight: 600;
+    font-size: 2.5em;
+    color: #0B63B2;
+    margin-bottom: 50px;
+    text-align: center;
+}
+.checkout-div form button{
+    border: none;
+    color: white;
+    background-color: #03a84e;
+    padding: 10px 15px;
+    border-radius: 5px;
+    margin-top: 30px;
+    min-width: 250px;
+}
 
 
 
@@ -1293,5 +1313,8 @@ header{
     }
     .cat-dropdown{
         width: 200px;
+    }
+    .checkout-div{
+        width: 90%;
     }
 }

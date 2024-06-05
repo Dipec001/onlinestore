@@ -221,10 +221,9 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
-// /* style for searching */
-// function performSearch() {
-//     var query = document.getElementById('search-query').value;
-//     if (query) {
-//         window.location.href = "{% url 'products' %}?q=" + encodeURIComponent(query);
-//     }
-// }
+// /* Loading for processing */
+document.getElementById('checkout-form').addEventListener('submit', function() {
+    const checkoutButton = document.getElementById('checkout-button');
+    checkoutButton.disabled = true;
+    checkoutButton.innerHTML = 'Processing...';
+});

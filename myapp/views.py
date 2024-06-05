@@ -241,13 +241,6 @@ def about(request):
     return render(request, 'about.html')
 
 
-# def checkout_view(request):
-#     user = request.user
-#     if not user.is_authenticated:
-#         messages.error(request, "Please sign in to complete your order")
-#         return redirect('login')
-#     return render(request, 'checkout.html',)
-
 def create_checkout_session(request):    
     if request.method == "POST":
         user = request.user
@@ -292,8 +285,12 @@ def create_checkout_session(request):
         return render(request, 'checkout.html')  # Render the checkout form
 
 
-
 def success_view(request):
+    user = request.user
+    cart = get_cart(request)
+    
+    # Clear the user's cart items
+    CartItem.objects.filter(cart=cart).delete()
     return render(request, 'success.html')
 
 def cancel_view(request):
