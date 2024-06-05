@@ -281,22 +281,16 @@ header{
 
 /* Styling the login page */
 .login-container {
-    display: flex;
-    justify-content: space-around;
+    display: grid;
     max-width: 90%;
-    margin: 50px auto;
-
+    margin: 50px auto;   
+    grid-template-columns: 43% auto 43%;
 }
 
-.login-block,
-.register-block {
-    flex: 1;
-
-}
-
-.vertical-line {
-    width: 0.05em;
-    margin: 0 50px;
+.vertical-lines {
+    height: auto;
+    width: 1px;
+    margin: 0 15px;
     background-color: #0B63B2;
 }
 .login{
@@ -1261,6 +1255,9 @@ header{
     .products-container{
         grid-template-columns: repeat(2, 1fr); /* Fixed number of columns to 2 */ 
     }
+    .register-container form{
+        grid-template-columns: auto;
+    }
 }
 
 @media screen  and (max-width: 660px){
@@ -1292,6 +1289,10 @@ header{
     }
     .item-item-div{
         grid-template-columns: 100%;
+        row-gap: 50px;
+    }
+    .login-container{
+        grid-template-columns: auto;
         row-gap: 50px;
     }
 }
