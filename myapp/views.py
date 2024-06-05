@@ -248,7 +248,6 @@ def about(request):
 #         return redirect('login')
 #     return render(request, 'checkout.html',)
 
-@login_required
 def create_checkout_session(request):    
     if request.method == "POST":
         user = request.user
