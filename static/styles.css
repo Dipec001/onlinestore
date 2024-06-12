@@ -730,25 +730,40 @@ header{
 
 /* Services styles */
 .services-line{
-    display: flex; 
-    align-items: center;
-    justify-content: space-between;
-    padding: 20px 50px; /* Adjust the padding as needed */
-    margin: 100px 0; /* Adds space between service lines */
+    display: grid; 
+    grid-template-columns: repeat(2, 1fr);
+    /* align-items: center;
+    justify-content: space-between; */
+    padding: 50px;
+    margin: 100px 0;
+    gap: 30px;
 }
-.services-line.reverse {
+/* .services-line.reverse {
     flex-direction: row-reverse;
+} */
+
+.services-line.reverse {
+    direction: rtl; /* Reverse the flow of items */
 }
 
-.services-line div{
+/* .services-line div{
     flex: 1;
     padding: auto 30px;
+} */
+.services-line div {
+    padding: 0 30px;
 }
 
 
-.service-img{
+/* .service-img{
     height: 400px;
+} */
+.service-img {
+    height: 400px;
+    width: 100%;
+    object-fit: cover;
 }
+
 .service-text{
     flex: 1;
     padding-right: 20px;
@@ -756,7 +771,7 @@ header{
 
 }
 .serveh1{
-    font: 3em sans-serif;
+    font: 2.5em sans-serif;
     color: #0B63B2;
     margin-bottom: 15px;
 }
@@ -776,6 +791,7 @@ header{
 .service-features-header {
     text-align: center;
     margin-bottom: 50px;
+    padding: 0 20px;
 }
 
 .service-features-list {
@@ -1259,6 +1275,7 @@ header{
         row-gap: 20px;
     }
 
+
 }
 @media screen  and (max-width: 830px){
     .products-container{
@@ -1267,15 +1284,28 @@ header{
     .register-container form{
         grid-template-columns: auto;
     }
-}
-
-@media screen  and (max-width: 830px){
     .contact-body{
         grid-template-columns: auto;
         row-gap: 50px;
     }
-}
+    .services-line {
+        grid-template-columns: 1fr; /* Single column layout */
+        text-align: center;
+    }
+    
+    .services-line.reverse {
+        direction: ltr; /* No reverse on smaller screens */
+    }
 
+    .service-img {
+        height: 300px;
+    }
+
+    .serveh1 {
+        font-size: 2em;
+    }
+
+}
 
 @media screen  and (max-width: 660px){
     .moving-text{
@@ -1312,6 +1342,18 @@ header{
         grid-template-columns: auto;
         row-gap: 50px;
     }
+    .mission {
+        grid-template-columns: 100%;
+        row-gap: 50px;
+    }
+    .business-main{
+        grid-template-columns: auto;
+    }
+    .vertical-line{
+        width: 80%;
+        height: 1px;
+        margin: auto;
+    }
 }
 
 @media screen  and (max-width: 520px){
@@ -1327,6 +1369,15 @@ header{
     .checkout-div{
         width: 90%;
     }
+    .service-img {
+        height: 200px;
+    }
+
+    .serveh1 {
+        font-size: 1.5em;
+    }
+    
+
 }
 @media screen  and (max-width: 380px){
     .products-container{
