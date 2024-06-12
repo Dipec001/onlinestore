@@ -63,7 +63,7 @@
             <p>${{ best.price }}</p>
             <form action="{% url 'add-to-cart' best.id %}" method="post">
               {% csrf_token %}
-              <button type="submit">Add to Cart</button>
+              <button class="home-cate-button" type="submit">Add to Cart</button>
             </form>
           </div>
           {% endfor %}

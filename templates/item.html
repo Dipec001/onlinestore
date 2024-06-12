@@ -20,10 +20,13 @@
             <h3>Manufacturer:</h3>
             <p>{{ drug.manufacturer }}</p>
             <div class="add-minus">
-                <i class="fa-solid fa-minus"></i>
+                <!-- <i class="fa-solid fa-minus"></i>
                 <p class="cart-no">1pcs</p>
-                <i class="fa-solid fa-plus"></i>
-                <a href="">Add to cart</a>
+                <i class="fa-solid fa-plus"></i> -->
+                <form action="{% url 'add-to-cart' drug.id %}" method="post">
+                    {% csrf_token %}
+                    <button class="home-cate-button-item" type="submit">Add to Cart</button>
+                </form>
             </div>
             <hr>
         </div>

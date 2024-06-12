@@ -217,11 +217,19 @@ header{
     width: 300px;
     border-radius: 10px;
 }
-.home-cate div button{
+.home-cate-button{
     border: none;
     color: white;
     background-color: #0B63B2;
     padding: 10px 15px;
+    border-radius: 5px;
+    font-weight: 600;
+}
+.home-cate-button-item{
+    border: none;
+    color: white;
+    background-color: #03a84e;
+    padding: 8px 13px;
     border-radius: 5px;
     font-weight: 600;
 }
