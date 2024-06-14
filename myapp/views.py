@@ -19,7 +19,6 @@ stripe.api_key = os.environ.get('STRIPE_SECRET_KEY')
 # Create your views here.
 def index(request):
     categories = Category.objects.all()
-
     best_sellers = Drug.objects.filter(best_sellers__gt=0)  # Filter drugs with best_sellers > 0
     return render(request, 'index.html', {'categories':categories, 'best_sellers': best_sellers})
 

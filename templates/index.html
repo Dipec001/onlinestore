@@ -1,77 +1,78 @@
 {% extends 'header.html' %}
 {% load static %}
+{% load i18n %}
 
 {% block content %}
 <div class="content">
     {% if messages %}
-      <div class="pop-up-messages">
-          {% for message in messages %}
-              <div class="pop-up-message {{ message.tags }}">
-                  {{ message }}
-              </div>
-          {% endfor %}
-      </div>
+        <div class="pop-up-messages">
+            {% for message in messages %}
+                <div class="pop-up-message {{ message.tags }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        </div>
     {% endif %}
 
     <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
-          <div class="carousel-item active">
-            <img src="{% static 'images/carousel-one.png' %}" class="d-block w-100" alt="...">
-          </div>
-          <div class="carousel-item">
-            <img src="{% static 'images/carousel-two.png' %}" class="d-block w-100" alt="...">
-          </div>
-          <div class="carousel-item">
-            <img src="{% static 'images/carousel-three.png' %}" class="d-block w-100" alt="...">
-          </div>
+            <div class="carousel-item active">
+                <img src="{% static 'images/carousel-one.png' %}" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="{% static 'images/carousel-two.png' %}" class="d-block w-100" alt="...">
+            </div>
+            <div class="carousel-item">
+                <img src="{% static 'images/carousel-three.png' %}" class="d-block w-100" alt="...">
+            </div>
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">{% trans "Previous" %}</span>
         </button>
         <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">{% trans "Next" %}</span>
         </button>
     </div>
     <div class="home-categories">
-      <p class="cate-p">Shop By Category</p>
-      <div class="home-cate-container">
-        <div class="home-cate">
-          {% for category in categories %}
-          <a href="{% url 'products_by_category' category.id %}">
-            <div>
-              <img src="{% static 'images/features/categorypills.avif' %}" alt="">
-              <p>{{ category }}</p>
+        <p class="cate-p">{% trans "Shop By Category" %}</p>
+        <div class="home-cate-container">
+            <div class="home-cate">
+                {% for category in categories %}
+                <a href="{% url 'products_by_category' category.id %}">
+                    <div>
+                        <img src="{% static 'images/features/categorypills.avif' %}" alt="">
+                        <p>{{ category }}</p>
+                    </div>
+                </a>
+                {% endfor %}
             </div>
-          </a>
-          {% endfor %}
+            <div class="pagination-dots">
+                <!-- Dots will be dynamically generated here -->
+            </div>
         </div>
-        <div class="pagination-dots">
-          <!-- Dots will be dynamically generated here -->
-        </div>
-      </div>
     </div>
     <div class="home-categories">
-      <p class="cate-p">Best Sellers Showcase</p>
-      <div class="home-cate-container">
-        <div class="home-cate">
-          {% for best in best_sellers %}
-          <div>
-            <img src="{{ best.image.url }}" alt="{{ best.name }}">
-            <p>{{ best.name }}</p>
-            <p>${{ best.price }}</p>
-            <form action="{% url 'add-to-cart' best.id %}" method="post">
-              {% csrf_token %}
-              <button class="home-cate-button" type="submit">Add to Cart</button>
-            </form>
-          </div>
-          {% endfor %}
-        <div class="pagination-dots">
-          <!-- Dots will be dynamically generated here -->
+        <p class="cate-p">{% trans "Best Sellers Showcase" %}</p>
+        <div class="home-cate-container">
+            <div class="home-cate">
+                {% for best in best_sellers %}
+                <div>
+                    <img src="{{ best.image.url }}" alt="{{ best.name }}">
+                    <p>{{ best.name }}</p>
+                    <p>${{ best.price }}</p>
+                    <form action="{% url 'add-to-cart' best.id %}" method="post">
+                        {% csrf_token %}
+                        <button class="home-cate-button" type="submit">{% trans "Add to Cart" %}</button>
+                    </form>
+                </div>
+                {% endfor %}
+                <div class="pagination-dots">
+                    <!-- Dots will be dynamically generated here -->
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-
 </div>
 {% endblock %}
