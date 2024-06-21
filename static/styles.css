@@ -540,7 +540,7 @@ header{
     width: 75%;
     margin-top: 10px;
     display: grid;
-    grid-template-columns: 80% 20%;
+    grid-template-columns: 1fr auto;
     column-gap: 10px;
 }
 .link123 li a{
@@ -566,6 +566,8 @@ header{
 }
 .news-letter h4{
     font-size: 20px;
+    word-break: break-word; /* Break long words */
+    hyphens: auto; /* Add hyphens for longer words */
 }
 
 .subcribe-news input{
@@ -583,6 +585,7 @@ header{
     color: white;
     padding: 5px 10px;
     margin: 20px 0;
+    white-space: nowrap; /* Prevent text wrapping */
 
 }
 .footer-bottom{
@@ -1480,6 +1483,22 @@ header{
     }
     .modal-body {
         grid-template-columns: 1fr; /* Single column on very small screens */
+    }
+    .footer-content {
+        grid-template-columns: 1fr; /* Stack columns vertically */
+    }
+
+    .right-footer {
+        grid-template-columns: auto auto; /* Stack columns vertically */
+    }
+
+    .news-letter h4 {
+        font-size: 16px; /* Adjust font size for smaller screens */
+    }
+
+    .subcribe-news button {
+        font-size: 14px; /* Adjust font size for smaller screens */
+        padding: 5px; /* Adjust padding for smaller screens */
     }
     
 
