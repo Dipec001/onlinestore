@@ -170,6 +170,11 @@ def services(request):
     return render(request, "services.html")
 
 
+def faqs(request):
+    return render(request, "faqs.html")
+
+
+
 def item_view(request, id):
     drug = get_object_or_404(Drug, id=id)
     return render(request, 'item.html', {'drug': drug})

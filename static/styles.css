@@ -1322,6 +1322,11 @@ header{
     min-width: 250px;
 }
 
+/* FaQs PAge STyling  */
+.faqs-content {
+    margin: 50px 10px;
+}
+
 
 
 /* All media queries */

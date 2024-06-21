@@ -104,7 +104,7 @@
                     <a href="">{% trans "Blog" %}</a>
                 </div>
                 <div class="menu-item">
-                    <a href="">{% trans "FAQs" %}</a>
+                    <a href="{% url 'faqs' %}">{% trans "FAQs" %}</a>
                 </div>
                 {% if user.is_authenticated %}
                 <div class="menu-item">
