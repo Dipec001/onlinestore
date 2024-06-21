@@ -13,6 +13,8 @@ import os
 import stripe
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
+from django.http import JsonResponse
+from django.utils.translation import activate
 
 stripe.api_key = os.environ.get('STRIPE_SECRET_KEY')
 
@@ -294,3 +296,15 @@ def success_view(request):
 
 def cancel_view(request):
     return render(request, 'cancel.html')
+
+
+# @require_POST
+# def set_language(request):
+#     language = request.POST.get('language')
+#     next_url = request.POST.get('next') or '/'
+#     if language:
+#         request.session['django_language'] = language
+#         activate(language)
+#         return JsonResponse({'success': True, 'next': next_url})
+#     else:
+#         return JsonResponse({'success': False})

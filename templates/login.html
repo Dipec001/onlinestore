@@ -1,13 +1,14 @@
 {% extends 'header.html' %}
 {% load static %}
+{% load i18n %}
 
 {% block content %}
 <div class="login-container">
     <div class="login-block">
         <div class="login-content">
             <div class="login">
-                <h3>Login</h3>
-                <p>Let's bring the pharmacy to you</p>
+                <h3>{% trans "Login" %}</h3>
+                <p>{% trans "Let's bring the pharmacy to you" %}</p>
             </div>
             <!-- Display messages -->
             {% if messages %}
@@ -22,14 +23,14 @@
             <div class="form">
                 <form action="{% url 'login' %}" method="post" novalidate>
                     {% csrf_token %}
-                    <label for="email">Email </label><br>
+                    <label for="email">{% trans "Email" %} </label><br>
                     <input type="text" name="email" style="margin-bottom: 20px;"><br>
                     {% if form.email.errors %}
                         <div class="error-message">
                             {{ form.email.errors|join:", " }}
                         </div>
                     {% endif %}
-                    <label for="password">Password </label><br>
+                    <label for="password">{% trans "Password" %} </label><br>
                     <div class="password-container">
                         <input type="password" id="password" name="password"> 
                         <span class="toggle-password" onclick="togglePasswordVisibility()">
@@ -42,21 +43,21 @@
                             {{ form.password.errors|join:", " }}
                         </div>
                     {% endif %}
-                    <button type="submit">Log in</button>
+                    <button type="submit">{% trans "Log in" %}</button>
                 </form>
             </div>
-            <a class="forgot-password" href="{% url 'forgot-password' %}">Forgot Password?</a>
+            <a class="forgot-password" href="{% url 'forgot-password' %}">{% trans "Forgot Password?" %}</a>
         </div>
     </div>
     <div class="vertical-lines"></div>
     <div class="register-block">
         <div class="register-content">
             <div class="login">
-                <h3>Create account</h3>
-                <p>Create your eMedicstore customer account in just a few clicks! You can register either using your e-mail address or through your Facebook & Gmail account.</p>
+                <h3>{% trans "Create account" %}</h3>
+                <p>{% trans "Create your eMedicstore customer account in just a few clicks! You can register either using your e-mail address or through your Facebook & Gmail account." %}</p>
             </div>
             <a href="{% url 'register' %}">
-                <button>Create account</button>
+                <button>{% trans "Create account" %}</button>
             </a>            
         </div>
     </div>

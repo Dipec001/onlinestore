@@ -1,5 +1,6 @@
 {% extends 'header.html' %}
 {% load static %}
+{% load i18n %}
 
 {% block content %}
 <div class="cart-page">
@@ -13,12 +14,12 @@
             </div>
             <div>
                 <p>{{ entry.item.drug.name }}</p>
-                <a href="{% url 'remove_from_cart' entry.item.drug.id %}"><i class="fa-solid fa-trash"></i>Remove</a>
+                <a href="{% url 'remove_from_cart' entry.item.drug.id %}"><i class="fa-solid fa-trash"></i>{% trans "Remove" %}</a>
             </div>
         </div>
         <div class="cart-2">
             <div>
-                <p>Quantity</p>
+                <p>{% trans "Quantity" %}</p>
                 <div class="add-minus-button">
                     <a href="{% url 'subtract_from_cart' entry.item.drug.id %}" class="subtract" {% if entry.item.quantity == 1 %}disabled{% endif %}><i class="fa-solid fa-minus"></i></a>
                     <p class="cart-no">{{ entry.item.quantity }}pcs</p>
@@ -26,11 +27,11 @@
                 </div>
             </div>
             <div>
-                <p>Unit Price</p>
+                <p>{% trans "Unit Price" %}</p>
                 <p class="cart-price">${{ entry.item.drug.price|floatformat:2 }}</p>
             </div>
             <div>
-                <p>Total Price</p>
+                <p>{% trans "Total Price" %}</p>
                 <p class="cart-total">${{ entry.subtotal }}</p>
             </div>
         </div>       
@@ -38,14 +39,14 @@
     {% endfor %}
     <div class="item-totals">
         <div>
-            <p>Subtotal: ${{ total }}</p>
+            <p>{% trans "Subtotal" %}: ${{ total }}</p>
             <p>VAT: $0.00</p>
-            <p>Total: ${{ total }}</p>
-            <p>Note: Delivery Fee would be made available when you place an order</p>
+            <p>{% trans "Total" %}: ${{ total }}</p>
+            <p>{% trans "Note: Delivery Fee would be made available when you place an order" %}</p>
         </div>
         <div class="shop-options">
-            <a class="item-shop" href="{% url 'products' %}">Continue Shopping</a>
-            <a class="item-shop checkout" href="{% url 'create_checkout_session' %}">Checkout</a>
+            <a class="item-shop" href="{% url 'products' %}">{% trans "Continue Shopping" %}</a>
+            <a class="item-shop checkout" href="{% url 'create_checkout_session' %}">{% trans "Checkout" %}</a>
         </div>
     </div>
     {% else %}

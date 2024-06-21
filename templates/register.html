@@ -1,11 +1,12 @@
 {% extends 'header.html' %}
 {% load static %}
+{% load i18n %}
 
 {% block content %}
 <div class="register-container">
     <div class="register-heading">
-        <h3>Create Account</h3>
-        <p>Create your eMedicstore customer account in just a few clicks! You can register either using your e-mail address or through your Gmail account.</p>
+        <h3>{% trans "Create Account" %}</h3>
+        <p>{% trans "Create your eMedicstore customer account in just a few clicks! You can register either using your e-mail address or through your Gmail account." %}</p>
     </div>
     <!-- Display messages -->
     {% if messages %}
@@ -21,8 +22,8 @@
         <form action="{% url 'register' %}" method="post" novalidate>
             {% csrf_token %}
             <div class="form-group">
-                <label for="name">First Name</label><br>
-                <input type="text" id="first_name" name="first_name" value="{{ form.first_name.value|default:'' }}" placeholder="Divine">
+                <label for="name">{% trans "First Name" %}</label><br>
+                <input type="text" id="first_name" name="first_name" value="{{ form.first_name.value|default:'' }}" placeholder="Di">
                 {% if form.first_name.errors %}
                     <div class="error-message">
                         {{ form.first_name.errors|join:", " }}
@@ -30,7 +31,7 @@
                 {% endif %}
             </div>
             <div class="form-group">
-                <label for="name">Last Name</label><br>
+                <label for="name">{% trans "Last Name" %}</label><br>
                 <input type="text" id="last_name" name="last_name" value="{{ form.last_name.value|default:'' }}" placeholder="John">
                 {% if form.last_name.errors %}
                     <div class="error-message">
@@ -39,7 +40,7 @@
                 {% endif %}
             </div>
             <div class="form-group">
-                <label for="username">Email </label><br>
+                <label for="username">{% trans "Email" %} </label><br>
                 <input type="email" id="email" name="email" value="{{ form.email.value|default:'' }}" placeholder="Divine@example.com">
                 {% if form.email.errors %}
                     <div class="error-message">
@@ -48,7 +49,7 @@
                 {% endif %}
             </div>
             <div class="form-group">
-                <label for="password">Password </label><br>
+                <label for="password">{% trans "Password" %} </label><br>
                 <div class="password-container">
                     <input type="password" id="password" name="password" placeholder="password"> 
                     <span class="toggle-password" onclick="togglePasswordVisibility()">
@@ -63,7 +64,7 @@
                 {% endif %}
             </div>
             <div class="form-group">
-                <label for="number">Phone Number</label><br>
+                <label for="number">{% trans "Phone Number" %}</label><br>
                 <input type="tel" id="phone_number" name="phone_number" value="{{ form.phone_number.value|default:'' }}" placeholder="09087875373">
                 {% if form.phone_number.errors %}
                     <div class="error-message">
@@ -72,7 +73,7 @@
                 {% endif %}
             </div>
             <div class="form-group">
-                <label for="dateOfBirth">Date Of Birth</label><br>
+                <label for="dateOfBirth">{% trans "Date Of Birth" %}</label><br>
                 <input type="date" id="date_of_birth" name="date_of_birth" value="{{ form.date_of_birth.value|default:'' }}">
                 {% if form.date_of_birth.errors %}
                     <div class="error-message">
@@ -81,12 +82,12 @@
                 {% endif %}
             </div>
             <div class="form-group">
-                <button type="submit">Create Account</button>
+                <button type="submit">{% trans "Create Account" %}</button>
             </div>
         </form>
     </div>
     <div>
-        <p>Already have an account?<a href="/login"> Login Here.</a></p>
+        <p>Already have an account?<a href="/login"> {% trans "Login Here." %}</a></p>
 
     </div>
 

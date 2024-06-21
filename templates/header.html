@@ -1,4 +1,5 @@
 {% load static %}
+{% load i18n %}
 
 <html lang="en">
 <head>
@@ -31,32 +32,48 @@
             <div class="head" id="search" >
                 <form class="search-form" method="get" action="{% url 'products' %}">
                     <input class="search-input" type="text" name="q" placeholder="Search a drug name, a use case..." value="{{ request.GET.q }}">
-                    <button class="search" onclick="search()">Search</button>
+                    <button class="search" onclick="search()">{% trans "Search" %}</button>
                 </form>                                    
             </div>
             <div class="head register">
                 {% if user.is_authenticated %}
                     <div class="account" onclick="toggleOptionsBox()">
                         <i class="fa-regular fa-user profile-icon"></i>
-                        <h5>My Account</h5>
+                        <h5>{% trans "My Account" %}</h5>
                         <div class="options-box">
-                            <a href="{% url 'logout' %}"><button>Logout</button></a>
+                            <a href="{% url 'logout' %}"><button>{% trans "Logout" %}</button></a>
                         </div>
                     </div>
                 {% else %}
                     <div class="account" onclick="toggleOptionsBox()">
                         <i class="fa-regular fa-user profile-icon"></i>
-                        <h5>SignUp | Login</h5>
+                        <h5>{% trans "SignUp | Login" %}</h5>
                         <div class="options-box">
-                            <a href="{% url 'login' %}"><button>Login</button></a>
-                            <a href="{% url 'register' %}"><button>Register</button></a>
+                            <a href="{% url 'login' %}"><button>{% trans "Login" %}</button></a>
+                            <a href="{% url 'register' %}"><button>{% trans "Register" %}</button></a>
                         </div>
                     </div>
                 {% endif %}
-                <div class="country">
-                    <i style="font-size: 30px; margin-right: 10px;" class="fa-solid fa-earth-americas"></i>
-                    <i class="fa-solid fa-chevron-down"></i>
+                <div class="country" onclick="openModal()">
+                    <img id="selected-flag" src="{% static current_country.flag %}" alt="Selected Country Flag" style="width: 30px; margin-right: 3px;">
+                    <i class="fa-solid fa-chevron-down" style="font-size: 20px; color: #0B63B2;"></i>
                 </div>
+                
+                <!-- Modal Structure -->
+                <div id="countryModal" class="modale" data-set-language-url="{% url 'set_language' %}">
+                    <div class="modal-content">
+                        <span class="close" onclick="closeModal()">&times;</span>
+                        <div class="modal-body">
+                            {% for country in countries %}
+                                <div class="country-option" onclick="selectCountry('{% static country.flag %}', '{{ country.lang }}')">
+                                    <img src="{% static country.flag %}" alt="{{ country.name }} flag" style="width: 30px; margin-right: 10px;">
+                                    {{ country.name }}
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                                
             </div>
             <div id="menu-toggle">
                 <i class="fas fa-bars" id="hamburger-icon"></i>
@@ -64,57 +81,57 @@
             <div class="side-bar" id="sidebar" style="display: none;">
                 <i class="fas fa-times" id="hamburger-close"></i>
                 <div class="menu-item">
-                    <a href="{% url 'index' %}">Home</a>
+                    <a href="{% url 'index' %}">{% trans "Home" %}</a>
                 </div>
                 <div class="menu-item">
-                    <a href="{% url 'products' %}">Products</a>
+                    <a href="{% url 'products' %}">{% trans "Products" %}</a>
                 </div>
                 <div class="menu-item">
-                    <a href="{% url 'services' %}">Services</a>
+                    <a href="{% url 'services' %}">{% trans "Services" %}</a>
                 </div>
                 <div class="menu-item">
-                    <a href="{% url 'about' %}">About</a>
+                    <a href="{% url 'about' %}">{% trans "About" %}</a>
                 </div>
                 <div class="menu-item">
-                    <a href="{% url 'contact' %}">Contact Us</a>
+                    <a href="{% url 'contact' %}">{% trans "Contact Us" %}</a>
                 </div>
                 {% if user.is_staff or user.is_superuser %}
                 <div class="menu-item">
-                    <a href="/admin">Admin</a>
+                    <a href="/admin">{% trans "Admin" %}</a>
                 </div>
                 {% endif %}
                 <div class="menu-item">
-                    <a href="">Blog</a>
+                    <a href="">{% trans "Blog" %}</a>
                 </div>
                 <div class="menu-item">
-                    <a href="">FAQs</a>
+                    <a href="">{% trans "FAQs" %}</a>
                 </div>
                 {% if user.is_authenticated %}
                 <div class="menu-item">
-                    <a href="{% url 'logout' %}">Logout</a>
+                    <a href="{% url 'logout' %}">{% trans "Logout" %}</a>
                 </div>
                 {% else %}
                 <div class="menu-item">
-                    <a href="{% url 'login' %}">Login</a>
-                    <a href="{% url 'register' %}">Sign Up</a>
+                    <a href="{% url 'login' %}">{% trans "Login" %}</a>
+                    <a href="{% url 'register' %}">{% trans "Sign Up" %}</a>
                 </div>               
                 {% endif %}
             </div>
         </div>            
         <div class="nav-options" id="nav">
-            <a href="{% url 'index' %}" class="active">Home</a>
-            <a href="{% url 'products' %}">Products</a>
-            <a href="{% url 'about' %}">About us</a>
-            <a href="#">Blog</a>
-            <a href="#">Our Partners</a>
-            <a href="{% url 'services' %}">Services</a>
+            <a href="{% url 'index' %}" class="active">{% trans "Home" %}</a>
+            <a href="{% url 'products' %}">{% trans "Products" %}</a>
+            <a href="{% url 'about' %}">{% trans "About us" %}</a>
+            <a href="#">{% trans "Blog" %}</a>
+            <a href="#">{% trans "Our Partners" %}</a>
+            <a href="{% url 'services' %}">{% trans "Services" %}</a>
             {% if user.is_staff or user.is_superuser %}
-            <a href="/admin">Admin</a>
+            <a href="/admin">{% trans "Admin" %}</a>
             {% endif %}
-            <a href="{% url 'contact' %}">Contact us</a>
+            <a href="{% url 'contact' %}">{% trans "Contact us" %}</a>
         </div>
         <div class="moving-text-container">
-            <div class="moving-text">📢Hello, I'm moving or rather a moving text and here is for announcements, do with this information what ever you wish!!! 🎇</div>
+            <div class="moving-text">{% trans "📢Hello, I'm moving or rather a moving text and here is for announcements, do with this information what ever you wish!!! 🎇" %}</div>
             <!-- <div class="moving-text">📢Hello, I'm moving or rather a moving text and here is for announcements, do with this information what ever you wish!!! 🎇</div> -->
         </div>
     </header>

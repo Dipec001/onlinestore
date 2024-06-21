@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-14 23:30+0100\n"
+"POT-Creation-Date: 2024-06-20 11:19+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,23 +18,238 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: .\onlinestore\settings.py:147
+#: .\onlinestore\settings.py:149
 msgid "English"
 msgstr ""
 
-#: .\onlinestore\settings.py:148
+#: .\onlinestore\settings.py:150
 msgid "French"
 msgstr ""
 
-#: .\onlinestore\settings.py:149
+#: .\onlinestore\settings.py:151
 msgid "German"
 msgstr ""
 
-#: .\templates\index.html:31
+#: .\templates\cancel.html:9
+msgid ""
+"Forgot to add something to your cart? Shop around then come back to pay!"
+msgstr "Vous avez oublié d'ajouter quelque chose à votre panier ? Faites vos achats, puis revenez pour payer!"
+
+#: .\templates\cart.html:16
+msgid "Remove"
+msgstr "Retirer"
+
+#: .\templates\cart.html:21
+msgid "Quantity"
+msgstr "Quantité"
+
+#: .\templates\cart.html:29
+msgid "Unit Price"
+msgstr "Prix Unitaire"
+
+#: .\templates\cart.html:33
+msgid "Total Price"
+msgstr "Prix Total"
+
+#: .\templates\cart.html:41
+msgid "Subtotal"
+msgstr "Sous-total"
+
+#: .\templates\cart.html:43
+msgid "Total"
+msgstr "Total"
+
+#: .\templates\cart.html:44
+msgid "Note: Delivery Fee would be made available when you place an order"
+msgstr "Note : Les frais de livraison seront disponibles lorsque vous passerez une commande."
+
+#: .\templates\cart.html:47
+msgid "Continue Shopping"
+msgstr "Continuer vos achats"
+
+#: .\templates\cart.html:48
+msgid "Checkout"
+msgstr "Paiement"
+
+#: .\templates\checkout.html:16
+msgid "Name"
+msgstr "Nom"
+
+#: .\templates\checkout.html:20
+msgid "Address"
+msgstr "Adresse"
+
+#: .\templates\checkout.html:24
+msgid "Contact"
+msgstr "Contact"
+
+#: .\templates\checkout.html:29
+msgid "Proceed to Checkout"
+msgstr "Passer à la caisse"
+
+#: .\templates\contact.html:7
+msgid "CONTACT US"
+msgstr "CONTACTEZ-NOUS"
+
+#: .\templates\contact.html:8
+msgid "Got some more questions or queries? Feel free to contact us!"
+msgstr "Vous avez d'autres questions ou requêtes ? N'hésitez pas à nous contacter !"
+
+#: .\templates\contact.html:12
+msgid "Do you have any question(s) or queries?"
+msgstr "Avez-vous des questions ou des interrogations ?"
+
+#: .\templates\contact.html:13
+msgid ""
+"Simply get in touch with us here and we shall get back to you as soon as "
+"possible to get your problems solved, you can also reach us here for "
+"business and other questions"
+msgstr "Contactez-nous simplement ici et nous vous répondrons dès que possible pour résoudre vos problèmes. Vous pouvez également nous joindre ici pour des questions commerciales et autres."
+
+#: .\templates\contact.html:18 .\templates\footer.html:38
+#: .\templates\header.html:93
+msgid "Contact Us"
+msgstr "Contactez-nous"
+
+#: .\templates\contact.html:20
+msgid "Special Medication Request"
+msgstr "Demande de médication spéciale"
+
+#: .\templates\contact.html:29
+msgid "Email Message"
+msgstr "Message électronique"
+
+#: .\templates\footer.html:7
+msgid "Subscribe To Our Newsletter To Get Updates on Our Latest Offers!"
+msgstr "Abonnez-vous à notre newsletter pour recevoir des mises à jour sur nos dernières offres !"
+
+#: .\templates\footer.html:10
+msgid "Subscribe"
+msgstr "S'abonner"
+
+#: .\templates\footer.html:12
+msgid "Download The eMedicStore App To Get Access To Exclusive Offers"
+msgstr "Téléchargez l'application eMedicStore pour accéder à des offres exclusives."
+
+#: .\templates\footer.html:35 .\templates\header.html:81
+#: .\templates\header.html:119 .\templates\products.html:7
+msgid "Home"
+msgstr "Accueil"
+
+#: .\templates\footer.html:36
+msgid "About Us"
+msgstr "À propos de nous"
+
+#: .\templates\footer.html:37 .\templates\header.html:87
+#: .\templates\header.html:124
+msgid "Services"
+msgstr "Services"
+
+#: .\templates\footer.html:51
+msgid "Send us a Message"
+msgstr "Envoyez-nous un message"
+
+#: .\templates\footer.html:52
+msgid "Privacy Policy"
+msgstr "Politique de confidentialité"
+
+#: .\templates\footer.html:53
+msgid "Return Policy"
+msgstr "Politique de retour"
+
+#: .\templates\footer.html:54
+msgid "Quality Policy"
+msgstr "Politique de qualité"
+
+#: .\templates\footer.html:60
+msgid "All rights reserved."
+msgstr "Tous droits réservés."
+
+#: .\templates\forgot-password.html:6
+msgid "Forgot Password"
+msgstr "Mot de passe oublié"
+
+#: .\templates\forgot-password.html:7
+msgid "Enter your Email"
+msgstr "Entrez votre adresse e-mail"
+
+#: .\templates\forgot-password.html:20 .\templates\password-reset.html:85
+msgid "Request Password Change"
+msgstr "Demander la modification du mot de passe"
+
+#: .\templates\header.html:34
+msgid "Search"
+msgstr "Rechercher"
+
+#: .\templates\header.html:41
+msgid "My Account"
+msgstr "Mon compte"
+
+#: .\templates\header.html:43 .\templates\header.html:108
+msgid "Logout"
+msgstr "Déconnexion"
+
+#: .\templates\header.html:49
+msgid "SignUp | Login"
+msgstr "Inscription | Connexion"
+
+#: .\templates\header.html:51 .\templates\header.html:112
+#: .\templates\login.html:9
+msgid "Login"
+msgstr "Connexion"
+
+#: .\templates\header.html:52
+msgid "Register"
+msgstr "S'inscrire"
+
+#: .\templates\header.html:84 .\templates\header.html:120
+msgid "Products"
+msgstr "Produits"
+
+#: .\templates\header.html:90
+msgid "About"
+msgstr "À propos"
+
+#: .\templates\header.html:97 .\templates\header.html:126
+msgid "Admin"
+msgstr "Admin"
+
+#: .\templates\header.html:101 .\templates\header.html:122
+msgid "Blog"
+msgstr "Blog"
+
+#: .\templates\header.html:104
+msgid "FAQs"
+msgstr "FAQs"
+
+#: .\templates\header.html:113
+msgid "Sign Up"
+msgstr "Inscription"
+
+#: .\templates\header.html:121
+msgid "About us"
+msgstr "À propos de nous"
+
+#: .\templates\header.html:123
+msgid "Our Partners"
+msgstr "Nos partenaires"
+
+#: .\templates\header.html:128
+msgid "Contact us"
+msgstr "Contactez-nous"
+
+#: .\templates\header.html:131
+msgid ""
+"📢Hello, I'm moving or rather a moving text and here is for announcements, "
+"do with this information what ever you wish!!! 🎇"
+msgstr "📢Hallo, je suis un texte animé et je suis là pour les annonces, "
+"faises-en ce que vous voulez !!! 🎇"
+
+#: .\templates\index.html:31 .\templates\products.html:44
 msgid "Previous"
 msgstr "Précédent"
 
-#: .\templates\index.html:35
+#: .\templates\index.html:35 .\templates\products.html:52
 msgid "Next"
 msgstr "Prochain"
 
@@ -46,9 +261,127 @@ msgstr "Magasiner par catégorie"
 msgid "Best Sellers Showcase"
 msgstr "Vitrine des meilleures ventes"
 
-#: .\templates\index.html:67
+#: .\templates\index.html:67 .\templates\item.html:28
+#: .\templates\products.html:34
 msgid "Add to Cart"
 msgstr "Ajouter au panier"
+
+#: .\templates\item.html:7
+msgid "Home > All-products"
+msgstr "Accueil > Tous les produits"
+
+#: .\templates\item.html:18
+msgid "Description"
+msgstr "Description"
+
+#: .\templates\item.html:20
+msgid "Manufacturer"
+msgstr "Fabricant"
+
+#: .\templates\login.html:10
+msgid "Let's bring the pharmacy to you"
+msgstr "Amener la pharmacie jusqu'à vous"
+
+#: .\templates\login.html:25 .\templates\register.html:42
+msgid "Email"
+msgstr "E-mail"
+
+#: .\templates\login.html:32 .\templates\register.html:51
+msgid "Password"
+msgstr "Mot de passe"
+
+#: .\templates\login.html:45
+msgid "Log in"
+msgstr "Se connecter"
+
+#: .\templates\login.html:48
+msgid "Forgot Password?"
+msgstr "Mot de passe oublié ?"
+
+#: .\templates\login.html:55 .\templates\login.html:59
+msgid "Create account"
+msgstr "Créer un compte"
+
+#: .\templates\login.html:56
+msgid ""
+"Create your eMedicstore customer account in just a few clicks! You can "
+"register either using your e-mail address or through your Facebook & Gmail "
+"account."
+msgstr "Créez votre compte client eMedicstore en quelques clics seulement ! Vous pouvez vous inscrire soit avec votre adresse e-mail, soit via votre compte Facebook ou Gmail."
+
+#: .\templates\password-reset.html:3
+msgid "Reset Password"
+msgstr "Réinitialiser le mot de passe"
+
+#: .\templates\password-reset.html:5
+msgid "Enter the OTP sent to your email"
+msgstr "Entrez le code OTP envoyé à votre adresse e-mail"
+
+#: .\templates\password-reset.html:6
+msgid "and you new password"
+msgstr "et votre nouveau mot de passe"
+
+#: .\templates\password-reset.html:87
+msgid "Didn't get the OTP?"
+msgstr "Vous n'avez pas reçu le code OTP ?"
+
+#: .\templates\password-reset.html:87
+msgid "Resend OTP"
+msgstr "Renvoyer l'OTP"
+
+#: .\templates\products.html:8
+msgid "All Products"
+msgstr "Tous les produits"
+
+#: .\templates\products.html:12
+msgid "Categories"
+msgstr "Catégories"
+
+#: .\templates\products.html:20
+msgid "Filter"
+msgstr "Filtrer"
+
+#: .\templates\products.html:23
+msgid "Products A-Z"
+msgstr "Produits A-Z"
+
+#: .\templates\register.html:7 .\templates\register.html:84
+msgid "Create Account"
+msgstr "Créer un compte"
+
+#: .\templates\register.html:8
+msgid ""
+"Create your eMedicstore customer account in just a few clicks! You can "
+"register either using your e-mail address or through your Gmail account."
+msgstr "Créez votre compte client eMedicstore en quelques clics seulement ! Vous pouvez vous inscrire en utilisant votre adresse e-mail ou via votre compte Gmail."
+
+#: .\templates\register.html:24
+msgid "First Name"
+msgstr "Prénom"
+
+#: .\templates\register.html:33
+msgid "Last Name"
+msgstr "Nom de famille"
+
+#: .\templates\register.html:66
+msgid "Phone Number"
+msgstr "Numéro de téléphone"
+
+#: .\templates\register.html:75
+msgid "Date Of Birth"
+msgstr "Date de naissance"
+
+#: .\templates\register.html:89
+msgid "Login Here."
+msgstr "Connectez-vous ici."
+
+#: .\templates\success.html:20
+msgid "We appreciate your business! If you have any questions, please email"
+msgstr "Nous apprécions votre entreprise ! Si vous avez des questions, veuillez envoyer un email"
+
+#: .\templates\success.html:23
+msgid "Go back Home"
+msgstr "Retour à l'accueil"
 
 #: .\venv\Lib\site-packages\django\contrib\messages\apps.py:16
 msgid "Messages"
@@ -1262,4 +1595,8 @@ msgstr ""
 
 #: .\venv\Lib\site-packages\django\views\templates\default_urlconf.html:248
 msgid "Connect, get help, or contribute"
+msgstr ""
+
+#: .\venv\Lib\site-packages\pycountry\tests\test_general.py:184
+msgid "Germany"
 msgstr ""

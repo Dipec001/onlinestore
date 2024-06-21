@@ -77,6 +77,8 @@ TEMPLATES = [
                 "django.contrib.messages.context_processors.messages",
                 # custom
                 'myapp.context_processors.cart_item_count',
+                'myapp.context_processors.country_list',
+                
             ],
         },
     },
@@ -147,6 +149,9 @@ LANGUAGES = [
     ('en', _('English')),
     ('fr', _('French')),
     ('de', _('German')),
+    ('ru', _('Russian')),
+    ('sv', _('Swedish')),
+    ('es', _('Spanish')),
     # Add more languages as needed
 ]
 

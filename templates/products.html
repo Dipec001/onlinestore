@@ -1,15 +1,16 @@
 {% extends 'header.html' %}
 {% load static %}
+{% load i18n %}
 
 {% block content %}
 <div class="products-page">
     <div class="left-pro">
-        <a href="">Home > </a>
-        <a href="">All Products</a>
+        <a href="">{% trans "Home" %} > </a>
+        <a href="">{% trans "All Products" %}</a>
     </div>
     <div class="wrap1">
         <div class="filter-card">
-            <p class="category-title" id="categories">Categories <i class="fas fa-caret-down"></i></p>
+            <p class="category-title" id="categories">{% trans "Categories" %} <i class="fas fa-caret-down"></i></p>
             <div class="cat-dropdown" style="display: none;" >
                 <ul>
                     {% for category in categories %}
@@ -17,10 +18,10 @@
                     {% endfor %}
                 </ul>
             </div>
-            <p class="category-title">Filter <i class="fas fa-caret-down"></i></p>
+            <p class="category-title">{% trans "Filter" %} <i class="fas fa-caret-down"></i></p>
         </div>
         <div class="all-products">
-            <h2>Products A-Z</h2>
+            <h2>{% trans "Products A-Z" %}</h2>
             <div class="products-container">
                 {% for drug in page_obj %}
                 <div class="drug">
@@ -31,7 +32,7 @@
                     </a>
                     <form action="{% url 'add-to-cart' drug.id %}" method="post">
                         {% csrf_token %}
-                        <button type="submit">Add to Cart</button>
+                        <button type="submit">{% trans "Add to Cart" %}</button>
                     </form>
                 </div>
                 {% endfor %}
@@ -41,7 +42,7 @@
     <div class="pagination">
         <span class="step-links">
             {% if page_obj.has_previous %}
-                <a href="?{% if request.GET.q %}q={{ request.GET.q }}&{% endif %}{% if request.GET.category %}category={{ request.GET.category }}&{% endif %}page={{ page_obj.previous_page_number }}">Previous</a>
+                <a href="?{% if request.GET.q %}q={{ request.GET.q }}&{% endif %}{% if request.GET.category %}category={{ request.GET.category }}&{% endif %}page={{ page_obj.previous_page_number }}">{% trans "Previous" %}</a>
             {% endif %}
     
             <span class="current">
@@ -49,7 +50,7 @@
             </span>
     
             {% if page_obj.has_next %}
-                <a href="?{% if request.GET.q %}q={{ request.GET.q }}&{% endif %}{% if request.GET.category %}category={{ request.GET.category }}&{% endif %}page={{ page_obj.next_page_number }}">Next</a>
+                <a href="?{% if request.GET.q %}q={{ request.GET.q }}&{% endif %}{% if request.GET.category %}category={{ request.GET.category }}&{% endif %}page={{ page_obj.next_page_number }}">{% trans "Next" %}</a>
             {% endif %}
         </span>
     </div>

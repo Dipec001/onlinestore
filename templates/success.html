@@ -1,3 +1,5 @@
+{% load i18n %}
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,10 +19,10 @@
 <body>
   <section>
     <p>
-      We appreciate your business! If you have any questions, please email
+      {% trans "We appreciate your business! If you have any questions, please email" %}
       <a href="mailto:orders@example.com">orders@example.com</a>.
     </p>
-    <a class="home" href="{% url 'index' %}">Go back Home</a>
+    <a class="home" href="{% url 'index' %}">{% trans "Go back Home" %}</a>
   </section>
 </body>
 </html>

@@ -1,15 +1,16 @@
 {% load static %}
+{% load i18n %}
 
 <footer class="site-footer">
     <div class="footer-container">
         <div class="footer-content">
             <div class="news-letter">
-                <h4>Subscribe To Our Newsletter To Get Updates on Our Latest Offers!</h4>
+                    <h4>{% trans "Subscribe To Our Newsletter To Get Updates on Our Latest Offers!" %}</h4>
                 <div class="subcribe-news">
                     <input type="text" id="email" placeholder="Email address">
-                    <button type="submit">Subscribe</button>
+                    <button type="submit">{% trans "Subscribe" %}</button>
                 </div>
-                <h4>Download The eMedicStore App To Get Access To Exclusive Offers</h4>
+                <h4>{% trans "Download The eMedicStore App To Get Access To Exclusive Offers" %}</h4>
                 <div>
                     <a href="#"><img class="store" src="{% static 'images/google-play.png' %}" alt="play store logo"></a>
                     <a href="#"><img class="store" src="{% static 'images/app-store.png' %}" alt="app store logo"></a>
@@ -32,10 +33,10 @@
             <div class="right-footer">
                 <div class="footer-links">
                     <ul class="link123">
-                        <li><a href="/">Home</a></li>
-                        <li><a href="/about/">About Us</a></li>
-                        <li><a href="/services/">Services</a></li>
-                        <li><a href="/contact/">Contact Us</a></li>
+                        <li><a href="/">{% trans "Home" %}</a></li>
+                        <li><a href="/about/">{% trans "About Us" %}</a></li>
+                        <li><a href="/services/">{% trans "Services" %}</a></li>
+                        <li><a href="/contact/">{% trans "Contact Us" %}</a></li>
                     </ul>
                 </div>
                 <div>
@@ -48,16 +49,16 @@
                 </div>            
                 <div>
                     <ul>
-                        <li>Send us a Message</li>
-                        <li>Privacy Policy</li>
-                        <li>Return Policy</li>
-                        <li>Quality Policy</li>
+                        <li>{% trans "Send us a Message" %}</li>
+                        <li>{% trans "Privacy Policy" %}</li>
+                        <li>{% trans "Return Policy" %}</li>
+                        <li>{% trans "Quality Policy" %}</li>
                     </ul>
                 </div>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2024 Divine EPHARMA. All rights reserved.</p>
+            <p>&copy; 2024 Divine EPHARMA. {% trans "All rights reserved." %}</p>
         </div>
     </div>
 </footer>

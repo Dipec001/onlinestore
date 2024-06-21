@@ -1,23 +1,24 @@
 {% extends 'header.html' %}
 {% load static %}
+{% load i18n %}
 
 {% block content %}
 <div class="contact-page">
     <div class="contact-title">
-        <h1>CONTACT US</h1>
-        <p>Got some more questions or queries? Feel free to contact us!</p>
+        <h1>{% trans "CONTACT US" %}</h1>
+        <p>{% trans "Got some more questions or queries? Feel free to contact us!" %}</p>
     </div>
     <div class="contact-body">
         <div class="questions" id="contact-questions">
-            <h2>Do you have any question(s) or queries?</h2>
-            <p>Simply get in touch with us here and we shall get back to you as soon as possible to get your problems solved, you can also reach us here for business and other questions</p>
+            <h2>{% trans "Do you have any question(s) or queries?" %}</h2>
+            <p>{% trans "Simply get in touch with us here and we shall get back to you as soon as possible to get your problems solved, you can also reach us here for business and other questions" %}</p>
         </div>
         <div class="contact-card">
             <div class="contact-options">
                 <input type="radio" name="contact-option" id="contact" checked>
-                <label for="contact">Contact Us</label>
+                <label for="contact">{% trans "Contact Us" %}</label>
                 <input type="radio" name="contact-option" id="special-request">
-                <label for="special-request">Special Medication Request</label>
+                <label for="special-request">{% trans "Special Medication Request" %}</label>
             </div>
             <div class="contact-form" id="contact-form">
                 <form action="{% url 'contact' %}" method="POST">
@@ -26,7 +27,7 @@
                     <input type="text" name="phone_number" placeholder="Phone Number" required>
                     <input type="email" name="email" placeholder="Email address" required>
                     <textarea name="message" placeholder="Message" required></textarea>
-                    <button type="submit">Email Message</button>
+                    <button type="submit">{% trans "Email Message" %}</button>
                 </form>
             </div>
         </div>

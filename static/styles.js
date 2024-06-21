@@ -227,3 +227,79 @@ document.getElementById('checkout-form').addEventListener('submit', function() {
     checkoutButton.disabled = true;
     checkoutButton.innerHTML = 'Processing...';
 });
+
+// Function to open the modal
+function openModal() {
+    document.getElementById('countryModal').style.display = 'block';
+}
+
+// Function to close the modal
+function closeModal() {
+    document.getElementById('countryModal').style.display = 'none';
+}
+
+// Function to select a country and update the displayed flag
+function selectCountry(flagUrl, lang) {
+    // Update the selected flag image
+    document.getElementById('selected-flag').src = flagUrl;
+
+    // Store the selected language in localStorage
+    localStorage.setItem('selectedLanguage', lang);
+
+    // Redirect to set the language
+    const setLanguageUrl = document.getElementById('countryModal').getAttribute('data-set-language-url');
+    const form = document.createElement('form');
+    form.method = 'POST';
+    form.action = setLanguageUrl;
+
+    // Add CSRF token
+    const csrfToken = getCookie('csrftoken');
+    const csrfInput = document.createElement('input');
+    csrfInput.type = 'hidden';
+    csrfInput.name = 'csrfmiddlewaretoken';
+    csrfInput.value = csrfToken;
+    form.appendChild(csrfInput);
+
+    // Add language parameter
+    const langInput = document.createElement('input');
+    langInput.type = 'hidden';
+    langInput.name = 'language';
+    langInput.value = lang;
+    form.appendChild(langInput);
+
+    // Add next parameter
+    const nextInput = document.createElement('input');
+    nextInput.type = 'hidden';
+    nextInput.name = 'next';
+    nextInput.value = window.location.pathname;
+    form.appendChild(nextInput);
+
+    document.body.appendChild(form);
+    form.submit();
+
+    // Close the modal
+    closeModal();
+}
+
+// Function to get the CSRF token from cookies
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+
+// Close the modal if the user clicks outside of the modal content
+window.onclick = function(event) {
+    if (event.target == document.getElementById('countryModal')) {
+        closeModal();
+    }
+}
