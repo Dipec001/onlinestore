@@ -92,28 +92,28 @@ WSGI_APPLICATION = "onlinestore.wsgi.application"
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 
-# if DEBUG:
-#     DATABASES = {
-#     "default": {
-#         "ENGINE": os.getenv("DB_ENGINE"),
-#         "NAME": os.getenv("DB_NAME"),
-#         "USER": os.getenv("DB_USER"),
-#         "PASSWORD": os.getenv("DB_PASSWORD"),
-#         "HOST": os.getenv("DB_HOST"),
-#         "PORT": os.getenv("DB_PORT"),
-#         "CONN_MAX_AGE": 300,  # Maximum connection age in seconds (e.g., 5 minutes)
-#         'CONN_MAX_NUM': 20,   # Maximum number of connections in the pool
-#     }
-# } 
-# else:
-#     DATABASES = {
-#     'default': dj_database_url.config(conn_max_age=600, ssl_require=True)
-# }
-
-#Database configuration
-DATABASES = {
+if DEBUG:
+    DATABASES = {
+    "default": {
+        "ENGINE": os.getenv("DB_ENGINE"),
+        "NAME": os.getenv("DB_NAME"),
+        "USER": os.getenv("DB_USER"),
+        "PASSWORD": os.getenv("DB_PASSWORD"),
+        "HOST": os.getenv("DB_HOST"),
+        "PORT": os.getenv("DB_PORT"),
+        "CONN_MAX_AGE": 300,  # Maximum connection age in seconds (e.g., 5 minutes)
+        'CONN_MAX_NUM': 20,   # Maximum number of connections in the pool
+    }
+} 
+else:
+    DATABASES = {
     'default': dj_database_url.config(conn_max_age=600, ssl_require=True)
 }
+
+# #Database configuration
+# DATABASES = {
+#     'default': dj_database_url.config(conn_max_age=600, ssl_require=True)
+# }
 
 #DYnamic url
 if DEBUG:
