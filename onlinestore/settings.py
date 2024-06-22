@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "myapp",
+    'modeltranslation',
 
 ]
 
@@ -146,11 +147,26 @@ AUTH_PASSWORD_VALIDATORS = [
 from django.utils.translation import gettext_lazy as _
 
 LANGUAGES = [
-    ('en', _('English')),
+    ('en-us', _('English (USA)')),
+    ('en-uk', _('English (UK)')),
+    ('en-ca', _('English (Canada)')),
+    ('en-au', _('English (Australia)')),
+    ('en-sg', _('English (Singapore)')),
     ('fr', _('French')),
     ('de', _('German')),
+    ('sv', _('Swedish')),
+    ('es', _('Spanish')),
+    ('be', _('Belgian')),
+    ('cn', _('Chinese')),
+    ('pt', _('Portuguese')),
+    ('ch', _('Swiss')),
+    ('it', _('Italian')),
+    ('ru', _('Russian')),
+    ('ar', _('Arabic (UAE)')),
+    ('nl', _('Dutch (Netherlands)')),
     # Add more languages as needed
 ]
+
 
 LANGUAGE_CODE = "en-us"
 
