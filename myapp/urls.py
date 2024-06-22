@@ -26,8 +26,3 @@ urlpatterns = [
     path('success/', views.success_view, name='success'),
     path('cancel/', views.cancel_view, name='cancel'),
 ]
-
-# # Include the set_language URL pattern
-# urlpatterns += [
-    
-# ]
