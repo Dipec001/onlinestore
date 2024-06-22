@@ -28,7 +28,7 @@
                     <a href="{% url 'item-view' drug.id %}" class="drug-link">
                         <img src="{{ drug.image.url }}" alt="{{ drug.name }}">
                         <p class="med-name">{{ drug.name }}</p>
-                        <p>${{ drug.price }}</p>
+                        <p>{{ currency_symbol }}{{ drug.price_converted }}</p>
                     </a>
                     <form action="{% url 'add-to-cart' drug.id %}" method="post">
                         {% csrf_token %}

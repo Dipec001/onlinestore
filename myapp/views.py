@@ -13,8 +13,8 @@ import os
 import stripe
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
-from django.http import JsonResponse
-from django.utils.translation import activate
+from .currency_conversion import convert_currency
+from decimal import Decimal, ROUND_HALF_UP
 
 stripe.api_key = os.environ.get('STRIPE_SECRET_KEY')
 
@@ -153,6 +153,17 @@ def products(request, category_id=None):
             # Handle case where category ID is invalid (optional)
             pass
 
+    # Get the selected currency and symbol from the session
+    selected_currency = request.session.get('currency_code', 'USD')
+    currency_symbol = request.session.get('currency_symbol', '$')
+
+    # Convert drug prices to the selected currency
+    for drug in drugs:
+        if not isinstance(drug.price, Decimal):
+            drug.price = Decimal(drug.price)
+        converted_price = convert_currency(drug.price, 'USD', selected_currency)
+        drug.price_converted = Decimal(converted_price).quantize(Decimal('.01'), rounding=ROUND_HALF_UP)
+
     paginator = Paginator(drugs, 9)  # Show 9 drugs per page
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
@@ -161,6 +172,7 @@ def products(request, category_id=None):
         'categories': categories,
         'drugs': drugs,
         'page_obj': page_obj,
+        'currency_symbol': currency_symbol,
     }
 
     return render(request, "products.html", context)

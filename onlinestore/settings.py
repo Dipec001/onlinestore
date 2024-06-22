@@ -147,25 +147,26 @@ AUTH_PASSWORD_VALIDATORS = [
 from django.utils.translation import gettext_lazy as _
 
 LANGUAGES = [
+    ('zh-Hans', _('Chinese')),
+    ('pt', _('Portuguese')),
+    ('de', _('German')),
+    ('de-CH', _('Swiss German')),  # Correct format for Swiss German
     ('en-us', _('English (USA)')),
     ('en-uk', _('English (UK)')),
     ('en-ca', _('English (Canada)')),
     ('en-au', _('English (Australia)')),
     ('en-sg', _('English (Singapore)')),
     ('fr', _('French')),
-    ('de', _('German')),
     ('sv', _('Swedish')),
     ('es', _('Spanish')),
-    ('be', _('Belgian')),
-    ('cn', _('Chinese')),
-    ('pt', _('Portuguese')),
-    ('ch', _('Swiss')),
+    ('nl', _('Dutch (Netherlands)')),
+    ('nl-BE', _('Flemish (Belgium)')),  # Correct format for Flemish
     ('it', _('Italian')),
     ('ru', _('Russian')),
     ('ar', _('Arabic (UAE)')),
-    ('nl', _('Dutch (Netherlands)')),
-    # Add more languages as needed
+    ('ja', _('Japanese')),
 ]
+
 
 
 LANGUAGE_CODE = "en-us"
@@ -203,6 +204,14 @@ STATICFILES_DIRS = [
 #Media settings
 # MEDIA_URL = 'media/'
 # MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        'LOCATION': 'unique-snowflake',
+    }
+}
+
 
 
 # Default primary key field type

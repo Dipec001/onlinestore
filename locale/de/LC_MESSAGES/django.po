@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-21 08:45+0100\n"
+"POT-Creation-Date: 2024-06-22 11:46+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,34 +18,157 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: .\onlinestore\settings.py:149
-msgid "English"
+#: .\myapp\context_processors.py:16
+msgid "United States"
+msgstr ""
+
+#: .\myapp\context_processors.py:17
+msgid "Canada"
+msgstr ""
+
+#: .\myapp\context_processors.py:18
+msgid "United Kingdom"
+msgstr ""
+
+#: .\myapp\context_processors.py:19
+msgid "Australia"
+msgstr ""
+
+#: .\myapp\context_processors.py:20
+#: .\venv\Lib\site-packages\pycountry\tests\test_general.py:184
+msgid "Germany"
+msgstr ""
+
+#: .\myapp\context_processors.py:21
+msgid "France"
+msgstr ""
+
+#: .\myapp\context_processors.py:22
+msgid "Russia"
+msgstr ""
+
+#: .\myapp\context_processors.py:23
+msgid "Sweden"
+msgstr ""
+
+#: .\myapp\context_processors.py:24
+msgid "Spain"
+msgstr ""
+
+#: .\myapp\context_processors.py:25
+msgid "Italy"
+msgstr ""
+
+#: .\myapp\context_processors.py:26
+msgid "China"
+msgstr ""
+
+#: .\myapp\context_processors.py:27
+msgid "Singapore"
+msgstr ""
+
+#: .\myapp\context_processors.py:28
+msgid "Portugal"
+msgstr ""
+
+#: .\myapp\context_processors.py:29
+msgid "Switzerland"
+msgstr ""
+
+#: .\myapp\context_processors.py:30
+msgid "Belgium"
+msgstr ""
+
+#: .\myapp\context_processors.py:31
+msgid "UAE"
+msgstr ""
+
+#: .\myapp\context_processors.py:32
+msgid "Netherlands"
+msgstr ""
+
+#: .\myapp\context_processors.py:33
+msgid "Japan"
 msgstr ""
 
 #: .\onlinestore\settings.py:150
-msgid "French"
+msgid "Chinese"
 msgstr ""
 
 #: .\onlinestore\settings.py:151
-msgid "German"
+msgid "Portuguese"
 msgstr ""
 
 #: .\onlinestore\settings.py:152
-msgid "Russian"
+msgid "German"
 msgstr ""
 
 #: .\onlinestore\settings.py:153
-msgid "Swedish"
+msgid "Swiss German"
 msgstr ""
 
 #: .\onlinestore\settings.py:154
+msgid "English (USA)"
+msgstr ""
+
+#: .\onlinestore\settings.py:155
+msgid "English (UK)"
+msgstr ""
+
+#: .\onlinestore\settings.py:156
+msgid "English (Canada)"
+msgstr ""
+
+#: .\onlinestore\settings.py:157
+msgid "English (Australia)"
+msgstr ""
+
+#: .\onlinestore\settings.py:158
+msgid "English (Singapore)"
+msgstr ""
+
+#: .\onlinestore\settings.py:159
+msgid "French"
+msgstr ""
+
+#: .\onlinestore\settings.py:160
+msgid "Swedish"
+msgstr ""
+
+#: .\onlinestore\settings.py:161
 msgid "Spanish"
+msgstr ""
+
+#: .\onlinestore\settings.py:162
+msgid "Dutch (Netherlands)"
+msgstr ""
+
+#: .\onlinestore\settings.py:163
+msgid "Flemish (Belgium)"
+msgstr ""
+
+#: .\onlinestore\settings.py:164
+msgid "Italian"
+msgstr ""
+
+#: .\onlinestore\settings.py:165
+msgid "Russian"
+msgstr ""
+
+#: .\onlinestore\settings.py:166
+msgid "Arabic (UAE)"
+msgstr ""
+
+#: .\onlinestore\settings.py:167
+msgid "Japanese"
 msgstr ""
 
 #: .\templates\cancel.html:11
 msgid ""
 "Forgot to add something to your cart? Shop around then come back to pay!"
-msgstr "Haben Sie vergessen, etwas in Ihren Warenkorb zu legen? Schauen Sie sich um und kommen Sie dann zurück, um zu bezahlen!"
+msgstr ""
+"Haben Sie vergessen, etwas in Ihren Warenkorb zu legen? Schauen Sie sich um "
+"und kommen Sie dann zurück, um zu bezahlen!"
 
 #: .\templates\cart.html:17
 msgid "Remove"
@@ -73,7 +196,8 @@ msgstr "Gesamt"
 
 #: .\templates\cart.html:45
 msgid "Note: Delivery Fee would be made available when you place an order"
-msgstr "Hinweis: Die Liefergebühr wird verfügbar, wenn Sie eine Bestellung aufgeben"
+msgstr ""
+"Hinweis: Die Liefergebühr wird verfügbar, wenn Sie eine Bestellung aufgeben"
 
 #: .\templates\cart.html:48
 msgid "Continue Shopping"
@@ -105,7 +229,9 @@ msgstr "KONTAKTIEREN SIE UNS"
 
 #: .\templates\contact.html:9
 msgid "Got some more questions or queries? Feel free to contact us!"
-msgstr "Haben Sie weitere Fragen oder Anliegen? Zögern Sie nicht, uns zu kontaktieren!"
+msgstr ""
+"Haben Sie weitere Fragen oder Anliegen? Zögern Sie nicht, uns zu "
+"kontaktieren!"
 
 #: .\templates\contact.html:13
 msgid "Do you have any question(s) or queries?"
@@ -116,7 +242,10 @@ msgid ""
 "Simply get in touch with us here and we shall get back to you as soon as "
 "possible to get your problems solved, you can also reach us here for "
 "business and other questions"
-msgstr "Kontaktieren Sie uns einfach hier, und wir werden uns so schnell wie möglich bei Ihnen melden, um Ihre Probleme zu lösen. Sie können uns auch hier für geschäftliche und andere Fragen erreichen."
+msgstr ""
+"Kontaktieren Sie uns einfach hier, und wir werden uns so schnell wie möglich "
+"bei Ihnen melden, um Ihre Probleme zu lösen. Sie können uns auch hier für "
+"geschäftliche und andere Fragen erreichen."
 
 #: .\templates\contact.html:19 .\templates\footer.html:39
 #: .\templates\header.html:96
@@ -133,7 +262,9 @@ msgstr "E-Mail-Nachricht"
 
 #: .\templates\footer.html:8
 msgid "Subscribe To Our Newsletter To Get Updates on Our Latest Offers!"
-msgstr "Abonnieren Sie unseren Newsletter, um Updates zu unseren neuesten Angeboten zu erhalten!"
+msgstr ""
+"Abonnieren Sie unseren Newsletter, um Updates zu unseren neuesten Angeboten "
+"zu erhalten!"
 
 #: .\templates\footer.html:11
 msgid "Subscribe"
@@ -141,7 +272,9 @@ msgstr "Abonnieren"
 
 #: .\templates\footer.html:13
 msgid "Download The eMedicStore App To Get Access To Exclusive Offers"
-msgstr "Laden Sie die eMedicStore App herunter, um Zugang zu exklusiven Angeboten zu erhalten."
+msgstr ""
+"Laden Sie die eMedicStore App herunter, um Zugang zu exklusiven Angeboten zu "
+"erhalten."
 
 #: .\templates\footer.html:36 .\templates\header.html:84
 #: .\templates\header.html:122 .\templates\products.html:8
@@ -158,20 +291,20 @@ msgid "Services"
 msgstr "Dienstleistungen"
 
 #: .\templates\footer.html:52
-msgid "Send us a Message"
-msgstr "Schicken Sie uns eine Nachricht"
-
-#: .\templates\footer.html:53
 msgid "Privacy Policy"
 msgstr "Datenschutzrichtlinie"
 
-#: .\templates\footer.html:54
+#: .\templates\footer.html:53
 msgid "Return Policy"
 msgstr "Rückgaberecht"
 
-#: .\templates\footer.html:55
+#: .\templates\footer.html:54
 msgid "Quality Policy"
 msgstr "Qualitätspolitik"
+
+#: .\templates\footer.html:55
+msgid "Send us a Message"
+msgstr "Schicken Sie uns eine Nachricht"
 
 #: .\templates\footer.html:61
 msgid "All rights reserved."
@@ -222,7 +355,7 @@ msgstr "Produkte"
 msgid "About"
 msgstr "Über"
 
-#: .\templates\header.html:100 .\templates\header.html:129
+#: .\templates\header.html:100
 msgid "Admin"
 msgstr "Admin"
 
@@ -230,7 +363,7 @@ msgstr "Admin"
 msgid "Blog"
 msgstr "Blog"
 
-#: .\templates\header.html:107
+#: .\templates\header.html:107 .\templates\header.html:128
 msgid "FAQs"
 msgstr "FAQs"
 
@@ -246,15 +379,17 @@ msgstr "Über uns"
 msgid "Our Partners"
 msgstr "Unsere Partner"
 
-#: .\templates\header.html:131
+#: .\templates\header.html:129
 msgid "Contact us"
 msgstr "Kontaktiere uns"
 
-#: .\templates\header.html:134
+#: .\templates\header.html:132
 msgid ""
 "📢Hello, I'm moving or rather a moving text and here is for announcements, "
 "do with this information what ever you wish!!! 🎇"
-msgstr "📢Hallo, ich bin ein bewegter Text und hier sind Ankündigungen. Verwenden Sie diese Informationen, wie Sie möchten! 🎇"
+msgstr ""
+"📢Hallo, ich bin ein bewegter Text und hier sind Ankündigungen. Verwenden "
+"Sie diese Informationen, wie Sie möchten! 🎇"
 
 #: .\templates\index.html:31 .\templates\products.html:45
 msgid "Previous"
@@ -318,7 +453,10 @@ msgid ""
 "Create your eMedicstore customer account in just a few clicks! You can "
 "register either using your e-mail address or through your Facebook & Gmail "
 "account."
-msgstr "Erstellen Sie Ihr Kundenkonto bei eMedicstore in nur wenigen Klicks! Sie können sich entweder mit Ihrer E-Mail-Adresse oder über Ihr Facebook- und Gmail-Konto registrieren."
+msgstr ""
+"Erstellen Sie Ihr Kundenkonto bei eMedicstore in nur wenigen Klicks! Sie "
+"können sich entweder mit Ihrer E-Mail-Adresse oder über Ihr Facebook- und "
+"Gmail-Konto registrieren."
 
 #: .\templates\password-reset.html:8
 msgid "Reset Password"
@@ -364,7 +502,10 @@ msgstr "Konto erstellen"
 msgid ""
 "Create your eMedicstore customer account in just a few clicks! You can "
 "register either using your e-mail address or through your Gmail account."
-msgstr "Erstellen Sie Ihr Kundenkonto bei eMedicstore in nur wenigen Klicks! Sie können sich entweder mit Ihrer E-Mail-Adresse oder über Ihr Gmail-Konto registrieren."
+msgstr ""
+"Erstellen Sie Ihr Kundenkonto bei eMedicstore in nur wenigen Klicks! Sie "
+"können sich entweder mit Ihrer E-Mail-Adresse oder über Ihr Gmail-Konto "
+"registrieren."
 
 #: .\templates\register.html:25
 msgid "First Name"
@@ -388,7 +529,9 @@ msgstr "Einloggen hier"
 
 #: .\templates\success.html:22
 msgid "We appreciate your business! If you have any questions, please email"
-msgstr "Für Ihr Vertrauen bedanken wir uns! Bei Fragen wenden Sie sich bitte per E-Mail an uns."
+msgstr ""
+"Für Ihr Vertrauen bedanken wir uns! Bei Fragen wenden Sie sich bitte per E-"
+"Mail an uns."
 
 #: .\templates\success.html:25
 msgid "Go back Home"
@@ -1608,6 +1751,6 @@ msgstr ""
 msgid "Connect, get help, or contribute"
 msgstr ""
 
-#: .\venv\Lib\site-packages\pycountry\tests\test_general.py:184
-msgid "Germany"
+#: .\venv\Lib\site-packages\modeltranslation\widgets.py:32
+msgid "None"
 msgstr ""
