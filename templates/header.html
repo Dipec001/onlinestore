@@ -31,7 +31,7 @@
             </div> 
             <div class="head" id="search" >
                 <form class="search-form" method="get" action="{% url 'products' %}">
-                    <input class="search-input" type="text" name="q" placeholder="Search a drug name, a use case..." value="{{ request.GET.q }}">
+                    <input class="search-input" type="text" name="q" placeholder="{{ header_placeholder }}" value="{{ request.GET.q }}">
                     <button class="search" onclick="search()">{% trans "Search" %}</button>
                 </form>                                    
             </div>

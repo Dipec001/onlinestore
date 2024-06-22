@@ -7,8 +7,13 @@ def cart_item_count(request):
     cart_items = CartItem.objects.filter(cart=cart)
     
     cart_item_count = len(cart_items)
+
+    context = {
+        'header_placeholder': _('Search a drug name, a use case...'),
+        'cart_item_count': cart_item_count,
+    }
     
-    return {'cart_item_count': cart_item_count}
+    return context
 
 
 def country_list(request):

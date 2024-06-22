@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-22 12:01+0100\n"
+"POT-Creation-Date: 2024-06-22 13:52+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,76 +18,80 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: .\myapp\context_processors.py:16
+#: .\myapp\context_processors.py:12
+msgid "Search a drug name, a use case..."
+msgstr "搜索药品名称、用途案例..."
+
+#: .\myapp\context_processors.py:21
 msgid "United States"
 msgstr "美国"
 
-#: .\myapp\context_processors.py:17
+#: .\myapp\context_processors.py:22
 msgid "Canada"
 msgstr "加拿大"
 
-#: .\myapp\context_processors.py:18
+#: .\myapp\context_processors.py:23
 msgid "United Kingdom"
 msgstr "英国"
 
-#: .\myapp\context_processors.py:19
+#: .\myapp\context_processors.py:24
 msgid "Australia"
 msgstr "澳大利亚"
 
-#: .\myapp\context_processors.py:20
+#: .\myapp\context_processors.py:25
 #: .\venv\Lib\site-packages\pycountry\tests\test_general.py:184
 msgid "Germany"
 msgstr "德国"
 
-#: .\myapp\context_processors.py:21
+#: .\myapp\context_processors.py:26
 msgid "France"
 msgstr "法国"
 
-#: .\myapp\context_processors.py:22
+#: .\myapp\context_processors.py:27
 msgid "Russia"
 msgstr "俄罗斯"
 
-#: .\myapp\context_processors.py:23
+#: .\myapp\context_processors.py:28
 msgid "Sweden"
 msgstr "瑞典"
 
-#: .\myapp\context_processors.py:24
+#: .\myapp\context_processors.py:29
 msgid "Spain"
 msgstr "西班牙"
 
-#: .\myapp\context_processors.py:25
+#: .\myapp\context_processors.py:30
 msgid "Italy"
 msgstr "意大利"
 
-#: .\myapp\context_processors.py:26
+#: .\myapp\context_processors.py:31
 msgid "China"
 msgstr "中国"
 
-#: .\myapp\context_processors.py:27
+#: .\myapp\context_processors.py:32
 msgid "Singapore"
 msgstr "新加坡"
 
-#: .\myapp\context_processors.py:28
+#: .\myapp\context_processors.py:33
 msgid "Portugal"
 msgstr "葡萄牙"
 
-#: .\myapp\context_processors.py:29
+#: .\myapp\context_processors.py:34
 msgid "Switzerland"
 msgstr "瑞士"
 
-#: .\myapp\context_processors.py:30
+#: .\myapp\context_processors.py:35
 msgid "Belgium"
 msgstr "比利时"
 
-#: .\myapp\context_processors.py:31
+#: .\myapp\context_processors.py:36
 msgid "UAE"
 msgstr "阿联酋"
 
-#: .\myapp\context_processors.py:32
+#: .\myapp\context_processors.py:37
 msgid "Netherlands"
 msgstr "荷兰"
 
-#: .\myapp\context_processors.py:33
+#: .\myapp\context_processors.py:38
 msgid "Japan"
 msgstr "日本"
 
@@ -164,7 +168,8 @@ msgid "Japanese"
 msgstr ""
 
 #: .\templates\cancel.html:11
-msgid "Forgot to add something to your cart? Shop around then come back to pay!"
+msgid ""
+"Forgot to add something to your cart? Shop around then come back to pay!"
 msgstr "忘记将某物品添加到购物车了？继续逛逛，然后回来支付"
 
 #: .\templates\cart.html:17
@@ -236,7 +241,9 @@ msgid ""
 "Simply get in touch with us here and we shall get back to you as soon as "
 "possible to get your problems solved, you can also reach us here for "
 "business and other questions"
-msgstr "请通过这里与我们联系，我们将尽快回复您，以解决您的问题。您也可以通过这里联系我们进行业务和其他问题的咨询。"
+msgstr ""
+"请通过这里与我们联系，我们将尽快回复您，以解决您的问题。您也可以通过这里联系"
+"我们进行业务和其他问题的咨询。"
 
 #: .\templates\contact.html:19 .\templates\footer.html:39
 #: .\templates\header.html:96
@@ -374,7 +381,9 @@ msgstr "联系我们"
 msgid ""
 "📢Hello, I'm moving or rather a moving text and here is for announcements, "
 "do with this information what ever you wish!!! 🎇"
-msgstr "📢您好，我是一段移动或者说是移动的文字，这里用于公告，请根据您的需要使用这些信息！🎇"
+msgstr ""
+"📢您好，我是一段移动或者说是移动的文字，这里用于公告，请根据您的需要使用这些"
+"信息！🎇"
 
 #: .\templates\index.html:31 .\templates\products.html:45
 msgid "Previous"
@@ -438,7 +447,9 @@ msgid ""
 "Create your eMedicstore customer account in just a few clicks! You can "
 "register either using your e-mail address or through your Facebook & Gmail "
 "account."
-msgstr "仅需几个点击即可创建您的 eMedicstore 客户账户！您可以使用电子邮件地址或通过 Facebook 和 Gmail 账户进行注册。"
+msgstr ""
+"仅需几个点击即可创建您的 eMedicstore 客户账户！您可以使用电子邮件地址或通过 "
+"Facebook 和 Gmail 账户进行注册。"
 
 #: .\templates\password-reset.html:8
 msgid "Reset Password"
@@ -484,7 +495,9 @@ msgstr "创建账户"
 msgid ""
 "Create your eMedicstore customer account in just a few clicks! You can "
 "register either using your e-mail address or through your Gmail account."
-msgstr "只需几次点击，即可创建您的 eMedicstore 客户账户！您可以使用电子邮件地址或通过 Gmail 账户注册。"
+msgstr ""
+"只需几次点击，即可创建您的 eMedicstore 客户账户！您可以使用电子邮件地址或通"
+"过 Gmail 账户注册。"
 
 #: .\templates\register.html:25
 msgid "First Name"
@@ -501,6 +514,12 @@ msgstr "电话号码"
 #: .\templates\register.html:76
 msgid "Date Of Birth"
 msgstr "出生日期"
+
+#: .\templates\register.html:90
+#, fuzzy
+#| msgid "Create account"
+msgid "Already have an account?"
+msgstr "创建账户"
 
 #: .\templates\register.html:90
 msgid "Login Here."

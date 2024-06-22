@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-22 11:46+0100\n"
+"POT-Creation-Date: 2024-06-22 14:01+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,78 +18,82 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: .\myapp\context_processors.py:16
+#: .\myapp\context_processors.py:12
+msgid "Search a drug name, a use case..."
+msgstr "Suchen Sie einen Medikamentennamen, einen Anwendungsfall..."
+
+#: .\myapp\context_processors.py:21
 msgid "United States"
-msgstr ""
+msgstr "USA"
 
-#: .\myapp\context_processors.py:17
+#: .\myapp\context_processors.py:22
 msgid "Canada"
-msgstr ""
+msgstr "Kanada"
 
-#: .\myapp\context_processors.py:18
+#: .\myapp\context_processors.py:23
 msgid "United Kingdom"
-msgstr ""
+msgstr "UK"
 
-#: .\myapp\context_processors.py:19
+#: .\myapp\context_processors.py:24
 msgid "Australia"
 msgstr ""
 
-#: .\myapp\context_processors.py:20
+#: .\myapp\context_processors.py:25
 #: .\venv\Lib\site-packages\pycountry\tests\test_general.py:184
 msgid "Germany"
-msgstr ""
-
-#: .\myapp\context_processors.py:21
-msgid "France"
-msgstr ""
-
-#: .\myapp\context_processors.py:22
-msgid "Russia"
-msgstr ""
-
-#: .\myapp\context_processors.py:23
-msgid "Sweden"
-msgstr ""
-
-#: .\myapp\context_processors.py:24
-msgid "Spain"
-msgstr ""
-
-#: .\myapp\context_processors.py:25
-msgid "Italy"
-msgstr ""
+msgstr "Deutschland"
 
 #: .\myapp\context_processors.py:26
-msgid "China"
-msgstr ""
+msgid "France"
+msgstr "Frankreich"
 
 #: .\myapp\context_processors.py:27
-msgid "Singapore"
-msgstr ""
+msgid "Russia"
+msgstr "Russland"
 
 #: .\myapp\context_processors.py:28
-msgid "Portugal"
-msgstr ""
+msgid "Sweden"
+msgstr "Schweden"
 
 #: .\myapp\context_processors.py:29
-msgid "Switzerland"
-msgstr ""
+msgid "Spain"
+msgstr "Spanien"
 
 #: .\myapp\context_processors.py:30
-msgid "Belgium"
-msgstr ""
+msgid "Italy"
+msgstr "Italien"
 
 #: .\myapp\context_processors.py:31
-msgid "UAE"
-msgstr ""
+msgid "China"
+msgstr "China"
 
 #: .\myapp\context_processors.py:32
-msgid "Netherlands"
-msgstr ""
+msgid "Singapore"
+msgstr "Singapur"
 
 #: .\myapp\context_processors.py:33
+msgid "Portugal"
+msgstr "Portugal"
+
+#: .\myapp\context_processors.py:34
+msgid "Switzerland"
+msgstr "Schweiz"
+
+#: .\myapp\context_processors.py:35
+msgid "Belgium"
+msgstr "Belgien"
+
+#: .\myapp\context_processors.py:36
+msgid "UAE"
+msgstr "UAE"
+
+#: .\myapp\context_processors.py:37
+msgid "Netherlands"
+msgstr "Niederlande"
+
+#: .\myapp\context_processors.py:38
 msgid "Japan"
-msgstr ""
+msgstr "Japan"
 
 #: .\onlinestore\settings.py:150
 msgid "Chinese"
@@ -522,6 +526,12 @@ msgstr "Telefonnummer"
 #: .\templates\register.html:76
 msgid "Date Of Birth"
 msgstr "Geburtsdatum"
+
+#: .\templates\register.html:90
+#, fuzzy
+#| msgid "Create account"
+msgid "Already have an account?"
+msgstr "Konto erstellen"
 
 #: .\templates\register.html:90
 msgid "Login Here."

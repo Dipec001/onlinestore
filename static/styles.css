@@ -42,8 +42,9 @@ header{
 .search-input{
     width: 350px;
     height: 50px;
-    padding-left: 30px;
+    padding-left: 10px;
     border: 1px solid #0B63B2;
+    font-size: 16px; /* Adjust font size as needed */
 }
 .search {
     cursor: pointer;
@@ -1347,6 +1348,7 @@ header{
     }
     .search-input{
         width: 100%;
+        font-size: 14px;
     }
     .search-form{
         display: grid;
