@@ -28,7 +28,7 @@
                     <a href="{% url 'item-view' drug.id %}" class="drug-link">
                         <img src="{{ drug.image.url }}" alt="{{ drug.name }}">
                         <p class="med-name">{{ drug.name }}</p>
-                        <p>{{ request.session.currency_symbol }}{{ drug.price }}</p>
+                        <p>{{ currency_symbol }}{{ drug.price }}</p>
                     </a>
                     <form action="{% url 'add-to-cart' drug.id %}" method="post">
                         {% csrf_token %}
@@ -46,7 +46,7 @@
             {% endif %}
     
             <span class="current">
-                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                {% trans "Page" %} {{ page_obj.number }} {% trans "of" %} {{ page_obj.paginator.num_pages }}.
             </span>
     
             {% if page_obj.has_next %}

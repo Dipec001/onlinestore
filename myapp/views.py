@@ -18,7 +18,13 @@ stripe.api_key = os.environ.get('STRIPE_SECRET_KEY')
 def index(request):
     categories = Category.objects.all()
     best_sellers = Drug.objects.filter(best_sellers__gt=0)  # Filter drugs with best_sellers > 0
-    return render(request, 'index.html', {'categories':categories, 'best_sellers': best_sellers})
+
+    context = {
+        'categories': categories,
+        'best_sellers': best_sellers
+
+    }
+    return render(request, 'index.html', context)
 
 
 def login_view(request):
@@ -145,7 +151,7 @@ def products(request, category_id=None):
     query = request.GET.get('q')
 
     categories = Category.objects.all()
-    drugs = Drug.objects.all()
+    drugs = Drug.objects.all().order_by('name')  # Order by name in alphabetical order
 
     if query:
         drugs = drugs.filter(Q(name__icontains=query) | Q(description__icontains=query))

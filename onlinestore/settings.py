@@ -151,7 +151,7 @@ LANGUAGES = [
     ('zh-hans', _('Chinese')),
     ('pt', _('Portuguese')),
     ('de', _('German')),
-    ('de-CH', _('Swiss German')),  # Correct format for Swiss German
+    ('de-ch', _('Swiss German')),  # Correct format for Swiss German
     ('en-uk', _('English (UK)')),
     ('en-ca', _('English (Canada)')),
     ('en-au', _('English (Australia)')),
@@ -160,7 +160,7 @@ LANGUAGES = [
     ('sv', _('Swedish')),
     ('es', _('Spanish')),
     ('nl', _('Dutch (Netherlands)')),
-    ('nl-BE', _('Flemish (Belgium)')),  # Correct format for Flemish
+    ('nl-be', _('Flemish (Belgium)')),  # Correct format for Flemish
     ('it', _('Italian')),
     ('ru', _('Russian')),
     ('ar', _('Arabic (UAE)')),

@@ -4,7 +4,7 @@
 
 {% block content %}
 <div class="cart-page">
-    <p class="cart-num">Cart ({{ cart_items_with_subtotal|length }} Items)</p>
+    <p class="cart-num">{% trans "Cart" %} ({{ cart_items_with_subtotal|length }} {% trans "Items" %})</p>
     {% if cart_items_with_subtotal %}
     {% for entry in cart_items_with_subtotal %}
     <div class="cart-main-things">
@@ -22,7 +22,7 @@
                 <p>{% trans "Quantity" %}</p>
                 <div class="add-minus-button">
                     <a href="{% url 'subtract_from_cart' entry.item.drug.id %}" class="subtract" {% if entry.item.quantity == 1 %}disabled{% endif %}><i class="fa-solid fa-minus"></i></a>
-                    <p class="cart-no">{{ entry.item.quantity }}pcs</p>
+                    <p class="cart-no">{{ entry.item.quantity }}</p>
                     <a href="{% url 'add-to-cart' entry.item.drug.id %}" class="add"><i class="fa-solid fa-plus"></i></a>
                 </div>
             </div>

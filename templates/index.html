@@ -58,15 +58,17 @@
         <div class="home-cate-container">
             <div class="home-cate">
                 {% for best in best_sellers %}
-                <div>
-                    <img src="{{ best.image.url }}" alt="{{ best.name }}">
-                    <p>{{ best.name }}</p>
-                    <p>${{ best.price }}</p>
-                    <form action="{% url 'add-to-cart' best.id %}" method="post">
-                        {% csrf_token %}
-                        <button class="home-cate-button" type="submit">{% trans "Add to Cart" %}</button>
-                    </form>
-                </div>
+                <a href="{% url 'item-view' best.id %}" class="drug-link">
+                    <div>
+                        <img src="{{ best.image.url }}" alt="{{ best.name }}">
+                        <p>{{ best.name }}</p>
+                        <p>{{ request.session.currency_symbol }}{{ best.price }}</p>
+                        <form action="{% url 'add-to-cart' best.id %}" method="post">
+                            {% csrf_token %}
+                            <button class="home-cate-button" type="submit">{% trans "Add to Cart" %}</button>
+                        </form>
+                    </div>
+                </a>
                 {% endfor %}
                 <div class="pagination-dots">
                     <!-- Dots will be dynamically generated here -->
