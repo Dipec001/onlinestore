@@ -204,6 +204,9 @@ def services(request):
 def faqs(request):
     return render(request, "frequent-questions.html")
 
+def blog(request):
+    return render(request, "blog.html")
+
 
 def item_view(request, id):
     drug = get_object_or_404(Drug, id=id)

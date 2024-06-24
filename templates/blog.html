@@ -1,0 +1,23 @@
+{% extends 'header.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block content %}
+<div class="blog-page">
+    <div class="contact-title">
+        <h1>{% trans "BLOG" %}</h1>
+        <p>{% trans "Care for some valuable read?" %}</p>
+    </div>
+    <!-- <div class="blog-grid">
+        {% for post in posts %}
+        <div class="blog-card">
+            <img src="{{ post.image.url }}" alt="blog-image">
+            <h2>{{ post.title }}</h2>
+            <p>{{ post.description }}</p>
+            <a href="{% url 'blog-detail' post.id %}" class="btn btn-primary">{% trans "Read More" %}</a>            
+        </div>
+        {% endfor %}
+    </div> -->
+</div>
+
+{% endblock %}

@@ -101,7 +101,7 @@
                 </div>
                 {% endif %}
                 <div class="menu-item">
-                    <a href="">{% trans "Blog" %}</a>
+                    <a href="{% url 'blog' %}">{% trans "Blog" %}</a>
                 </div>
                 <div class="menu-item">
                     <a href="{% url 'faqs' %}">{% trans "FAQs" %}</a>
@@ -122,7 +122,7 @@
             <a href="{% url 'index' %}" class="active">{% trans "Home" %}</a>
             <a href="{% url 'products' %}">{% trans "Products" %}</a>
             <a href="{% url 'about' %}">{% trans "About us" %}</a>
-            <a href="#">{% trans "Blog" %}</a>
+            <a href="{% url 'blog' %}">{% trans "Blog" %}</a>
             <a href="#">{% trans "Our Partners" %}</a>
             <a href="{% url 'services' %}">{% trans "Services" %}</a>
             <a href="{% url 'faqs' %}">{% trans "FAQs" %}</a>
@@ -130,7 +130,6 @@
         </div>
         <div class="moving-text-container">
             <div class="moving-text">{% trans "📢Hello, I'm moving or rather a moving text and here is for announcements, do with this information what ever you wish!!! 🎇" %}</div>
-            <!-- <div class="moving-text">📢Hello, I'm moving or rather a moving text and here is for announcements, do with this information what ever you wish!!! 🎇</div> -->
         </div>
     </header>
     <!-- Content block for child templates -->
