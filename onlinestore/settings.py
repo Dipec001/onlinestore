@@ -147,11 +147,11 @@ AUTH_PASSWORD_VALIDATORS = [
 from django.utils.translation import gettext_lazy as _
 
 LANGUAGES = [
-    ('zh-Hans', _('Chinese')),
+    ('en-us', _('English (USA)')),
+    ('zh-hans', _('Chinese')),
     ('pt', _('Portuguese')),
     ('de', _('German')),
     ('de-CH', _('Swiss German')),  # Correct format for Swiss German
-    ('en-us', _('English (USA)')),
     ('en-uk', _('English (UK)')),
     ('en-ca', _('English (Canada)')),
     ('en-au', _('English (Australia)')),
@@ -166,6 +166,12 @@ LANGUAGES = [
     ('ar', _('Arabic (UAE)')),
     ('ja', _('Japanese')),
 ]
+
+# modeltranslation settings
+# MODELTRANSLATION_LANGUAGES = ('en-us', 'zh-Hans', 'pt', 'de', 'de-CH', 'en-uk', 'en-ca', 'en-au', 'en-sg', 'fr', 'sv', 'es', 'nl', 'nl-BE', 'it', 'ru', 'ar', 'ja')
+MODELTRANSLATION_DEFAULT_LANGUAGE = 'en-us'
+MODELTRANSLATION_PREPOPULATE_LANGUAGE = 'en-us'
+
 
 
 
@@ -210,6 +216,32 @@ CACHES = {
         'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
         'LOCATION': 'unique-snowflake',
     }
+}
+
+#Celery Settings
+if DEBUG:
+    CELERY_BROKER_URL = 'redis://127.0.0.1:6379'
+    CELERY_RESULT_BACKEND = 'redis://127.0.0.1:6379/0'
+else:
+    # Use REDIS_URL environment variable provided by your hosting service
+    CELERY_BROKER_URL = os.getenv('REDIS_URL')
+    CELERY_RESULT_BACKEND = os.getenv('REDIS_URL')
+
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_TIMEZONE = 'UTC'  # Use UTC for global consistency
+
+
+from celery.schedules import crontab
+from datetime import timedelta
+
+CELERY_BEAT_SCHEDULE = {
+    'update-currency-rates-daily': {
+        'task': 'myapp.tasks.update_currency_rates',
+        # 'schedule': crontab(hour=0, minute=0),  # Runs every day at midnight UTC
+        'schedule': timedelta(minutes=2), 
+    },
 }
 
 

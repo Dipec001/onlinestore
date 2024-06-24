@@ -10,6 +10,7 @@ def cart_item_count(request):
 
     context = {
         'header_placeholder': _('Search a drug name, a use case...'),
+        'footer_email_placeholder': _('Email Address'),
         'cart_item_count': cart_item_count,
     }
     

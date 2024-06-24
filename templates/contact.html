@@ -23,10 +23,10 @@
             <div class="contact-form" id="contact-form">
                 <form action="{% url 'contact' %}" method="POST">
                     {% csrf_token %}
-                    <input type="text" name="name" placeholder="Name" required>
-                    <input type="text" name="phone_number" placeholder="Phone Number" required>
-                    <input type="email" name="email" placeholder="Email address" required>
-                    <textarea name="message" placeholder="Message" required></textarea>
+                    <input type="text" name="name" placeholder="{{ name_placeholder }}" required>
+                    <input type="text" name="phone_number" placeholder="{{ phone_number_placeholder}} " required>
+                    <input type="email" name="email" placeholder="{{ email_placeholder}} " required>
+                    <textarea name="message" placeholder="{{message_placeholder }}" required></textarea>
                     <button type="submit">{% trans "Email Message" %}</button>
                 </form>
             </div>

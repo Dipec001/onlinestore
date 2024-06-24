@@ -5,7 +5,7 @@
 {% block content %}
 <div class="item-page">
     <div class="item-first-div">
-        <p>{% trans "Home > All-products" %} ></p>
+        <p>{% trans "Home > All-products >" %}</p>
         <p>{{ drug.category.name }}</p>
     </div>
     <div class="item-item-div">
@@ -15,10 +15,10 @@
         <div class="item-sec-div">
             <h1>{{ drug.name }}</h1>
             <hr>
-            <p>${{ drug.price }}</p>
-            <h3>{% trans "Description" %}:</h3>
+            <p>{{ request.session.currency_symbol }} {{ drug.price }}</p>
+            <h3>{% trans "Description:" %}</h3>
             <p>{{ drug.description }}</p>
-            <h3>{% trans "Manufacturer" %}:</h3>
+            <h3>{% trans "Manufacturer:" %}</h3>
             <p>{{ drug.manufacturer }}</p>
             <div class="add-minus">
                 <!-- <i class="fa-solid fa-minus"></i>

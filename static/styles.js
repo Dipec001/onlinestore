@@ -73,21 +73,21 @@ document.addEventListener('DOMContentLoaded', function() {
   specialRequestRadio.addEventListener('change', function() {
       // Modify texts for special request
       contactQuestion.innerHTML = `
-          <h2>Can’t Find The Product You’re Looking For On Our Website?</h2>
-          <p>It is always a pleasure to hear from you. Kindly Fill In The Details Of What You Need, You will Get a Response As Soon As Possible</p>
+          <h2>{% trans "Can’t Find The Product You’re Looking For On Our Website?" %}</h2>
+          <p>{% trans "It is always a pleasure to hear from you. Kindly Fill In The Details Of What You Need, You will Get a Response As Soon As Possible" %}</p>
       `;
       // Modify form for special request
       contactForm.innerHTML = `
           <!-- Special Request Form Fields -->
           <form action="{% url 'special_request' %}" method="POST" enctype="multipart/form-data">
               <!-- Special request form fields here -->
-              <input type="text" name="name" placeholder="Name" required>
-              <input type="text" name="phone_number" placeholder="Phone Number" required>
-              <input type="email" name="email" placeholder="Email address" required>
-              <input type="text" name="medicationName" placeholder="Name Of Medication " required>
-              <textarea name="message" placeholder="What is the medication used for?" required></textarea>
+              <input type="text" name="name" placeholder="{{ name_placeholder }}" required>
+              <input type="text" name="phone_number" placeholder="{{ phone_number_placeholder }}" required>
+              <input type="email" name="email" placeholder="{{ email_placeholder }}" required>
+              <input type="text" name="medicationName" placeholder="{{ name_of_medication_placeholder }}" required>
+              <textarea name="message" placeholder="{{ medication_use_placeholder }}" required></textarea>
               <input type="file" name="medicationImage" accept="image/*" style="border: none;" required>
-              <button type="submit">Request Medication</button>
+              <button type="submit">{% trans "Request Medication" %}</button>
           </form>
       `;
   });

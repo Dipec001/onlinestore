@@ -4,17 +4,13 @@ from django.contrib import messages
 from .forms import UserRegisterForm, UserLoginForm
 from .models import User, OneTimePassword, Drug, Category, Cart, CartItem
 from .utils import send_otp_for_password_reset
-from django.contrib.auth.decorators import user_passes_test
-from .permissions import admin_check
 from django.core.paginator import Paginator
 from django.db.models import Q
-from django.views.decorators.http import require_POST
 import os
 import stripe
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
-from .currency_conversion import convert_currency
-from decimal import Decimal, ROUND_HALF_UP
+from django.utils.translation import gettext_lazy as _
 
 stripe.api_key = os.environ.get('STRIPE_SECRET_KEY')
 
@@ -58,12 +54,12 @@ def login_view(request):
                     except Cart.DoesNotExist:
                         pass
                 
-                messages.success(request, "Login successful!")
-                return redirect("index")  # Redirect to the home page or another appropriate page
+                messages.success(request, _("Login successful!"))
+                return redirect("index")
             else:
-                messages.error(request, "Invalid email or password.")
+                messages.error(request, _("Invalid email or password."))
         else:
-            messages.error(request, "Please correct the errors below.")
+            messages.error(request, _("Please correct the errors below."))
     else:
         form = UserLoginForm()
     
@@ -75,10 +71,10 @@ def register_view(request):
         form = UserRegisterForm(request.POST)
         if form.is_valid():
             user = form.save()
-            messages.success(request, "Registration successful. You can now log in.")
-            return redirect("login")  # Redirect to the login page
+            messages.success(request, _("Registration successful. You can now log in."))
+            return redirect("login")
         else:
-            messages.error(request, "Registration failed. Please correct the errors below.")
+            messages.error(request, _("Registration failed. Please correct the errors below."))
     else:
         form = UserRegisterForm()
     return render(request, "register.html", {"form": form})
@@ -88,14 +84,14 @@ def forgot_password(request):
     if request.method == 'POST':
         email = request.POST['email'].lower()
         if not email:
-            messages.error(request, 'Email is required')
+            messages.error(request, _('Email is required'))
             return render(request, 'forgot-password.html')
         user = User.objects.filter(email=email)
         if user.exists():
             send_otp_for_password_reset(email)
             return redirect('reset-password')
         else:
-            messages.error(request, "Email not found")
+            messages.error(request, _("Email not found"))
             return render(request, 'forgot-password.html')
     return render(request, 'forgot-password.html')
 
@@ -105,13 +101,13 @@ def reset_password(request):
         password = request.POST.get('password')
         
         if not token or not password:
-            messages.error(request, "OTP and password are required.")
+            messages.error(request, _("OTP and password are required."))
             return render(request, 'password-reset.html')
 
         try:
             instance = OneTimePassword.objects.get(code=token)
         except OneTimePassword.DoesNotExist:
-            messages.error(request, "Invalid OTP.")
+            messages.error(request, _("Invalid OTP."))
             return render(request, 'password-reset.html')
 
         if instance.is_valid:
@@ -119,10 +115,10 @@ def reset_password(request):
             user.set_password(password)
             user.save()
             instance.delete()  # Delete OTP from the database after successful validation
-            messages.success(request, "Password reset successfully.")
+            messages.success(request, _("Password reset successfully."))
             return redirect('login')
         else:
-            messages.error(request, "OTP is not valid or has expired.")
+            messages.error(request, _("OTP is not valid or has expired."))
     
     return render(request, 'password-reset.html')
 
@@ -133,7 +129,16 @@ def logout_view(request):
 
 
 def contact(request):
-    return render(request, "contact.html")
+    context = {
+        'name_placeholder': _('Name'),
+        'email_placeholder': _('Email'),
+        'message_placeholder': _('Message'),
+        'phone_number_placeholder': _('Phone Number'),
+        'name_of_medication_placeholder': _('Name Of Medication'),
+        'medication_use_placeholder': _('What is the medication used for')
+
+    }
+    return render(request, "contact.html", context)
 
 def products(request, category_id=None):
 
@@ -153,17 +158,6 @@ def products(request, category_id=None):
             # Handle case where category ID is invalid (optional)
             pass
 
-    # Get the selected currency and symbol from the session
-    selected_currency = request.session.get('currency_code', 'USD')
-    currency_symbol = request.session.get('currency_symbol', '$')
-
-    # Convert drug prices to the selected currency
-    for drug in drugs:
-        if not isinstance(drug.price, Decimal):
-            drug.price = Decimal(drug.price)
-        converted_price = convert_currency(drug.price, 'USD', selected_currency)
-        drug.price_converted = Decimal(converted_price).quantize(Decimal('.01'), rounding=ROUND_HALF_UP)
-
     paginator = Paginator(drugs, 9)  # Show 9 drugs per page
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
@@ -172,7 +166,6 @@ def products(request, category_id=None):
         'categories': categories,
         'drugs': drugs,
         'page_obj': page_obj,
-        'currency_symbol': currency_symbol,
     }
 
     return render(request, "products.html", context)
@@ -296,7 +289,7 @@ def create_checkout_session(request):
     else:
         user = request.user
         if not user.is_authenticated:
-            messages.error(request, "Please sign in to complete your order")
+            messages.error(request, _("Please sign in to complete your order"))
             return redirect('login')
 
         return render(request, 'checkout.html')  # Render the checkout form

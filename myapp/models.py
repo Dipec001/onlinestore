@@ -87,7 +87,6 @@ class Drug(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='drugs')
     image = models.ImageField(upload_to='drug_images/')
     best_sellers = models.PositiveIntegerField(default=0)
-    price_id = models.TextField()
 
     def __str__(self):
         return self.name
@@ -102,6 +101,7 @@ class CartItem(models.Model):
     cart = models.ForeignKey(Cart, on_delete=models.CASCADE)
     drug = models.ForeignKey(Drug, on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField(default=1)
+
 
 # class Order(models.Model):
 #     user = models.ForeignKey(User, on_delete=models.CASCADE)

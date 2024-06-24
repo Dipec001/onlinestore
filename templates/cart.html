@@ -28,20 +28,20 @@
             </div>
             <div>
                 <p>{% trans "Unit Price" %}</p>
-                <p class="cart-price">${{ entry.item.drug.price|floatformat:2 }}</p>
+                <p class="cart-price">{{ request.session.currency_symbol }}{{ entry.item.drug.price|floatformat:2 }}</p>
             </div>
             <div>
                 <p>{% trans "Total Price" %}</p>
-                <p class="cart-total">${{ entry.subtotal }}</p>
+                <p class="cart-total">{{ request.session.currency_symbol }}{{ entry.subtotal|floatformat:2 }}</p>
             </div>
         </div>       
     </div>
     {% endfor %}
     <div class="item-totals">
         <div>
-            <p>{% trans "Subtotal" %}: ${{ total }}</p>
-            <p>VAT: $0.00</p>
-            <p>{% trans "Total" %}: ${{ total }}</p>
+            <p>{% trans "Subtotal" %}: {{ request.session.currency_symbol }}{{ total|floatformat:2 }}</p>
+            <p>VAT: {{ request.session.currency_symbol }}0.00</p>
+            <p>{% trans "Total" %}: {{ request.session.currency_symbol }}{{ total|floatformat:2 }}</p>
             <p>{% trans "Note: Delivery Fee would be made available when you place an order" %}</p>
         </div>
         <div class="shop-options">
