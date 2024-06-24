@@ -2,14 +2,6 @@
 
 // Testing purpose
 console.log('JavaScript file loaded successfully');
-
-function testFunction() {
-    console.log('Window resized');
-}
-
-window.addEventListener('resize', function() {
-    testFunction();
-});
 // testing purpose
 
 
@@ -93,32 +85,6 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 
-/* JS style for category dropdown */
-document.addEventListener('DOMContentLoaded', function() {
-  const categories = document.getElementById('categories');
-  const dropdownCat = document.querySelector('.cat-dropdown');
-
-  function toggleDropdown() {
-      const computedStyle = window.getComputedStyle(dropdownCat);
-      if (computedStyle.display === 'none') {
-          dropdownCat.style.display = 'block';
-      } else {
-          dropdownCat.style.display = 'none';
-      }
-  }
-
-  categories.addEventListener('click', function(event) {
-      event.stopPropagation();  // Prevent the click event from propagating to the document
-      toggleDropdown();
-  });
-
-  // Close the dropdown when clicking outside of it
-  document.body.addEventListener('click', function(event) {
-      if (!event.target.closest('.category-title') && dropdownCat.style.display === 'block') {
-          dropdownCat.style.display = 'none';
-      }
-  });
-});
 
 /* JS styling for side bar */
 document.addEventListener('DOMContentLoaded', function() {

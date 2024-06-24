@@ -4,7 +4,7 @@ from django.contrib import messages
 from .forms import UserRegisterForm, UserLoginForm
 from .models import User, OneTimePassword, Drug, Category, Cart, CartItem
 from .utils import send_otp_for_password_reset
-from django.core.paginator import Paginator
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import Q
 import os
 import stripe
@@ -149,9 +149,11 @@ def contact(request):
 def products(request, category_id=None):
 
     query = request.GET.get('q')
-
+    sort_by = request.GET.get('sort', 'name')  # Default sorting by drug name
     categories = Category.objects.all()
-    drugs = Drug.objects.all().order_by('name')  # Order by name in alphabetical order
+    
+    # Retrieve all drugs initially
+    drugs = Drug.objects.all()
 
     if query:
         drugs = drugs.filter(Q(name__icontains=query) | Q(description__icontains=query))
@@ -164,9 +166,27 @@ def products(request, category_id=None):
             # Handle case where category ID is invalid (optional)
             pass
 
+
+    # Sort drugs based on selected sorting option
+    if sort_by == 'price_low_to_high':
+        drugs = drugs.order_by('price')
+    elif sort_by == 'price_high_to_low':
+        drugs = drugs.order_by('-price')
+    elif sort_by == 'popularity':
+        drugs = drugs.filter(best_sellers__gte=0).order_by('-best_sellers')
+    else:
+        # Default sorting by drug name
+        drugs = drugs.order_by('name')
+
+    #pagination
     paginator = Paginator(drugs, 9)  # Show 9 drugs per page
     page_number = request.GET.get('page')
-    page_obj = paginator.get_page(page_number)
+    try:
+        page_obj = paginator.page(page_number)
+    except PageNotAnInteger:
+        page_obj = paginator.page(1)
+    except EmptyPage:
+        page_obj = paginator.page(paginator.num_pages)
 
     context = {
         'categories': categories,

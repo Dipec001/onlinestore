@@ -10,15 +10,28 @@
     </div>
     <div class="wrap1">
         <div class="filter-card">
-            <p class="category-title" id="categories">{% trans "Categories" %} <i class="fas fa-caret-down"></i></p>
-            <div class="cat-dropdown" style="display: none;" >
-                <ul>
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="categoryDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                    {% trans "Categories" %}
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="categoryDropdown">
                     {% for category in categories %}
-                    <li><a href="{% url 'products_by_category' category.id %}" value="{{ category.id }}">{{ category.name }}</a></li>
+                    <li><a class="dropdown-item" href="{% url 'products_by_category' category.id %}" value="{{ category.id }}">{{ category.name }}</a></li>
                     {% endfor %}
                 </ul>
             </div>
-            <p class="category-title">{% trans "Filter" %} <i class="fas fa-caret-down"></i></p>
+    
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    {% trans "Filter" %}
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="?sort=name{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">{% trans "Name" %}</a></li>
+                    <li><a class="dropdown-item" href="?sort=popularity{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">{% trans "Popularity" %}</a></li>
+                    <li><a class="dropdown-item" href="?sort=price_low_to_high{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">{% trans "Price: Low to High" %}</a></li>
+                    <li><a class="dropdown-item" href="?sort=price_high_to_low{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">{% trans "Price: High to Low" %}</a></li>
+                </ul>
+            </div>
         </div>
         <div class="all-products">
             <h2>{% trans "Products A-Z" %}</h2>
@@ -28,7 +41,7 @@
                     <a href="{% url 'item-view' drug.id %}" class="drug-link">
                         <img src="{{ drug.image.url }}" alt="{{ drug.name }}">
                         <p class="med-name">{{ drug.name }}</p>
-                        <p>{{ currency_symbol }}{{ drug.price }}</p>
+                        <p>{{ request.session.currency_symbol }}{{ drug.price }}</p>
                     </a>
                     <form action="{% url 'add-to-cart' drug.id %}" method="post">
                         {% csrf_token %}
@@ -39,21 +52,33 @@
             </div>
         </div>
     </div>
-    <div class="pagination">
-        <span class="step-links">
+
+    <!-- Pagination -->
+    <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center">
             {% if page_obj.has_previous %}
-                <a href="?{% if request.GET.q %}q={{ request.GET.q }}&{% endif %}{% if request.GET.category %}category={{ request.GET.category }}&{% endif %}page={{ page_obj.previous_page_number }}">{% trans "Previous" %}</a>
+                <li class="page-item"><a class="page-link" href="?page=1{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}&sort={{ request.GET.sort }}">{% trans "First" %}</a></li>
+                <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}&sort={{ request.GET.sort }}">{% trans "Previous" %}</a></li>
+            {% else %}
+                <li class="page-item disabled"><span class="page-link">{% trans "First" %}</span></li>
+                <li class="page-item disabled"><span class="page-link">{% trans "Previous" %}</span></li>
             {% endif %}
     
-            <span class="current">
-                {% trans "Page" %} {{ page_obj.number }} {% trans "of" %} {{ page_obj.paginator.num_pages }}.
-            </span>
+            <li class="page-item"><span class="page-link">
+                {% trans "Page" %} {{ page_obj.number }} {% trans "of" %} {{ page_obj.paginator.num_pages }}
+            </span></li>
     
             {% if page_obj.has_next %}
-                <a href="?{% if request.GET.q %}q={{ request.GET.q }}&{% endif %}{% if request.GET.category %}category={{ request.GET.category }}&{% endif %}page={{ page_obj.next_page_number }}">{% trans "Next" %}</a>
+                <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}&sort={{ request.GET.sort }}">{% trans "Next" %}</a></li>
+                <li class="page-item"><a class="page-link" href="?page={{ page_obj.paginator.num_pages }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}&sort={{ request.GET.sort }}">{% trans "Last" %}</a></li>
+            {% else %}
+                <li class="page-item disabled"><span class="page-link">{% trans "Next" %}</span></li>
+                <li class="page-item disabled"><span class="page-link">{% trans "Last" %}</span></li>
             {% endif %}
-        </span>
-    </div>
+        </ul>
+    </nav>
+    
+
 
 </div>
 

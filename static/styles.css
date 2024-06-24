@@ -733,9 +733,6 @@ header{
 .filter-card p:hover{
     background-color: #ccc;
 }
-.category-title .fas{
-    margin-left: 5px;
-}
 
 /* Style for the all products section */
 .products-page{
@@ -799,32 +796,10 @@ header{
     color: black;
     letter-spacing: 0.1em;
 }
-.cat-dropdown{
-    padding: 20px;
-    position: absolute;
-    background-color: white;
-    width: 350px;
-    left: 10%;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    top: 38%;
-    height: auto;
-    max-height: 600px;
-    border: 1px solid gainsboro;
-    border-radius: 5px;
-    overflow-y: scroll;
-}
-.cat-dropdown a{
-    text-decoration: none;
-    color: black;
-}
-.cat-dropdown ul{
-    list-style-type: none;
-}
-.cat-dropdown ul li{
-    margin-bottom: 10px;    
-}
-.cat-dropdown a:hover{
-    color: blue;
+.dropdown button{
+    width: 150px;
+    text-align: left;
+    letter-spacing: 2px;
 }
 
 #menu-toggle i{
@@ -841,26 +816,15 @@ header{
     margin: 100px 0;
     gap: 30px;
 }
-/* .services-line.reverse {
-    flex-direction: row-reverse;
-} */
 
 .services-line.reverse {
     direction: rtl; /* Reverse the flow of items */
 }
 
-/* .services-line div{
-    flex: 1;
-    padding: auto 30px;
-} */
 .services-line div {
     padding: 0 30px;
 }
 
-
-/* .service-img{
-    height: 400px;
-} */
 .service-img {
     height: 400px;
     width: 100%;
@@ -1513,9 +1477,6 @@ header{
 @media screen  and (max-width: 380px){
     .products-container{
         grid-template-columns: auto; /* Fixed number of columns to 2 */  
-    }
-    .cat-dropdown{
-        width: 200px;
     }
     .checkout-div{
         width: 90%;
