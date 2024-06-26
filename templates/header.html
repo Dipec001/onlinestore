@@ -81,30 +81,30 @@
             <div class="side-bar" id="sidebar" style="display: none;">
                 <i class="fas fa-times" id="hamburger-close"></i>
                 <div class="menu-item">
-                    <a href="{% url 'index' %}">{% trans "Home" %}</a>
+                    <a href="{% url 'index' %}" class="{% if current_page == 'home' %}active{% endif %}">{% trans "Home" %}</a>
                 </div>
                 <div class="menu-item">
-                    <a href="{% url 'products' %}">{% trans "Products" %}</a>
+                    <a href="{% url 'products' %}" class="{% if current_page == 'products' %}active{% endif %}">{% trans "Products" %}</a>
                 </div>
                 <div class="menu-item">
-                    <a href="{% url 'services' %}">{% trans "Services" %}</a>
+                    <a href="{% url 'services' %}" class="{% if current_page == 'services' %}active{% endif %}">{% trans "Services" %}</a>
                 </div>
                 <div class="menu-item">
-                    <a href="{% url 'about' %}">{% trans "About" %}</a>
+                    <a href="{% url 'about' %}" class="{% if current_page == 'about' %}active{% endif %}">{% trans "About" %}</a>
                 </div>
                 <div class="menu-item">
-                    <a href="{% url 'contact' %}">{% trans "Contact Us" %}</a>
+                    <a href="{% url 'contact' %}" class="{% if current_page == 'contact' %}active{% endif %}">{% trans "Contact Us" %}</a>
                 </div>
                 {% if user.is_staff or user.is_superuser %}
                 <div class="menu-item">
-                    <a href="/admin">{% trans "Admin" %}</a>
+                    <a href="/admin" class="{% if current_page == 'admin' %}active{% endif %}">{% trans "Admin" %}</a>
                 </div>
                 {% endif %}
                 <div class="menu-item">
-                    <a href="{% url 'blog' %}">{% trans "Blog" %}</a>
+                    <a href="{% url 'blog' %}" class="{% if current_page == 'blog' %}active{% endif %}">{% trans "Blog" %}</a>
                 </div>
                 <div class="menu-item">
-                    <a href="{% url 'faqs' %}">{% trans "FAQs" %}</a>
+                    <a href="{% url 'faqs' %}" class="{% if current_page == 'faqs' %}active{% endif %}">{% trans "FAQs" %}</a>
                 </div>
                 {% if user.is_authenticated %}
                 <div class="menu-item">
@@ -112,22 +112,22 @@
                 </div>
                 {% else %}
                 <div class="menu-item">
-                    <a href="{% url 'login' %}">{% trans "Login" %}</a>
-                    <a href="{% url 'register' %}">{% trans "Sign Up" %}</a>
+                    <a href="{% url 'login' %}" class="{% if current_page == 'login' %}active{% endif %}">{% trans "Login" %}</a>
+                    <a href="{% url 'register' %}" class="{% if current_page == 'register' %}active{% endif %}">{% trans "Sign Up" %}</a>
                 </div>               
                 {% endif %}
-            </div>
+            </div>            
         </div>            
         <div class="nav-options" id="nav">
-            <a href="{% url 'index' %}" class="active">{% trans "Home" %}</a>
-            <a href="{% url 'products' %}">{% trans "Products" %}</a>
-            <a href="{% url 'about' %}">{% trans "About us" %}</a>
-            <a href="{% url 'blog' %}">{% trans "Blog" %}</a>
-            <a href="#">{% trans "Our Partners" %}</a>
-            <a href="{% url 'services' %}">{% trans "Services" %}</a>
-            <a href="{% url 'faqs' %}">{% trans "FAQs" %}</a>
-            <a href="{% url 'contact' %}">{% trans "Contact us" %}</a>
-        </div>
+            <a href="{% url 'index' %}" class="{% if current_page == 'home' %}active{% endif %}">{% trans "Home" %}</a>
+            <a href="{% url 'products' %}" class="{% if current_page == 'products' %}active{% endif %}">{% trans "Products" %}</a>
+            <a href="{% url 'about' %}" class="{% if current_page == 'about' %}active{% endif %}">{% trans "About us" %}</a>
+            <a href="{% url 'blog' %}" class="{% if current_page == 'blog' %}active{% endif %}">{% trans "Blog" %}</a>
+            <a href="#" class="{% if current_page == 'partners' %}active{% endif %}">{% trans "Our Partners" %}</a>
+            <a href="{% url 'services' %}" class="{% if current_page == 'services' %}active{% endif %}">{% trans "Services" %}</a>
+            <a href="{% url 'faqs' %}" class="{% if current_page == 'faqs' %}active{% endif %}">{% trans "FAQs" %}</a>
+            <a href="{% url 'contact' %}" class="{% if current_page == 'contact' %}active{% endif %}">{% trans "Contact us" %}</a>
+        </div>        
         <div class="moving-text-container">
             <div class="moving-text">{% trans "📢Hello, I'm moving or rather a moving text and here is for announcements, do with this information what ever you wish!!! 🎇" %}</div>
             <div class="moving-text">{% trans "📢Hello, I'm moving or rather a moving text and here is for announcements, do with this information what ever you wish!!! 🎇" %}</div>

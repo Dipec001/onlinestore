@@ -221,6 +221,10 @@ header{
     padding: 16px 24px;
     color: black;
 }
+.nav-options a.active {
+    font-weight: bold;  /* Bold text for active link */
+    color: #0B63B2;  /* Custom color for active link */
+}
 #hamburger-icon{
     font-size: 30px;
     cursor: pointer;
@@ -237,8 +241,10 @@ header{
     box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1); /* Optional: Adds a subtle shadow */
     z-index: 1000; /* Ensures the sidebar stays above other content */
 }
-
-
+.menu-item a.active {
+    color: #0B63B2;  /* Black text for active link */
+    font-weight: bold;  /* Bold text for active link */
+}
 #hamburger-close {
     align-self: flex-end;
     font-size: 24px; /* Adjust size as needed */
@@ -1422,6 +1428,12 @@ hr {
     color: white;
     border: 1px solid #f3f0f0be;
 }
+.active-tag {
+    background-color: #ff0;  /* Yellow background for the active tag */
+    color: #000;  /* Black text for the active tag */
+    font-weight: bold;
+}
+
 /* Blog details styling */
 .blog-detail-page{
     width: 70%;

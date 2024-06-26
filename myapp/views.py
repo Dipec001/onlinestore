@@ -22,7 +22,8 @@ def index(request):
 
     context = {
         'categories': categories,
-        'best_sellers': best_sellers
+        'best_sellers': best_sellers,
+        'current_page': 'home'
 
     }
     return render(request, 'index.html', context)
@@ -70,7 +71,7 @@ def login_view(request):
     else:
         form = UserLoginForm()
     
-    return render(request, "login.html", {"form": form})
+    return render(request, "login.html", {"form": form,'current_page': 'login'})
 
 
 def register_view(request):
@@ -84,7 +85,7 @@ def register_view(request):
             messages.error(request, _("Registration failed. Please correct the errors below."))
     else:
         form = UserRegisterForm()
-    return render(request, "register.html", {"form": form})
+    return render(request, "register.html", {"form": form, 'current_page': 'register'})
 
 
 def forgot_password(request):
@@ -142,7 +143,8 @@ def contact(request):
         'message_placeholder': _('Message'),
         'phone_number_placeholder': _('Phone Number'),
         'name_of_medication_placeholder': _('Name Of Medication'),
-        'medication_use_placeholder': _('What is the medication used for')
+        'medication_use_placeholder': _('What is the medication used for'),
+        'current_page': 'contact'
 
     }
     return render(request, "contact.html", context)
@@ -193,17 +195,18 @@ def products(request, category_id=None):
         'categories': categories,
         'drugs': drugs,
         'page_obj': page_obj,
+        'current_page': 'products'
     }
 
     return render(request, "products.html", context)
 
 
 def services(request):
-    return render(request, "services.html")
+    return render(request, "services.html", {'current_page': 'services'})
 
 
 def faqs(request):
-    return render(request, "frequent-questions.html")
+    return render(request, "frequent-questions.html", {'current_page': 'faqs'})
 
 
 def blog(request):
@@ -227,6 +230,7 @@ def blog(request):
         'page_obj': page_obj,
         'all_tags': all_tags,
         'selected_tag': tag_slug,
+        'current_page': 'blog'
 
     }
     
@@ -242,13 +246,14 @@ def blog_detail(request, post_id):
         'post': post,
         'previous_post': previous_post,
         'next_post': next_post,
+        'current_page': 'blog'
     }
     return render(request, 'blog-detail.html', context)
 
 
 def item_view(request, id):
     drug = get_object_or_404(Drug, id=id)
-    return render(request, 'item.html', {'drug': drug})
+    return render(request, 'item.html', {'drug': drug, 'current_page': 'products'})
 
 
 def cart_view(request):
@@ -315,7 +320,7 @@ def remove_from_cart(request, drug_id):
 
 
 def about(request):
-    return render(request, 'about.html')
+    return render(request, 'about.html', {'current_page': 'about'})
 
 
 def create_checkout_session(request):    
@@ -372,15 +377,3 @@ def success_view(request):
 
 def cancel_view(request):
     return render(request, 'cancel.html')
-
-
-# @require_POST
-# def set_language(request):
-#     language = request.POST.get('language')
-#     next_url = request.POST.get('next') or '/'
-#     if language:
-#         request.session['django_language'] = language
-#         activate(language)
-#         return JsonResponse({'success': True, 'next': next_url})
-#     else:
-#         return JsonResponse({'success': False})
