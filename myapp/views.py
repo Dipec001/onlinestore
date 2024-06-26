@@ -1,17 +1,17 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
-from .forms import UserRegisterForm, UserLoginForm
+from .forms import UserRegisterForm, UserLoginForm, BillingForm
 from .models import User, OneTimePassword, Drug, Category, Cart, CartItem, BlogPost
 from .utils import send_otp_for_password_reset
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import Q
 import os
 import stripe
-from django.contrib.auth.decorators import login_required
 from django.conf import settings
 from django.utils.translation import gettext_lazy as _
 from taggit.models import Tag
+from django.http import HttpResponseServerError
 
 stripe.api_key = os.environ.get('STRIPE_SECRET_KEY')
 
@@ -377,3 +377,21 @@ def success_view(request):
 
 def cancel_view(request):
     return render(request, 'cancel.html')
+
+
+def errortest(request):
+    # Simulate a 500 error
+    return HttpResponseServerError("Intentional 500 error")
+
+
+def checkout_view(request):
+    if request.method == 'POST':
+        form = BillingForm(request.POST)
+        if form.is_valid():
+            billing_details = form.save()
+            # Process billing details or redirect to next step
+            return redirect('next_step_view')  # Replace 'next_step_view' with your view name
+    else:
+        form = BillingForm()
+
+    return render(request, 'checkout-real.html', {'form': form})

@@ -1526,6 +1526,34 @@ hr {
     }
 }
 
+/* error pages style */
+.error-page {
+    text-align: center;
+    font-family: Arial, sans-serif;
+}
+
+.error-page img{
+    max-width: 450px;
+    width: 50%;
+}
+.error-page p {
+    font-size: 18px;
+}
+
+.error-page a {
+    font-size: 16px;
+    text-decoration: none;
+    border: 1px solid #0B63B2;
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+
+.error-page a:hover {
+    background-color: #0B63B2;
+    color: #fff;
+}
+
+
 
 
 /* All media queries */
@@ -1737,4 +1765,60 @@ hr {
     .checkout-div{
         width: 90%;
     }
+}
+
+.checkout-realpage{
+    width: 70%;
+    margin: auto;
+}
+.returning-user{
+    text-decoration: none;
+}
+.returning-user:hover{
+    text-decoration: underline;
+    color: #0B63B2;
+}
+.checkout-realoptions{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    justify-content: center;
+    /* border-bottom: 1px solid #9c9a9a; */
+
+}
+.option-item{
+    cursor: pointer; /* Ensure the cursor changes on hover to indicate it's clickable */
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-weight: 600;
+
+}
+.checkout-realoptions-no {
+    width: 40px; /* Adjust width and height as needed */
+    height: 40px;
+    border-radius: 50%; /* Makes it a perfect circle */
+    padding: 15px; /* Adjust padding as needed */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    justify-content: center;
+    align-items: center;
+    display: inline-flex;
+    margin-right: 20px;
+    
+}
+.activated{
+    background-color: #000;
+    color: white;
+    font-weight: 900;
+}
+.activates{
+    border-bottom: 3px solid yellowgreen;
+    border-width: 100%;
+}
+.checkout-realform{
+    margin-top: 40px;
+}
+.checkout-realform h4{
+    font-weight: 900;
 }

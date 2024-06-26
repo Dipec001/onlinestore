@@ -4,6 +4,35 @@
 console.log('JavaScript file loaded successfully');
 // testing purpose
 
+document.addEventListener('DOMContentLoaded', function () {
+    // Get all option items
+    const optionItems = document.querySelectorAll('.option-item');
+
+    // Function to handle option click
+    function handleOptionClick(event) {
+        // Remove active classes from all options
+        optionItems.forEach(option => {
+            option.classList.remove('activates');
+            option.querySelector('.checkout-realoptions-no').classList.remove('activated');
+        });
+
+        // Add active classes to the clicked option
+        const clickedOption = event.currentTarget;
+        clickedOption.classList.add('activates');
+        clickedOption.querySelector('.checkout-realoptions-no').classList.add('activated');
+    }
+
+    // Attach click event listener to each option
+    optionItems.forEach(option => {
+        option.addEventListener('click', handleOptionClick);
+    });
+
+    // Set the initial active state for the first option (Billing Details)
+    optionItems[0].classList.add('activates');
+    optionItems[0].querySelector('.checkout-realoptions-no').classList.add('activated');
+});
+
+
 
 const optionsBox = document.querySelector('.options-box');
 
@@ -269,3 +298,15 @@ window.onclick = function(event) {
         closeModal();
     }
 }
+
+// jQuery script to handle option selection
+// document.addEventListener('DOMContentLoaded', function () {
+//     // Get the checkout-options
+//     const billingDetails = document.getElementById('billing');
+//     const shippingDetails = document.getElementById('shipping');
+//     const reviewOrder = document.getElementById('review');
+
+
+//     if 
+
+// });

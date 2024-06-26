@@ -5,11 +5,11 @@
 {% block content %}
 <div class="error-page">
     <!-- Include your SVG -->
-    <img src="{% static 'images/features/404.svg' %}" alt="404 Not Found">
+    <img src="{% static 'images/features/500.svg' %}" alt="404 Not Found">
 
-    <!-- Keep the rest of the content -->
-    <p>{% trans "You can try searching for it or go back to the homepage."%}</p>
+    <p>Sorry, something went wrong on our end.</p>
     <a href="{% url 'index' %}" class="btn btn-primary">{% trans "Go back to homepage" %}</a>
+
 </div>
 
 {% endblock %}

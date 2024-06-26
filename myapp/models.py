@@ -114,6 +114,41 @@ class BlogPost(models.Model):
 
     def __str__(self):
         return self.title
+    
+
+class BillingDetails(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    first_name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length=100)
+    company_name = models.CharField(max_length=100, blank=True, null=True)
+    country = models.CharField(max_length=100)
+    street_address = models.CharField(max_length=255)
+    town_city = models.CharField(max_length=100)
+    state = models.CharField(max_length=100)
+    zipcode = models.CharField(max_length=20)
+    phone_number = models.CharField(max_length=20)
+    email = models.EmailField()
+    order_note = models.TextField(blank=True, null=True)
+    create_account = models.BooleanField(default=False)
+
+class ShippingAddress(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    first_name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length=100)
+    company_name = models.CharField(max_length=100, blank=True, null=True)
+    country = models.CharField(max_length=100)
+    street_address = models.CharField(max_length=255)
+    town_city = models.CharField(max_length=100)
+    state = models.CharField(max_length=100)
+    zipcode = models.CharField(max_length=20)
+    phone_number = models.CharField(max_length=20)
+
+class Order(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    billing_address = models.ForeignKey(BillingDetails, on_delete=models.CASCADE)
+    shipping_address = models.ForeignKey(ShippingAddress, on_delete=models.CASCADE, blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
 
 

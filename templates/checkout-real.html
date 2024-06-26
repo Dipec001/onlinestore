@@ -1,0 +1,47 @@
+{% extends 'header.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block content %}
+<div class="checkout-realpage">
+    <div class="alert alert-primary alert-dismissible fade show" role="alert">
+        <strong>Returning User?</strong> <a class="returning-user" href="{% url 'login' %}">Click here to login.</a>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <div class="checkout-realoptions">
+        <div class="option-item activates" id="billing">
+            <p class="checkout-realoptions-no activated">1</p>
+            <p>Billing Details</p>
+        </div>
+        <div class="option-item" data-option="shipping" id="shipping">
+            <p class="checkout-realoptions-no">2</p>
+            <p>Shipping Address</p>
+        </div>
+        <div class="option-item" data-option="review" id="review">
+            <p class="checkout-realoptions-no">3</p>
+            <p>Review Order</p>
+        </div>
+    </div>
+    <div class="checkout-realform" id="billing-form">
+        <div>
+            <h4>Billing details</h4>
+        </div>
+        <form method="post" action="{% url 'checkout' %}" class="checkout-form">
+            {% if form.errors %}
+                <ul>
+                {% for field, errors in form.errors.items %}
+                    {% for error in errors %}
+                        <li>{{ field|title }}: {{ error }}</li>
+                    {% endfor %}
+                {% endfor %}
+                </ul>
+            {% endif %}
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Submit</button>
+        </form>
+        
+    </div>
+
+</div>
+{% endblock %}

@@ -23,8 +23,9 @@ urlpatterns = [
     path('add-to-cart/<int:drug_id>/', views.add_to_cart, name='add-to-cart'),
     path('remove-from-cart/<int:drug_id>/', views.remove_from_cart, name='remove_from_cart'),
     path('subtract-from-cart/<int:drug_id>/', views.subtract_from_cart, name='subtract_from_cart'),
-    # path('checkout/', views.checkout_view, name='checkout'),
+    path('checkout/', views.checkout_view, name='checkout'),
     path('create-checkout-session/', views.create_checkout_session, name='create_checkout_session'),
     path('success/', views.success_view, name='success'),
     path('cancel/', views.cancel_view, name='cancel'),
+    path('testerror/', views.errortest, name='error-test'),
 ]

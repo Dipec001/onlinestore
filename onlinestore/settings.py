@@ -30,7 +30,6 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG', 'False') == 'True'
-
 print(DEBUG)
 
 ALLOWED_HOSTS = ['epharma-91ebb7c041f9.herokuapp.com','127.0.0.1', 'localhost']
@@ -62,6 +61,8 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    # Other middleware
+    'myapp.middlewares.CustomErrorMiddleware'
 ]
 
 ROOT_URLCONF = "onlinestore.urls"

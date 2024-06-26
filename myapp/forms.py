@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import AuthenticationForm
-from .models import User, Drug
+from .models import User, Drug, BillingDetails
 from django.core.exceptions import ValidationError
 from .choices import CATEGORIES
 
@@ -49,3 +49,10 @@ class DrugForm(forms.ModelForm):
         model = Drug
         fields = ['name', 'description', 'price', 'manufacturer', 'category', 'image']
 
+
+class BillingForm(forms.ModelForm):
+    class Meta:
+        model = BillingDetails
+        fields = ['first_name', 'last_name', 'company_name', 'country', 'street_address', 
+                  'town_city', 'state', 'zipcode', 'phone_number', 'email', 'order_note', 
+                  'create_account']
