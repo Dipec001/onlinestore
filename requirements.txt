@@ -15,6 +15,7 @@ dj-database-url==2.1.0
 Django==5.0.4
 django-modeltranslation==0.19.4
 django-storages==1.14.3
+django-taggit==5.0.1
 forex-python==1.8
 gunicorn==22.0.0
 idna==3.7

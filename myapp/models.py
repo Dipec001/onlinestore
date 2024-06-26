@@ -3,6 +3,7 @@ from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, Permis
 from django.utils import timezone
 from .choices import CATEGORIES
 from django.utils.translation import gettext_lazy as _
+from taggit.managers import TaggableManager
 
 
 class CustomUserManager(BaseUserManager):
@@ -101,6 +102,19 @@ class CartItem(models.Model):
     cart = models.ForeignKey(Cart, on_delete=models.CASCADE)
     drug = models.ForeignKey(Drug, on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField(default=1)
+
+class BlogPost(models.Model):
+    title = models.CharField(max_length=200)
+    description = models.TextField()
+    content = models.TextField()
+    image = models.ImageField(upload_to='blog_images/')
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    tags = TaggableManager()  # Add this line to include tags
+
+    def __str__(self):
+        return self.title
+
 
 
 # class Order(models.Model):

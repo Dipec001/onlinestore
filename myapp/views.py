@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from .forms import UserRegisterForm, UserLoginForm
-from .models import User, OneTimePassword, Drug, Category, Cart, CartItem
+from .models import User, OneTimePassword, Drug, Category, Cart, CartItem, BlogPost
 from .utils import send_otp_for_password_reset
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import Q
@@ -11,6 +11,7 @@ import stripe
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
 from django.utils.translation import gettext_lazy as _
+from taggit.models import Tag
 
 stripe.api_key = os.environ.get('STRIPE_SECRET_KEY')
 
@@ -204,8 +205,45 @@ def services(request):
 def faqs(request):
     return render(request, "frequent-questions.html")
 
+
 def blog(request):
-    return render(request, "blog.html")
+    tag_slug = request.GET.get('tag')
+    page_number = request.GET.get('page')
+    
+    if tag_slug:
+        tag = get_object_or_404(Tag, slug=tag_slug)
+        posts = BlogPost.objects.filter(tags=tag).order_by('created_at')
+    else:
+        posts = BlogPost.objects.all().order_by('created_at')
+        tag = None  # If no tag is selected
+    
+    paginator = Paginator(posts, 5)  # Show 5 blog posts per page
+    page_obj = paginator.get_page(page_number)
+    all_tags = Tag.objects.all()
+
+    context = {
+        'posts': page_obj,
+        'tag': tag_slug,
+        'page_obj': page_obj,
+        'all_tags': all_tags,
+        'selected_tag': tag_slug,
+
+    }
+    
+    return render(request, 'blog.html', context)
+
+
+def blog_detail(request, post_id):
+    post = get_object_or_404(BlogPost, id=post_id)
+    previous_post = BlogPost.objects.filter(id__lt=post.id).order_by('-id').first()
+    next_post = BlogPost.objects.filter(id__gt=post.id).order_by('id').first()
+
+    context = {
+        'post': post,
+        'previous_post': previous_post,
+        'next_post': next_post,
+    }
+    return render(request, 'blog-detail.html', context)
 
 
 def item_view(request, id):
