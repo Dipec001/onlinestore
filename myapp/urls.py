@@ -28,4 +28,5 @@ urlpatterns = [
     path('success/', views.success_view, name='success'),
     path('cancel/', views.cancel_view, name='cancel'),
     path('testerror/', views.errortest, name='error-test'),
+    path('order-complete/', views.order_complete, name='order_complete'),
 ]

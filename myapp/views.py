@@ -383,15 +383,104 @@ def errortest(request):
     # Simulate a 500 error
     return HttpResponseServerError("Intentional 500 error")
 
+from django.shortcuts import render, redirect
+from .forms import BillingForm, ShippingForm  # Import your forms
+
+
+# def checkout_view(request):
+#     if 'step' not in request.session:
+#         request.session['step'] = 'billing'
+
+#     step = request.session['step']
+
+#     billing_data = request.session.get('billing_data', {})
+#     shipping_data = request.session.get('shipping_data', {})
+
+#     billing_form = BillingForm(initial=billing_data)
+#     shipping_form = ShippingForm(initial=shipping_data)
+
+#     if request.method == 'POST':
+#         if 'billing-continue' in request.POST:
+#             billing_form = BillingForm(request.POST)
+#             if billing_form.is_valid():
+#                 request.session['billing_data'] = billing_form.cleaned_data
+#                 request.session['step'] = 'shipping'
+#                 return redirect('checkout')
+#             else:
+#                 print("Billing Form Invalid: ", billing_form.errors)  # Debug print
+
+#         elif 'shipping-continue' in request.POST:
+#             shipping_form = ShippingForm(request.POST)
+#             if shipping_form.is_valid():
+#                 request.session['shipping_data'] = shipping_form.cleaned_data
+#                 print("Shipping Data Updated: ", request.session['shipping_data'])  # Debug print
+#                 request.session['step'] = 'review'
+#                 return redirect('checkout')
+#             else:
+#                 print("Shipping Form Invalid: ", shipping_form.errors)  # Debug print
+
+#         elif 'place-order' in request.POST:
+#             # Process payment and order
+#             billing_data = request.session.get('billing_data')
+#             shipping_data = request.session.get('shipping_data')
+#             # Save data to models, process payment, etc.
+#             request.session['step'] = 'complete'
+#             return redirect('order_complete')
+
+#     context = {
+#         'billing_form': billing_form,
+#         'shipping_form': shipping_form,
+#         'billing_data': billing_data,
+#         'shipping_data': shipping_data,
+#         'current_step': request.session['step'],
+#     }
+
+#     return render(request, 'checkout-real.html', context)
+
+from django.shortcuts import render, redirect
+from .forms import BillingForm, ShippingForm
 
 def checkout_view(request):
-    if request.method == 'POST':
-        form = BillingForm(request.POST)
-        if form.is_valid():
-            billing_details = form.save()
-            # Process billing details or redirect to next step
-            return redirect('next_step_view')  # Replace 'next_step_view' with your view name
-    else:
-        form = BillingForm()
+    if 'step' not in request.session:
+        request.session['step'] = 'billing'
 
-    return render(request, 'checkout-real.html', {'form': form})
+    step = request.session['step']
+
+    billing_form = BillingForm(request.session.get('billing_data', None))
+    shipping_form = ShippingForm(request.session.get('shipping_data', None))
+
+    if request.method == 'POST':
+        if 'billing-continue' in request.POST:
+            billing_form = BillingForm(request.POST)
+            if billing_form.is_valid():
+                request.session['billing_data'] = billing_form.cleaned_data
+                request.session['step'] = 'shipping'
+                return redirect('checkout')
+        elif 'shipping-continue' in request.POST:
+            shipping_form = ShippingForm(request.POST)
+            if shipping_form.is_valid():
+                request.session['shipping_data'] = shipping_form.cleaned_data
+                request.session['step'] = 'review'
+                return redirect('checkout')
+        elif 'place-order' in request.POST:
+            request.session['step'] = 'complete'
+            return redirect('order_complete')
+
+    context = {
+        'billing_form': billing_form,
+        'shipping_form': shipping_form,
+        'current_step': step,
+    }
+
+    if step == 'review':
+        context.update({
+            'billing_data': request.session.get('billing_data'),
+            'shipping_data': request.session.get('shipping_data'),
+        })
+
+    return render(request, 'checkout-real.html', context)
+
+
+
+def order_complete(request):
+    return render(request, 'order-complete.html')

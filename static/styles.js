@@ -4,33 +4,62 @@
 console.log('JavaScript file loaded successfully');
 // testing purpose
 
+// Styling for switching pages
 document.addEventListener('DOMContentLoaded', function () {
-    // Get all option items
     const optionItems = document.querySelectorAll('.option-item');
+    const forms = document.querySelectorAll('.checkout-realform');
 
-    // Function to handle option click
+    function showForm(formId) {
+        forms.forEach(form => {
+            form.style.display = form.id === formId ? 'block' : 'none';
+        });
+    }
+
     function handleOptionClick(event) {
-        // Remove active classes from all options
+        const clickedOption = event.currentTarget;
+        const formId = clickedOption.id.replace('-option', '-form');
+        showForm(formId);
+
         optionItems.forEach(option => {
             option.classList.remove('activates');
             option.querySelector('.checkout-realoptions-no').classList.remove('activated');
         });
 
-        // Add active classes to the clicked option
-        const clickedOption = event.currentTarget;
         clickedOption.classList.add('activates');
         clickedOption.querySelector('.checkout-realoptions-no').classList.add('activated');
     }
 
-    // Attach click event listener to each option
     optionItems.forEach(option => {
         option.addEventListener('click', handleOptionClick);
     });
 
-    // Set the initial active state for the first option (Billing Details)
-    optionItems[0].classList.add('activates');
-    optionItems[0].querySelector('.checkout-realoptions-no').classList.add('activated');
+    const currentStep = "{{ current_step }}";
+    const initialActiveOption = document.getElementById(currentStep + '-option');
+    initialActiveOption.classList.add('activates');
+    initialActiveOption.querySelector('.checkout-realoptions-no').classList.add('activated');
+    showForm(currentStep + '-form');
 });
+
+
+// Hide or reveal shippping details form
+document.addEventListener('DOMContentLoaded', function () {
+    const checkbox = document.querySelector('.dif-address input[type="checkbox"]');
+    const shippingForm = document.querySelectorAll('#shipping-form .form-group:not(.dif-address)');
+
+    function toggleShippingForm() {
+        if (checkbox.checked) {
+            shippingForm.forEach(field => field.style.display = 'block');
+        } else {
+            shippingForm.forEach(field => field.style.display = 'none');
+        }
+    }
+
+    checkbox.addEventListener('change', toggleShippingForm);
+
+    // Initialize the form state based on the checkbox
+    toggleShippingForm();
+});
+
 
 
 

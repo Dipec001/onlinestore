@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import AuthenticationForm
-from .models import User, Drug, BillingDetails
+from .models import User, Drug, BillingDetails, ShippingAddress
 from django.core.exceptions import ValidationError
 from .choices import CATEGORIES
 
@@ -53,6 +53,13 @@ class DrugForm(forms.ModelForm):
 class BillingForm(forms.ModelForm):
     class Meta:
         model = BillingDetails
-        fields = ['first_name', 'last_name', 'company_name', 'country', 'street_address', 
-                  'town_city', 'state', 'zipcode', 'phone_number', 'email', 'order_note', 
+        fields = ['billing_first_name', 'billing_last_name', 'billing_company_name', 'billing_country', 'billing_street_address', 
+                  'billing_town_city', 'billing_state', 'billing_zipcode', 'billing_phone_number', 'email', 'order_note', 
                   'create_account']
+        
+
+class ShippingForm(forms.ModelForm):
+    class Meta:
+        model = ShippingAddress
+        fields = ['shipping_first_name', 'shipping_last_name', 'shipping_company_name', 'shipping_country', 'shipping_street_address', 
+                  'shipping_town_city', 'shipping_state', 'shipping_zipcode', 'shipping_phone_number']

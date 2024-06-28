@@ -9,39 +9,266 @@
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
     <div class="checkout-realoptions">
-        <div class="option-item activates" id="billing">
-            <p class="checkout-realoptions-no activated">1</p>
-            <p>Billing Details</p>
+        <div class="option-item {% if current_step == 'billing' %}activates{% endif %}" id="billing-option">
+            <p class="checkout-realoptions-no {% if current_step == 'billing' %}activated{% endif %}">1</p>
+            <p>Billing <span class="cut-checkoutoption"> Details</span></p>
         </div>
-        <div class="option-item" data-option="shipping" id="shipping">
-            <p class="checkout-realoptions-no">2</p>
-            <p>Shipping Address</p>
+        <div class="option-item {% if current_step == 'shipping' %}activates{% endif %}" id="shipping-option">
+            <p class="checkout-realoptions-no {% if current_step == 'shipping' %}activated{% endif %}">2</p>
+            <p>Shipping <span class="cut-checkoutoption">Address</span></p>
         </div>
-        <div class="option-item" data-option="review" id="review">
-            <p class="checkout-realoptions-no">3</p>
-            <p>Review Order</p>
+        <div class="option-item {% if current_step == 'review' %}activates{% endif %}" id="review-option">
+            <p class="checkout-realoptions-no {% if current_step == 'review' %}activated{% endif %}">3</p>
+            <p><span class="cut-checkoutoption">Review </span>Order</p>
         </div>
     </div>
-    <div class="checkout-realform" id="billing-form">
+
+    <div class="checkout-realform" id="billing-form" {% if current_step != 'billing' %}style="display: none;"{% endif %}>
         <div>
             <h4>Billing details</h4>
         </div>
-        <form method="post" action="{% url 'checkout' %}" class="checkout-form">
-            {% if form.errors %}
-                <ul>
-                {% for field, errors in form.errors.items %}
-                    {% for error in errors %}
-                        <li>{{ field|title }}: {{ error }}</li>
-                    {% endfor %}
-                {% endfor %}
-                </ul>
-            {% endif %}
+
+        <form method="post" action="{% url 'checkout' %}" class="checkout-actualform" novalidate>
             {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit">Submit</button>
-        </form>
+            <div class="form-left">
+                <div class="name-div-checkout">
+                    <div class="form-group">
+                        <label for="{{ billing_form.billing_first_name.id_for_label }}">FIRST NAME*</label>
+                        {{ billing_form.billing_first_name }}
+                        {% if billing_form.billing_first_name.errors %}
+                            <div class="error-message">
+                                {{ billing_form.billing_first_name.errors|join:", " }}
+                            </div>
+                        {% endif %}
+                    </div>
+                    <div class="form-group">
+                        <label for="{{ billing_form.billing_last_name.id_for_label }}">LAST NAME*</label>
+                        {{ billing_form.billing_last_name }}
+                        {% if billing_form.billing_last_name.errors %}
+                            <div class="error-message">
+                                {{ billing_form.billing_last_name.errors|join:", " }}
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
         
+                <div class="form-group">
+                    <label for="{{ billing_form.billing_company_name.id_for_label }}">COMPANY NAME(Optional)</label>
+                    {{ billing_form.billing_company_name }}
+                    {% if billing_form.billing_company_name.errors %}
+                        <div class="error-message">
+                            {{ billing_form.billing_company_name.errors|join:", " }}
+                        </div>
+                    {% endif %}
+                </div>
+                
+                <div class="form-group">
+                    <label for="{{ billing_form.billing_phone_number.id_for_label }}">PHONE NUMBER*</label>
+                    {{ billing_form.billing_phone_number }}
+                    {% if billing_form.billing_phone_number.errors %}
+                        <div class="error-message">
+                            {{ billing_form.billing_phone_number.errors|join:", " }}
+                        </div>
+                    {% endif %}
+                </div>
+        
+                <div class="form-group">
+                    <label for="{{ billing_form.email.id_for_label }}">EMAIL*</label>
+                    {{ billing_form.email }}
+                    {% if billing_form.email.errors %}
+                        <div class="error-message">
+                            {{ billing_form.email.errors|join:", " }}
+                        </div>
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    <label for="{{ billing_form.billing_country.id_for_label }}">COUNTRY</label>
+                    {{ billing_form.billing_country }}
+                    {% if billing_form.billing_country.errors %}
+                        <div class="error-message">
+                            {{ billing_form.billing_country.errors|join:", " }}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="form-right">
+                <div class="form-group">
+                    <label for="{{ billing_form.billing_town_city.id_for_label }}">TOWN/CITY</label>
+                    {{ billing_form.billing_town_city }}
+                    {% if billing_form.billing_town_city.errors %}
+                        <div class="error-message">
+                            {{ billing_form.billing_town_city.errors|join:", " }}
+                        </div>
+                    {% endif %}
+                </div>
+                
+                <div class="form-group">
+                    <label for="{{ billing_form.billing_state.id_for_label }}">STATE</label>
+                    {{ billing_form.billing_state }}
+                    {% if billing_form.billing_state.errors %}
+                        <div class="error-message">
+                            {{ billing_form.billing_state.errors|join:", " }}
+                        </div>
+                    {% endif %}
+                </div>
+        
+                <div class="form-group">
+                    <label for="{{ billing_form.billing_zipcode.id_for_label }}">ZIPCODE</label>
+                    {{ billing_form.billing_zipcode }}
+                    {% if billing_form.billing_zipcode.errors %}
+                        <div class="error-message">
+                            {{ billing_form.billing_zipcode.errors|join:", " }}
+                        </div>
+                    {% endif %}
+                </div>
+        
+                <div class="form-group">
+                    <label for="{{ billing_form.billing_street_address.id_for_label }}">STREET ADDRESS</label>
+                    {{ billing_form.billing_street_address }}
+                    {% if billing_form.billing_street_address.errors %}
+                        <div class="error-message">
+                            {{ billing_form.billing_street_address.errors|join:", " }}
+                        </div>
+                    {% endif %}
+                </div>
+        
+                <div class="form-group-orderlabel">
+                    <label for="{{ billing_form.order_note.id_for_label }}">ORDER NOTE (Optional)</label>
+                    {{ billing_form.order_note }}
+                    {% if billing_form.order_note.errors %}
+                        <div class="error-message">
+                            {{ billing_form.order_note.errors|join:", " }}
+                        </div>
+                    {% endif %}
+                </div>
+        
+            </div>
+            <div class="continue-realcheckout">
+                <div class="form-gro">
+                    <label for="{{ billing_form.create_account.id_for_label }}">{{ billing_form.create_account.label }}</label>
+                    {{ billing_form.create_account }}
+                    {% if billing_form.create_account.errors %}
+                        <div class="error-message">{{ billing_form.create_account.errors }}</div>
+                    {% endif %}
+                </div>
+            
+                <button type="submit" name="billing-continue" class="btn btn-primary">Continue</button>
+            </div>
+        </form>
     </div>
 
+    <div class="checkout-realform" id="shipping-form" {% if current_step != 'shipping' %}style="display: none;"{% endif %}>
+        <div>
+            <h4>Shipping details</h4>
+        </div>
+        <form method="post" action="{% url 'checkout' %}" class="checkout-actualform" novalidate>
+            {% csrf_token %}
+            <div class="form-left form-shipping-left">
+                <div class="form-group dif-address">
+                    <input type="checkbox" required>
+                    <label for="">Ship to a different Address?</label>
+                </div>
+                <div class="name-div-checkout" id="shipping-fields">
+                    <div class="form-group">
+                        <label for="{{ shipping_form.shipping_first_name.id_for_label }}">FIRST NAME*</label>
+                        {{ shipping_form.shipping_first_name }}
+                        {% if shipping_form.shipping_first_name.errors %}
+                            <div class="error-message">
+                                {{ shipping_form.shipping_first_name.errors|join:", " }}
+                            </div>
+                        {% endif %}
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="{{ shipping_form.shipping_last_name.id_for_label }}">LAST NAME*</label>
+                        {{ shipping_form.shipping_last_name }}
+                        {% if shipping_form.shipping_last_name.errors %}
+                            <div class="error-message">{{ shipping_form.shipping_last_name.errors|join:", " }}</div>
+                        {% endif %}
+                    </div>
+                </div>
+        
+                <div class="form-group">
+                    <label for="{{ shipping_form.shipping_company_name.id_for_label }}">COMPANY NAME (Optional)</label>
+                    {{ shipping_form.shipping_company_name }}
+                    {% if shipping_form.shipping_company_name.errors %}
+                        <div class="error-message">{{ shipping_form.shipping_company_name.errors|join:", " }}</div>
+                    {% endif %}
+                </div>
+                
+                <div class="form-group">
+                    <label for="{{ shipping_form.shipping_phone_number.id_for_label }}">PHONE NUMBER*</label>
+                    {{ shipping_form.shipping_phone_number }}
+                    {% if shipping_form.shipping_phone_number.errors %}
+                        <div class="error-message">{{ shipping_form.shipping_phone_number.errors|join:", " }}</div>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="form-right">
+                <div class="form-group">
+                    <label for="{{ shipping_form.shipping_country.id_for_label }}">COUNTRY</label>
+                    {{ shipping_form.shipping_country }}
+                    {% if shipping_form.shipping_country.errors %}
+                        <div class="error-message">{{ shipping_form.shipping_country.errors|join:", " }}</div>
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    <label for="{{ shipping_form.shipping_town_city.id_for_label }}">TOWN/CITY</label>
+                    {{ shipping_form.shipping_town_city }}
+                    {% if shipping_form.shipping_town_city.errors %}
+                        <div class="error-message">{{ shipping_form.shipping_town_city.errors|join:", " }}</div>
+                    {% endif %}
+                </div>
+                
+                <div class="form-group">
+                    <label for="{{ shipping_form.shipping_state.id_for_label }}">STATE</label>
+                    {{ shipping_form.shipping_state }}
+                    {% if shipping_form.shipping_state.errors %}
+                        <div class="error-message">{{ shipping_form.shipping_state.errors|join:", " }}</div>
+                    {% endif %}
+                </div>
+        
+                <div class="form-group">
+                    <label for="{{ shipping_form.shipping_zipcode.id_for_label }}">ZIPCODE</label>
+                    {{ shipping_form.shipping_zipcode }}
+                    {% if shipping_form.shipping_zipcode.errors %}
+                        <div class="error-message">{{ shipping_form.shipping_zipcode.errors|join:", " }}</div>
+                    {% endif %}
+                </div>
+        
+                <div class="form-group">
+                    <label for="{{ shipping_form.shipping_street_address.id_for_label }}">STREET ADDRESS</label>
+                    {{ shipping_form.shipping_street_address }}
+                    {% if shipping_form.shipping_street_address.errors %}
+                        <div class="error-message">{{ shipping_form.shipping_street_address.errors|join:", " }}</div>
+                    {% endif %}
+                </div>
+        
+            </div>
+            <div class="continue-realcheckout">
+                <button type="submit" name="shipping-continue" class="btn btn-primary">Continue</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="checkout-realform" id="review-form" {% if current_step != 'review' %}style="display: none;"{% endif %}>
+        <div>
+            <h4>Review your order</h4>
+        </div>
+        <div>
+            <h5>Billing Details:</h5>
+            <p>{{ request.session.billing_data }}</p>
+            <h5>Shipping Details:</h5>
+            <p>{{ request.session.shipping_data }}</p>
+        </div>
+        <div class="continue-realcheckout">
+            <form method="post" action="{% url 'checkout' %}">
+                {% csrf_token %}
+                <button type="submit" name="place-order" class="btn btn-primary">Place Order</button>
+            </form>
+        </div>
+    </div>
 </div>
 {% endblock %}

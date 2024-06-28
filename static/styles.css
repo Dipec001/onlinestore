@@ -458,6 +458,7 @@ header{
     border-radius: 5px;
     border: 1px solid #ccc;
     width: 100%;
+    height: 35px;
 }
 .form-group input:focus {
     outline: none;
@@ -1205,6 +1206,13 @@ header{
 }
 
 /* Form messages and error messages styling */
+.error {
+    color: red;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
 /* Add this to your styles.css */
 .error-message {
     color: red;
@@ -1524,6 +1532,9 @@ hr {
         width: 100%;
         justify-content: space-between;
     }
+    .cut-checkoutoption{
+        display: none;
+    }
 }
 
 /* error pages style */
@@ -1571,6 +1582,14 @@ hr {
         flex-wrap: wrap;
     
     }
+    .form-gro{
+        display: grid;
+        grid-template-columns: auto auto;
+        font-size: smaller;
+    }
+    .form-gro label{
+        font-size: smaller;
+    }
 }
 
 @media screen  and (max-width: 1000px){
@@ -1600,6 +1619,13 @@ hr {
     }
     .blog-grid{
         width: 100%;
+    }
+    .continue-realcheckout{
+        display: grid;
+        grid-template-columns: auto;
+    }
+    .checkout-realpage{
+        width: 90% !important;
     }
 }
 
@@ -1655,6 +1681,9 @@ hr {
     }
     .blog-card img{
         width: 400px;
+    }
+    .checkout-actualform{
+        grid-template-columns: 100% !important;
     }
 
 }
@@ -1765,11 +1794,15 @@ hr {
     .checkout-div{
         width: 90%;
     }
+    .option-item {
+        font-size: smaller;
+    }
 }
 
 .checkout-realpage{
     width: 70%;
-    margin: auto;
+    margin: 30px auto;
+
 }
 .returning-user{
     text-decoration: none;
@@ -1804,7 +1837,7 @@ hr {
     justify-content: center;
     align-items: center;
     display: inline-flex;
-    margin-right: 20px;
+    margin-right: 5px;
     
 }
 .activated{
@@ -1813,7 +1846,7 @@ hr {
     font-weight: 900;
 }
 .activates{
-    border-bottom: 3px solid yellowgreen;
+    border-bottom: 3px solid #0B63B2;
     border-width: 100%;
 }
 .checkout-realform{
@@ -1821,4 +1854,42 @@ hr {
 }
 .checkout-realform h4{
     font-weight: 900;
+}
+.checkout-actualform {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+.name-div-checkout{
+    display: grid;
+    grid-template-columns: auto auto;
+    column-gap: 20px;
+
+}
+.form-group-orderlabel input{
+    height: 150px;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+.continue-realcheckout{
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    align-items: center;
+    column-gap: 5px;
+}
+.form-shipping-left{
+    display: grid;
+    grid-template-columns: auto;
+}
+.dif-address{
+    display: flex;
+    align-items: center;
+    text-align: left;
+}
+.dif-address input{
+    margin-right: 10px;
+    width: 15px;
 }
