@@ -4,10 +4,20 @@
 
 {% block content %}
 <div class="checkout-realpage">
-    <div class="alert alert-primary alert-dismissible fade show" role="alert">
-        <strong>Returning User?</strong> <a class="returning-user" href="{% url 'login' %}">Click here to login.</a>
+    <div class="alert alert-info alert-dismissible fade show" role="alert">
+        <strong>Returning User?</strong> <a href="{% url 'login' %}">Click here to login.</a>
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
+    {% if messages %}
+        <div>
+            {% for message in messages %}
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
     <div class="checkout-realoptions">
         <div class="option-item {% if current_step == 'billing' %}activates{% endif %}" id="billing-option">
             <p class="checkout-realoptions-no {% if current_step == 'billing' %}activated{% endif %}">1</p>
@@ -287,7 +297,7 @@
         <!-- Payment Method Section -->
         <div class="container-payment">
             <div class="payment-method">
-                <form method="post" action="{% url 'checkout' %}">
+                <form method="post" action="{% url 'checkout' %}" novalidate>
                     {% csrf_token %}
                     
                     <div class="form-payment">

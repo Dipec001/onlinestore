@@ -132,6 +132,14 @@ def reset_password(request):
 
 
 def logout_view(request):
+    # Clear specific session data
+    if 'billing_data' in request.session:
+        del request.session['billing_data']
+    if 'shipping_data' in request.session:
+        del request.session['shipping_data']
+    if 'step' in request.session:
+        del request.session['step']
+
     logout(request)
     return redirect('index')
 
@@ -384,7 +392,79 @@ def errortest(request):
     return HttpResponseServerError("Intentional 500 error")
 
 
+# def checkout_view(request):
+#     if 'step' not in request.session:
+#         request.session['step'] = 'billing'
+
+#     step = request.session['step']
+
+#     billing_form = BillingForm(request.session.get('billing_data', None))
+#     shipping_form = ShippingForm(request.session.get('shipping_data', None))
+
+#     if request.method == 'POST':
+#         if 'billing-continue' in request.POST:
+#             billing_form = BillingForm(request.POST)
+#             if billing_form.is_valid():
+#                 request.session['billing_data'] = billing_form.cleaned_data
+#                 request.session['step'] = 'shipping'
+#                 return redirect('checkout')
+#         elif 'shipping-continue' in request.POST:
+#             # Check if the "Ship to a different Address?" checkbox is checked
+#             ship_to_different_address = request.POST.get('ship_to_different_address', 'off') == 'on'
+#             if ship_to_different_address:
+#                 shipping_form = ShippingForm(request.POST)
+#                 if shipping_form.is_valid():
+#                     request.session['shipping_data'] = shipping_form.cleaned_data
+#                     request.session['step'] = 'review'
+#                     return redirect('checkout')
+#             else:
+#                 # If not shipping to a different address, skip shipping form validation
+#                 request.session['shipping_data'] = None
+#                 request.session['step'] = 'review'
+#                 return redirect('checkout')
+#         elif 'place-order' in request.POST:
+#             if request.POST.get('of_age') != 'on':
+#                 # Handle the case where the user did not check the age confirmation
+#                 return render(request, 'checkout-real.html', context)
+            
+#             payment_method = request.POST.get('payment_method')
+#             # Handle the payment method and finalize the order here
+#             # Redirect to the order complete page
+#             request.session['step'] = 'complete'
+#             return redirect('order_complete')
+
+#     context = {
+#         'billing_form': billing_form,
+#         'shipping_form': shipping_form,
+#         'current_step': step,
+#     }
+
+#     if step == 'review':
+#         cart = get_cart(request)
+#         cart_items = CartItem.objects.filter(cart=cart)
+#         cart_items_with_subtotal = []
+#         total = 0
+#         for item in cart_items:
+#             subtotal = item.drug.price * item.quantity
+#             total += subtotal
+#             cart_items_with_subtotal.append({
+#                 'item': item,
+#                 'subtotal': subtotal
+#             })
+#         context.update({
+#             'billing_data': request.session.get('billing_data'),
+#             'shipping_data': request.session.get('shipping_data'),
+#             'cart_items_with_subtotal': cart_items_with_subtotal,
+#             'total': total,
+#         })
+
+#     return render(request, 'checkout-real.html', context)
+
 def checkout_view(request):
+    # Set session expiry for billing and shipping data
+    request.session.set_expiry(1800)  # 30 minutes
+    
+
     if 'step' not in request.session:
         request.session['step'] = 'billing'
 
@@ -392,6 +472,18 @@ def checkout_view(request):
 
     billing_form = BillingForm(request.session.get('billing_data', None))
     shipping_form = ShippingForm(request.session.get('shipping_data', None))
+
+    cart = get_cart(request)
+    cart_items = CartItem.objects.filter(cart=cart)
+    cart_items_with_subtotal = []
+    total = 0
+    for item in cart_items:
+        subtotal = item.drug.price * item.quantity
+        total += subtotal
+        cart_items_with_subtotal.append({
+            'item': item,
+            'subtotal': subtotal
+        })
 
     if request.method == 'POST':
         if 'billing-continue' in request.POST:
@@ -417,7 +509,8 @@ def checkout_view(request):
         elif 'place-order' in request.POST:
             if request.POST.get('of_age') != 'on':
                 # Handle the case where the user did not check the age confirmation
-                return render(request, 'checkout-real.html', context)
+                messages.error(request, "Please read and accept the terms and conditions to proceed with your order.")                
+                return redirect('checkout')
             
             payment_method = request.POST.get('payment_method')
             # Handle the payment method and finalize the order here
@@ -429,28 +522,18 @@ def checkout_view(request):
         'billing_form': billing_form,
         'shipping_form': shipping_form,
         'current_step': step,
+        'cart_items_with_subtotal': cart_items_with_subtotal,
+        'total': total,
     }
 
     if step == 'review':
-        cart = get_cart(request)
-        cart_items = CartItem.objects.filter(cart=cart)
-        cart_items_with_subtotal = []
-        total = 0
-        for item in cart_items:
-            subtotal = item.drug.price * item.quantity
-            total += subtotal
-            cart_items_with_subtotal.append({
-                'item': item,
-                'subtotal': subtotal
-            })
         context.update({
             'billing_data': request.session.get('billing_data'),
             'shipping_data': request.session.get('shipping_data'),
-            'cart_items_with_subtotal': cart_items_with_subtotal,
-            'total': total,
         })
 
     return render(request, 'checkout-real.html', context)
+
 
 
 
