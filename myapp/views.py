@@ -415,6 +415,13 @@ def checkout_view(request):
                 request.session['step'] = 'review'
                 return redirect('checkout')
         elif 'place-order' in request.POST:
+            if request.POST.get('of_age') != 'on':
+                # Handle the case where the user did not check the age confirmation
+                return render(request, 'checkout-real.html', context)
+            
+            payment_method = request.POST.get('payment_method')
+            # Handle the payment method and finalize the order here
+            # Redirect to the order complete page
             request.session['step'] = 'complete'
             return redirect('order_complete')
 
@@ -425,9 +432,22 @@ def checkout_view(request):
     }
 
     if step == 'review':
+        cart = get_cart(request)
+        cart_items = CartItem.objects.filter(cart=cart)
+        cart_items_with_subtotal = []
+        total = 0
+        for item in cart_items:
+            subtotal = item.drug.price * item.quantity
+            total += subtotal
+            cart_items_with_subtotal.append({
+                'item': item,
+                'subtotal': subtotal
+            })
         context.update({
             'billing_data': request.session.get('billing_data'),
             'shipping_data': request.session.get('shipping_data'),
+            'cart_items_with_subtotal': cart_items_with_subtotal,
+            'total': total,
         })
 
     return render(request, 'checkout-real.html', context)

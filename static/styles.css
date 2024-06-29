@@ -1905,6 +1905,10 @@ hr {
     display: flex;
     justify-content: space-between;
 }
+.order-detail-csrt{
+    display: grid !important;
+    grid-template-columns: 4fr;
+}
 .container-payment {
     background-color: #f9f9f9;
     padding: 20px;

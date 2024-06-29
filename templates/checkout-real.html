@@ -263,13 +263,17 @@
                 <p>Product</p>
                 <p>Subtotal</p>
             </div>
-
-            <div>
-
+            <div class="order-detail-csrt">
+                {% for item_with_subtotal in cart_items_with_subtotal %}
+                    <div>
+                        <p>{{ item_with_subtotal.item.drug.name }} * {{ item_with_subtotal.item.quantity }}</p>
+                        <p>${{ item_with_subtotal.subtotal }}</p>
+                    </div>
+                {% endfor %}
             </div>
             <div>
                 <p>Subtotal</p>
-                <p>$200.00</p>
+                <p>${{ total }}</p>
             </div>
             <div>
                 <p>Shipping</p>
@@ -277,7 +281,7 @@
             </div>
             <div>
                 <p>Total</p>
-                <p>$200.00</p>
+                <p>${{ total }}</p>
             </div>
         </div>
         <!-- Payment Method Section -->
