@@ -4,7 +4,7 @@
 console.log('JavaScript file loaded successfully');
 // testing purpose
 
-// Styling for switching pages
+// Styling for switching pages in checkout
 document.addEventListener('DOMContentLoaded', function () {
     const optionItems = document.querySelectorAll('.option-item');
     const forms = document.querySelectorAll('.checkout-realform');
@@ -58,6 +58,30 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Initialize the form state based on the checkbox
     toggleShippingForm();
+});
+
+// Styling for the toggle between paypal and crypto in the order review page
+document.addEventListener('DOMContentLoaded', function() {
+    const paypalRadio = document.querySelector('input[name="payment_method"][value="paypal"]');
+    const cryptoRadio = document.querySelector('input[name="payment_method"][value="crypto"]');
+    const paypalTooltip = document.getElementById('paypal-tooltip');
+    const cryptoTooltip = document.getElementById('crypto-tooltip');
+
+    function updateTooltips() {
+        if (paypalRadio.checked) {
+            paypalTooltip.style.display = 'block';
+            cryptoTooltip.style.display = 'none';
+        } else if (cryptoRadio.checked) {
+            cryptoTooltip.style.display = 'block';
+            paypalTooltip.style.display = 'none';
+        }
+    }
+
+    paypalRadio.addEventListener('change', updateTooltips);
+    cryptoRadio.addEventListener('change', updateTooltips);
+
+    // Initialize the tooltips on page load
+    updateTooltips();
 });
 
 

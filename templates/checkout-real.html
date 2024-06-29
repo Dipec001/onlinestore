@@ -166,8 +166,8 @@
             {% csrf_token %}
             <div class="form-left form-shipping-left">
                 <div class="form-group dif-address">
-                    <input type="checkbox" required>
-                    <label for="">Ship to a different Address?</label>
+                    <input type="checkbox" id="dif-address-checkbox" name="ship_to_different_address">
+                    <label for="dif-address-checkbox">Ship to a different Address?</label>
                 </div>
                 <div class="name-div-checkout" id="shipping-fields">
                     <div class="form-group">
@@ -257,17 +257,65 @@
         <div>
             <h4>Review your order</h4>
         </div>
-        <div>
-            <h5>Billing Details:</h5>
-            <p>{{ request.session.billing_data }}</p>
-            <h5>Shipping Details:</h5>
-            <p>{{ request.session.shipping_data }}</p>
+        <div class="order-cart-review">
+            <h5>Cart Totals</h5>
+            <div>
+                <p>Product</p>
+                <p>Subtotal</p>
+            </div>
+
+            <div>
+
+            </div>
+            <div>
+                <p>Subtotal</p>
+                <p>$200.00</p>
+            </div>
+            <div>
+                <p>Shipping</p>
+                <p>Expedited shipping $00.00</p>
+            </div>
+            <div>
+                <p>Total</p>
+                <p>$200.00</p>
+            </div>
         </div>
-        <div class="continue-realcheckout">
-            <form method="post" action="{% url 'checkout' %}">
-                {% csrf_token %}
-                <button type="submit" name="place-order" class="btn btn-primary">Place Order</button>
-            </form>
+        <!-- Payment Method Section -->
+        <div class="container-payment">
+            <div class="payment-method">
+                <form method="post" action="{% url 'checkout' %}">
+                    {% csrf_token %}
+                    
+                    <div class="form-payment">
+                        <label class="radio-label">
+                            <input type="radio" name="payment_method" value="paypal" required checked>
+                            PayPal
+                        </label>
+                        <span class="tool-tip" id="paypal-tooltip">We will send you PayPal credentials after the checkout.</span>
+                    </div>
+                    <div class="form-payment">
+                        <label class="radio-label">
+                            <input type="radio" name="payment_method" value="crypto" required>
+                            Crypto
+                        </label>
+                        <span class="tool-tip" id="crypto-tooltip" style="display: none;">Send funds to our Bitcoin, Ethereum, or USDT wallet.</span>
+                    </div>
+                    
+                    <div>
+                        <p>Your personal data will be used to process your order, support your experience throughout this website, and for other purposes described in our privacy policy.</p>
+                        <div class="form-payment">
+                            <label for="of_age">
+                                <input type="checkbox" name="of_age" required>
+                                I have read and agree to the terms and conditions and confirm that I'm 21 years of age or older. *
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="continue-realcheckout">
+                        <button type="submit" name="place-order" class="btn btn-primary">Place Order</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </div>

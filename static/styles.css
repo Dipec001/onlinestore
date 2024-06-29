@@ -1893,3 +1893,47 @@ hr {
     margin-right: 10px;
     width: 15px;
 }
+.order-cart-review{
+    display: grid;
+    grid-template-columns: 100%;
+    margin-top: 30px;
+}
+.order-cart-review h5{
+    margin-bottom: 20px;
+}
+.order-cart-review div{
+    display: flex;
+    justify-content: space-between;
+}
+.container-payment {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.payment-method {
+    width: 100%;
+}
+
+.form-payment {
+    display: grid;
+    grid-template-columns: auto;
+    margin-bottom: 10px;
+}
+
+.radio-label {
+    width: 100%;
+    cursor: pointer;
+}
+
+.radio-label input[type="radio"] {
+    margin-right: 10px;
+}
+
+.tool-tip {
+    background-color: #333;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    display: none; /* Hide by default */
+}

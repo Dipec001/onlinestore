@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
-from .forms import UserRegisterForm, UserLoginForm, BillingForm
+from .forms import UserRegisterForm, UserLoginForm, BillingForm, ShippingForm
 from .models import User, OneTimePassword, Drug, Category, Cart, CartItem, BlogPost
 from .utils import send_otp_for_password_reset
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -383,62 +383,6 @@ def errortest(request):
     # Simulate a 500 error
     return HttpResponseServerError("Intentional 500 error")
 
-from django.shortcuts import render, redirect
-from .forms import BillingForm, ShippingForm  # Import your forms
-
-
-# def checkout_view(request):
-#     if 'step' not in request.session:
-#         request.session['step'] = 'billing'
-
-#     step = request.session['step']
-
-#     billing_data = request.session.get('billing_data', {})
-#     shipping_data = request.session.get('shipping_data', {})
-
-#     billing_form = BillingForm(initial=billing_data)
-#     shipping_form = ShippingForm(initial=shipping_data)
-
-#     if request.method == 'POST':
-#         if 'billing-continue' in request.POST:
-#             billing_form = BillingForm(request.POST)
-#             if billing_form.is_valid():
-#                 request.session['billing_data'] = billing_form.cleaned_data
-#                 request.session['step'] = 'shipping'
-#                 return redirect('checkout')
-#             else:
-#                 print("Billing Form Invalid: ", billing_form.errors)  # Debug print
-
-#         elif 'shipping-continue' in request.POST:
-#             shipping_form = ShippingForm(request.POST)
-#             if shipping_form.is_valid():
-#                 request.session['shipping_data'] = shipping_form.cleaned_data
-#                 print("Shipping Data Updated: ", request.session['shipping_data'])  # Debug print
-#                 request.session['step'] = 'review'
-#                 return redirect('checkout')
-#             else:
-#                 print("Shipping Form Invalid: ", shipping_form.errors)  # Debug print
-
-#         elif 'place-order' in request.POST:
-#             # Process payment and order
-#             billing_data = request.session.get('billing_data')
-#             shipping_data = request.session.get('shipping_data')
-#             # Save data to models, process payment, etc.
-#             request.session['step'] = 'complete'
-#             return redirect('order_complete')
-
-#     context = {
-#         'billing_form': billing_form,
-#         'shipping_form': shipping_form,
-#         'billing_data': billing_data,
-#         'shipping_data': shipping_data,
-#         'current_step': request.session['step'],
-#     }
-
-#     return render(request, 'checkout-real.html', context)
-
-from django.shortcuts import render, redirect
-from .forms import BillingForm, ShippingForm
 
 def checkout_view(request):
     if 'step' not in request.session:
@@ -457,9 +401,17 @@ def checkout_view(request):
                 request.session['step'] = 'shipping'
                 return redirect('checkout')
         elif 'shipping-continue' in request.POST:
-            shipping_form = ShippingForm(request.POST)
-            if shipping_form.is_valid():
-                request.session['shipping_data'] = shipping_form.cleaned_data
+            # Check if the "Ship to a different Address?" checkbox is checked
+            ship_to_different_address = request.POST.get('ship_to_different_address', 'off') == 'on'
+            if ship_to_different_address:
+                shipping_form = ShippingForm(request.POST)
+                if shipping_form.is_valid():
+                    request.session['shipping_data'] = shipping_form.cleaned_data
+                    request.session['step'] = 'review'
+                    return redirect('checkout')
+            else:
+                # If not shipping to a different address, skip shipping form validation
+                request.session['shipping_data'] = None
                 request.session['step'] = 'review'
                 return redirect('checkout')
         elif 'place-order' in request.POST:
